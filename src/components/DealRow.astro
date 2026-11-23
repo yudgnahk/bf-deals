@@ -32,6 +32,8 @@ if (days !== null) {
   else endsLabel = `ends in ${days} days`;
 } else if (deal.end_date) {
   endsLabel = `ends ${deal.end_date}`;
+} else {
+  endsLabel = 'end date unknown';
 }
 
 const searchBlob = [

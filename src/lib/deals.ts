@@ -218,7 +218,7 @@ export function categoryLabel(category: string, lang: 'en' | 'vi' = 'en'): strin
 }
 
 export function formatEndDate(endDate: string | null): string {
-  if (!endDate) return 'unknown / chưa rõ';
+  if (!endDate) return 'end date unknown';
   return endDate;
 }
 
