@@ -33,8 +33,10 @@ if (days !== null) {
 } else if (deal.end_date) {
   endsLabel = `ends ${deal.end_date}`;
 } else {
-  endsLabel = 'end date unknown';
+  endsLabel = 'no end date listed';
 }
+
+const endsUnknown = !deal.end_date && days === null;
 
 const searchBlob = [
   deal.merchant,
@@ -113,12 +115,20 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
           </button>
         ))
     }
-    {endsLabel && <span class="ends-meta">{endsLabel}</span>}
-    <LikeButton dealId={deal.id} compact />
+  {
+    endsLabel && (
+      <span class:list={['ends-meta', endsUnknown && 'ends-meta--unknown']}>
+        {endsLabel}
+      </span>
+    )
+  }
   </div>
 
-  <span class="deal-row__cta" aria-hidden="true">
-    <span class="deal-row__cta-label">View</span>
-    →
-  </span>
+  <div class="deal-row__actions">
+    <LikeButton dealId={deal.id} compact />
+    <span class="deal-row__cta" aria-hidden="true">
+      <span class="deal-row__cta-label">View</span>
+      →
+    </span>
+  </div>
 </article>

@@ -7,7 +7,7 @@ import {
   extractPromoCodes,
   formatDiscountBadge,
   parseDiscountPercent,
-  parsePriceParts,
+  primaryPriceParts,
   type Deal,
 } from '../lib/deals';
 
@@ -22,7 +22,7 @@ const link = buildDealLink(deal);
 const codes = extractPromoCodes(deal);
 const badge = formatDiscountBadge(deal.discount_text);
 const pct = parseDiscountPercent(deal.discount_text);
-const prices = parsePriceParts(deal.price);
+const prices = primaryPriceParts(deal.price);
 const days = daysUntilEnd(deal.end_date);
 const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
 
@@ -37,8 +37,10 @@ if (days !== null && days >= 0) {
     endsLabel = `Ends ${Number(d)} ${months[Number(m) - 1]}`;
   }
 } else if (!deal.end_date) {
-  endsLabel = 'End date unknown';
+  endsLabel = 'No end date listed';
 }
+
+const endsUnknown = !deal.end_date;
 
 const priceLine =
   prices.original && prices.current
@@ -99,7 +101,13 @@ const priceLine =
           </span>
         )
       }
-      {endsLabel && <span class="ends-meta">{endsLabel}</span>}
+      {
+        endsLabel && (
+          <span class:list={['ends-meta', endsUnknown && 'ends-meta--unknown']}>
+            {endsLabel}
+          </span>
+        )
+      }
       <LikeButton dealId={deal.id} compact />
     </div>
     <span class="featured-card__cta">

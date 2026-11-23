@@ -405,6 +405,13 @@ export function parsePriceParts(price: string | null): PriceParts {
   return { original: null, current: null, raw: trimmed };
 }
 
+/** Featured / compact surfaces: use only the first tier when price lists multiple plans. */
+export function primaryPriceParts(price: string | null): PriceParts {
+  if (!price) return { original: null, current: null, raw: null };
+  const segment = price.split(/;\s*/)[0]?.trim() || price.trim();
+  return parsePriceParts(segment);
+}
+
 export function merchantDomain(deal: Deal): string {
   try {
     return new URL(deal.source_url).hostname.replace(/^www\./, '');

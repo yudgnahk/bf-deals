@@ -82,7 +82,7 @@ select {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 80;
+  z-index: 0;
   opacity: 0.09;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -91,8 +91,8 @@ select {
 /* ——— Disclosure ——— */
 .disclosure-bar {
   background: #000;
-  color: #9a9a90;
-  font-size: 0.7rem;
+  color: #b4b4aa;
+  font-size: 0.8rem;
   line-height: 1.45;
   padding: 0.55rem 0;
   font-family: var(--font-mono);
@@ -116,6 +116,20 @@ select {
   padding: 0.5rem 0;
   background: #050505;
   color: var(--acid);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
 }
 
 .marquee__track {
@@ -153,10 +167,10 @@ select {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 40;
+  z-index: 100;
   isolation: isolate;
   margin: 0;
-  background: rgba(7, 7, 7, 0.94);
+  background: #070707;
   border-bottom: 1px solid #181818;
 }
 
@@ -503,6 +517,10 @@ select {
   color: var(--muted);
   line-height: 1.5;
   margin-top: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .featured-card__meta {
@@ -893,10 +911,26 @@ select {
   font-family: var(--font-mono);
 }
 
-.deal-row__cta {
+.ends-meta--unknown {
+  font-size: 0.62rem;
+  color: #62625c;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+
+.deal-row__actions {
   grid-column: 2;
-  grid-row: 1 / span 2;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
   align-self: center;
+  flex-shrink: 0;
+}
+
+.deal-row__cta {
   color: var(--acid);
   font-size: 1rem;
   font-weight: 600;
@@ -934,11 +968,17 @@ select {
   .deal-row__meta {
     grid-column: 2;
     grid-row: 1;
+    align-self: center;
+  }
+
+  .deal-row__actions {
+    grid-column: 3;
+    grid-row: 1;
+    flex-direction: row;
+    gap: 0.55rem;
   }
 
   .deal-row__cta {
-    grid-column: 3;
-    grid-row: 1;
     font-size: 0.72rem;
   }
 
@@ -1027,8 +1067,8 @@ select {
 
 .top-liked__hint {
   margin: 0;
-  font-size: 0.7rem;
-  color: var(--muted);
+  font-size: 0.8rem;
+  color: #b4b4aa;
   font-family: var(--font-mono);
 }
 
