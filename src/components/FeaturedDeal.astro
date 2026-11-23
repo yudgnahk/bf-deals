@@ -1,0 +1,83 @@
+---
+import MerchantIcon from './MerchantIcon.astro';
+import {
+  buildDealLink,
+  extractPromoCodes,
+  parseDiscountPercent,
+  parsePriceParts,
+  type Deal,
+} from '../lib/deals';
+
+interface Props {
+  deal: Deal;
+  rank: number;
+}
+
+const { deal, rank } = Astro.props;
+const link = buildDealLink(deal);
+const codes = extractPromoCodes(deal);
+const pct = parseDiscountPercent(deal.discount_text);
+const prices = parsePriceParts(deal.price);
+const badgeText =
+  pct !== null ? `${pct}% OFF` : deal.discount_text ? deal.discount_text : null;
+const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
+---
+
+<article class="featured-card" data-deal-id={deal.id}>
+  <a
+    class="deal-row__hit"
+    href={link.href}
+    rel={rel}
+    target="_blank"
+    aria-label={`Grab ${deal.merchant} deal`}
+  ></a>
+
+  <div class="featured-card__top">
+    <span class="featured-card__rank">#{rank}</span>
+    <span class="chip-lime">Featured deal</span>
+  </div>
+
+  <div class="featured-card__merchant">
+    <MerchantIcon deal={deal} large />
+    <strong>{deal.merchant}</strong>
+  </div>
+
+  <h2>{deal.title}</h2>
+
+  <div class="featured-card__offer">
+    {badgeText && <span class="pct-badge">{badgeText}</span>}
+    {
+      prices.original && prices.current ? (
+        <span class="price-pair">
+          <span class="price-pair__was">{prices.original}</span>
+          <span class="price-pair__now">{prices.current}</span>
+        </span>
+      ) : prices.raw ? (
+        <span class="price-pair__now">{prices.raw}</span>
+      ) : null
+    }
+  </div>
+
+  {
+    codes.length > 0 && (
+      <div class="coupon-field">
+        <span class="coupon-field__label">
+          <span class="i18n-en">Use this coupon code at checkout</span>
+          <span class="i18n-vi">Dùng mã này khi thanh toán</span>
+        </span>
+        {codes.map((code) => (
+          <button type="button" class="coupon-code" data-copy-code={code}>
+            <code>{code}</code>
+            <span class="coupon-code__hint">copy</span>
+          </button>
+        ))}
+      </div>
+    )
+  }
+
+  <span class="featured-card__cta">
+    <span class="i18n-en">View deal</span>
+    <span class="i18n-vi">Xem deal</span>
+    <span aria-hidden="true">↗</span>
+  </span>
+</article>

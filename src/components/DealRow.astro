@@ -1,0 +1,114 @@
+---
+import MerchantIcon from './MerchantIcon.astro';
+import {
+  buildDealLink,
+  daysUntilEnd,
+  extractPromoCodes,
+  parseDiscountPercent,
+  parsePriceParts,
+  type Deal,
+} from '../lib/deals';
+
+interface Props {
+  deal: Deal;
+}
+
+const { deal } = Astro.props;
+const link = buildDealLink(deal);
+const codes = extractPromoCodes(deal);
+const pct = parseDiscountPercent(deal.discount_text);
+const prices = parsePriceParts(deal.price);
+const days = daysUntilEnd(deal.end_date);
+const badgeText =
+  pct !== null ? `${pct}% OFF` : deal.discount_text ? deal.discount_text : null;
+
+let endsLabel: string | null = null;
+if (days !== null) {
+  if (days < 0) endsLabel = null;
+  else if (days === 0) endsLabel = 'ends today';
+  else if (days === 1) endsLabel = 'ends in 1 day';
+  else endsLabel = `ends in ${days} days`;
+} else if (deal.end_date) {
+  endsLabel = `ends ${deal.end_date}`;
+}
+
+const searchBlob = [
+  deal.merchant,
+  deal.title,
+  deal.discount_text,
+  deal.price,
+  deal.category,
+  ...codes,
+]
+  .filter(Boolean)
+  .join(' ')
+  .toLowerCase();
+
+const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
+---
+
+<article
+  class="deal-row"
+  data-deal-id={deal.id}
+  data-region={deal.region}
+  data-category={deal.category}
+  data-end-date={deal.end_date ?? ''}
+  data-discount={pct ?? ''}
+  data-search={searchBlob}
+>
+  <a
+    class="deal-row__hit"
+    href={link.href}
+    rel={rel}
+    target="_blank"
+    aria-label={`View ${deal.merchant} deal`}
+  ></a>
+
+  <div class="deal-row__icon">
+    <MerchantIcon deal={deal} />
+  </div>
+
+  <div class="deal-row__main">
+    <div class="deal-row__title-line">
+      <span class="deal-row__merchant">{deal.merchant}</span>
+      {
+        deal.aff_status === 'hook' && (
+          <span class="hook-tag">
+            <span class="i18n-en">Hook</span>
+            <span class="i18n-vi">Hook</span>
+          </span>
+        )
+      }
+    </div>
+    <div class="deal-row__title">{deal.title}</div>
+  </div>
+
+  <div class="deal-row__aside deal-row__meta">
+    {badgeText && <span class="pct-badge">{badgeText}</span>}
+    {
+      prices.original && prices.current ? (
+        <span class="price-pair">
+          <span class="price-pair__was">{prices.original}</span>
+          <span class="price-pair__now">{prices.current}</span>
+        </span>
+      ) : prices.raw ? (
+        <span class="price-pair__now">{prices.raw}</span>
+      ) : null
+    }
+    {
+      codes.length > 0 &&
+        codes.slice(0, 1).map((code) => (
+          <button type="button" class="coupon-code" data-copy-code={code}>
+            <code>{code}</code>
+            <span class="coupon-code__hint">copy</span>
+          </button>
+        ))
+    }
+    {endsLabel && <span class="ends-meta">{endsLabel}</span>}
+  </div>
+
+  <span class="deal-row__cta">
+    <span class="i18n-en">View deal ↗</span>
+    <span class="i18n-vi">Xem deal ↗</span>
+  </span>
+</article>

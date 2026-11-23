@@ -46,17 +46,30 @@ const ogImage = `${site}/og.svg`;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to deals</a>
+
+    <div class="disclosure-bar">
+      <div class="wrap">
+        <p>
+          <strong>Affiliate disclosure:</strong>
+          {' '}Some links are affiliate links; we may earn a commission at no extra cost to you.
+        </p>
+        <p>
+          Một số link là link affiliate, mình có thể nhận hoa hồng mà bạn không tốn thêm tiền.
+        </p>
+      </div>
+    </div>
+
     <header class="site-header">
       <div class="wrap site-header__inner">
         <a class="brand" href="/">
-          <span class="brand__mark">BF<span>Deals</span> 2026</span>
-          <span class="brand__sub">Black Friday · Cyber Monday</span>
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">BF<span>Deals</span> 2026</span>
         </a>
         <nav class="nav" aria-label="Primary">
           <a href="/">Deals</a>
@@ -84,14 +97,15 @@ const ogImage = `${site}/og.svg`;
             Một số link là link affiliate, mình có thể nhận hoa hồng mà bạn không tốn thêm tiền.
           </p>
           <p>
-            Prices are shown as on the merchant page on the verified date and may change.
+            Prices are as shown on the merchant page on the verified date and may change.
             Giá lấy đúng như trang merchant vào ngày xác minh; có thể thay đổi.
           </p>
         </div>
         <div>
           <p>
             <a href="/about/">About &amp; disclosure</a>
-            · Site: <a href="https://bf-deals.haleduykhang.workers.dev">bf-deals.haleduykhang.workers.dev</a>
+            ·
+            <a href="https://bf-deals.haleduykhang.workers.dev">bf-deals.haleduykhang.workers.dev</a>
           </p>
           <p>Black Friday Fri 27 Nov 2026 · Cyber Monday Mon 30 Nov 2026</p>
         </div>

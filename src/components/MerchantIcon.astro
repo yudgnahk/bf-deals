@@ -1,0 +1,31 @@
+---
+import { faviconUrl, type Deal } from '../lib/deals';
+
+interface Props {
+  deal: Deal;
+  large?: boolean;
+}
+
+const { deal, large = false } = Astro.props;
+const src = faviconUrl(deal, large ? 128 : 64);
+const letter = (deal.merchant || '?').trim().charAt(0).toUpperCase() || '?';
+const avatarClass = large ? 'letter-avatar letter-avatar--lg' : 'letter-avatar';
+const imgClass = large ? 'favicon favicon--lg' : 'favicon';
+---
+
+{
+  src ? (
+    <img
+      class={imgClass}
+      src={src}
+      alt=""
+      width={large ? 38 : 32}
+      height={large ? 38 : 32}
+      loading="lazy"
+      decoding="async"
+      data-fallback-letter={letter}
+      onerror="this.style.display='none'; const s=this.nextElementSibling; if(s) s.hidden=false;"
+    />
+  ) : null
+}
+<span class={avatarClass} hidden={Boolean(src)} aria-hidden="true">{letter}</span>

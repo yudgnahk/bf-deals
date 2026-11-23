@@ -4,20 +4,65 @@ import { DEFAULT_SORT } from '../lib/constants';
 
 interface Props {
   categories: string[];
+  counts: Record<string, number>;
+  total: number;
 }
 
-const { categories } = Astro.props;
+const { categories, counts, total } = Astro.props;
 const defaultRegion = DEFAULT_REGION_FILTER;
 const defaultSort = DEFAULT_SORT;
 ---
 
 <section class="filters" aria-label="Deal filters" data-filters>
-  <div class="filters__row" role="group" aria-label="Region">
-    <label id="region-label">
+  <div class="search-row">
+    <label class="visually-hidden" for="deal-search">Search deals</label>
+    <input
+      id="deal-search"
+      class="search-input"
+      type="search"
+      placeholder="Search deals… (e.g. NordVPN, hosting, AI)"
+      data-search
+      autocomplete="off"
+    />
+    <div class="select-wrap">
+      <label class="visually-hidden" for="sort-select">Sort</label>
+      <select id="sort-select" data-sort>
+        <option value="ending-soon" selected={defaultSort === 'ending-soon'}>
+          Ending soon
+        </option>
+        <option value="biggest-discount">Biggest discount</option>
+        <option value="default" selected={defaultSort === 'default'}>
+          Default
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="chip-row" role="group" aria-label="Category">
+    <button type="button" class="chip" data-filter-category="all" aria-pressed="true">
+      All <span class="chip__count">{total}</span>
+    </button>
+    {
+      categories.map((cat) => (
+        <button
+          type="button"
+          class="chip"
+          data-filter-category={cat}
+          aria-pressed="false"
+        >
+          <span class="i18n-en">{categoryLabel(cat, 'en')}</span>
+          <span class="i18n-vi">{categoryLabel(cat, 'vi')}</span>
+          <span class="chip__count">{counts[cat] ?? 0}</span>
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="region-row" role="group" aria-label="Region">
+    <span>
       <span class="i18n-en">Region</span>
       <span class="i18n-vi">Khu vực</span>
-    </label>
-    <!-- VN / all chips kept for later; v1 defaults to International -->
+    </span>
     <button
       type="button"
       class="chip"
@@ -44,47 +89,21 @@ const defaultSort = DEFAULT_SORT;
       VN
     </button>
   </div>
-
-  <div class="filters__row" role="group" aria-label="Category">
-    <label>
-      <span class="i18n-en">Category</span>
-      <span class="i18n-vi">Danh mục</span>
-    </label>
-    <button type="button" class="chip" data-filter-category="all" aria-pressed="true">
-      All
-    </button>
-    {
-      categories.map((cat) => (
-        <button
-          type="button"
-          class="chip"
-          data-filter-category={cat}
-          aria-pressed="false"
-        >
-          <span class="i18n-en">{categoryLabel(cat, 'en')}</span>
-          <span class="i18n-vi">{categoryLabel(cat, 'vi')}</span>
-        </button>
-      ))
-    }
-  </div>
-
-  <div class="filters__row">
-    <label for="sort-select">
-      <span class="i18n-en">Sort</span>
-      <span class="i18n-vi">Sắp xếp</span>
-    </label>
-    <div class="select-wrap">
-      <select id="sort-select" data-sort>
-        <option value="ending-soon" selected={defaultSort === 'ending-soon'}>
-          Ending soon
-        </option>
-        <option value="default" selected={defaultSort === 'default'}>
-          Default
-        </option>
-      </select>
-    </div>
-  </div>
 </section>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
 
 <script>
   import { DEFAULT_REGION_FILTER, DEFAULT_SORT } from '../lib/constants';
@@ -112,27 +131,30 @@ const defaultSort = DEFAULT_SORT;
 
   function initFilters() {
     const root = document.querySelector('[data-filters]');
-    const grid = document.querySelector('[data-deal-grid]');
+    const list = document.querySelector('[data-deal-list]');
     const countEl = document.querySelector('[data-deal-count]');
     const emptyEl = document.querySelector('[data-empty]');
     const sortSelect = document.querySelector('[data-sort]') as HTMLSelectElement | null;
-    if (!root || !grid) return;
+    const searchInput = document.querySelector('[data-search]') as HTMLInputElement | null;
+    if (!root || !list) return;
 
     let region = DEFAULT_REGION_FILTER;
     let category = 'all';
     let sort = DEFAULT_SORT;
+    let query = '';
 
     if (sortSelect) sortSelect.value = sort;
 
-    const cards = Array.from(grid.querySelectorAll<HTMLElement>('.deal-card'));
-    const defaultOrder = cards.map((c) => c);
+    const rows = Array.from(list.querySelectorAll<HTMLElement>('.deal-row'));
+    const defaultOrder = rows.map((r) => r);
 
     function apply() {
       const today = todayLocal();
       let visible = 0;
 
+      let ordered = [...rows];
       if (sort === 'ending-soon') {
-        const sorted = [...cards].sort((a, b) => {
+        ordered.sort((a, b) => {
           const ae = a.dataset.endDate || '';
           const be = b.dataset.endDate || '';
           if (!ae && !be) return 0;
@@ -140,27 +162,32 @@ const defaultSort = DEFAULT_SORT;
           if (!be) return -1;
           return ae.localeCompare(be);
         });
-        sorted.forEach((c) => grid.appendChild(c));
+      } else if (sort === 'biggest-discount') {
+        ordered.sort((a, b) => {
+          const ad = Number(a.dataset.discount || -1);
+          const bd = Number(b.dataset.discount || -1);
+          if (bd !== ad) return bd - ad;
+          return (a.dataset.endDate || '9999').localeCompare(b.dataset.endDate || '9999');
+        });
       } else {
-        defaultOrder.forEach((c) => grid.appendChild(c));
+        ordered = [...defaultOrder];
       }
+      ordered.forEach((r) => list.appendChild(r));
 
-      for (const card of cards) {
-        const expired = isExpired(card.dataset.endDate, today);
-        const regionOk = matchesRegion(card.dataset.region || '', region);
+      for (const row of rows) {
+        const expired = isExpired(row.dataset.endDate, today);
+        const regionOk = matchesRegion(row.dataset.region || '', region);
         const categoryOk =
-          category === 'all' || card.dataset.category === category;
-        const show = !expired && regionOk && categoryOk;
-        card.hidden = !show;
+          category === 'all' || row.dataset.category === category;
+        const searchOk =
+          !query || (row.dataset.search || '').includes(query);
+        const show = !expired && regionOk && categoryOk && searchOk;
+        row.hidden = !show;
         if (show) visible += 1;
       }
 
-      if (countEl) {
-        countEl.textContent = String(visible);
-      }
-      if (emptyEl) {
-        (emptyEl as HTMLElement).hidden = visible > 0;
-      }
+      if (countEl) countEl.textContent = String(visible);
+      if (emptyEl) (emptyEl as HTMLElement).hidden = visible > 0;
     }
 
     root.querySelectorAll('[data-filter-region]').forEach((btn) => {
@@ -194,36 +221,74 @@ const defaultSort = DEFAULT_SORT;
       apply();
     });
 
+    searchInput?.addEventListener('input', () => {
+      query = (searchInput.value || '').trim().toLowerCase();
+      apply();
+    });
+
     apply();
+  }
+
+  async function copyCode(btn: HTMLButtonElement) {
+    const code = btn.getAttribute('data-copy-code') || '';
+    if (!code) return;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch {
+      const input = document.createElement('input');
+      input.value = code;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      input.remove();
+    }
+    btn.classList.add('is-copied');
+    const hint = btn.querySelector('.coupon-code__hint');
+    if (hint) hint.textContent = 'copied';
+    window.setTimeout(() => {
+      btn.classList.remove('is-copied');
+      if (hint) hint.textContent = 'copy';
+    }, 1400);
   }
 
   function initCopyCodes() {
     document.querySelectorAll<HTMLButtonElement>('[data-copy-code]').forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        const code = btn.getAttribute('data-copy-code') || '';
-        if (!code) return;
-        try {
-          await navigator.clipboard.writeText(code);
-          btn.classList.add('is-copied');
-          const hint = btn.querySelector('.code-chip__hint');
-          if (hint) hint.textContent = 'copied';
-          window.setTimeout(() => {
-            btn.classList.remove('is-copied');
-            if (hint) hint.textContent = 'copy';
-          }, 1400);
-        } catch {
-          // Fallback: select text via temporary input
-          const input = document.createElement('input');
-          input.value = code;
-          document.body.appendChild(input);
-          input.select();
-          document.execCommand('copy');
-          input.remove();
-        }
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        void copyCode(btn);
       });
     });
   }
 
+  function initCountdown() {
+    const el = document.querySelector('[data-countdown]');
+    if (!el) return;
+    const bf = new Date(2026, 10, 27);
+    const cm = new Date(2026, 10, 30);
+    const today = new Date();
+    const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const daysTo = (target: Date) =>
+      Math.round((target.getTime() - start.getTime()) / 86400000);
+
+    const toBf = daysTo(bf);
+    const toCm = daysTo(cm);
+    const bfText =
+      toBf > 0
+        ? `T−${toBf} days to Black Friday`
+        : toBf === 0
+          ? 'Black Friday is today'
+          : `Black Friday was ${Math.abs(toBf)} days ago`;
+    const cmText =
+      toCm > 0
+        ? `T−${toCm} days to Cyber Monday`
+        : toCm === 0
+          ? 'Cyber Monday is today'
+          : `Cyber Monday was ${Math.abs(toCm)} days ago`;
+    el.innerHTML = `<strong>${bfText}</strong> · ${cmText} · Fri 27 Nov / Mon 30 Nov 2026`;
+  }
+
   initFilters();
   initCopyCodes();
+  initCountdown();
 </script>

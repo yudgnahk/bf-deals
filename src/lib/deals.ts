@@ -38,6 +38,15 @@ export interface ResolvedLink {
   rel: string;
 }
 
+export interface PriceParts {
+  /** Full original price string when both old+new are present in data */
+  original: string | null;
+  /** Sale / current price string, or the sole price when only one is present */
+  current: string | null;
+  /** Raw price field when we cannot split safely */
+  raw: string | null;
+}
+
 const deals = dealsData as Deal[];
 const programs = affiliatesConfig.programs as Record<string, AffiliateProgramConfig>;
 
@@ -86,74 +95,12 @@ export function getCategories(list: Deal[] = getVisibleDeals()): string[] {
   });
 }
 
-/** Sort active deals by soonest end_date; unknown end dates last. */
-export function sortEndingSoon(list: Deal[]): Deal[] {
-  return [...list].sort((a, b) => {
-    const ae = a.end_date || '';
-    const be = b.end_date || '';
-    if (!ae && !be) return 0;
-    if (!ae) return 1;
-    if (!be) return -1;
-    return ae.localeCompare(be);
-  });
-}
-
-/**
- * Pull clearly labeled promo/coupon codes from discount_text + notes.
- * Conservative: only when the text uses "code …" phrasing; skips "no promo code".
- */
-export function extractPromoCodes(deal: Deal): string[] {
-  const text = [deal.discount_text, deal.notes].filter(Boolean).join('\n');
-  if (!text) return [];
-
-  const codes: string[] = [];
-  const seen = new Set<string>();
-  const patterns = [
-    /\b(?:(?:use|enter|apply)\s+(?:the\s+)?(?:promo\s+)?code|promo\s+code|with\s+code|uses\s+code)\s*[:=]?\s*([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/g,
-    /\bCodes?:\s*([A-Za-z0-9][A-Za-z0-9_-]{2,})\s*=/g,
-    /\b[Cc]ode\s+([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/g,
-  ];
-  const ban = new Set([
-    'OFF',
-    'THE',
-    'AND',
-    'FOR',
-    'WITH',
-    'FROM',
-    'NEW',
-    'OLD',
-    'USD',
-    'VND',
-    'NEEDED',
-    'OFFICIAL',
-    'HERE',
-    'BELOW',
-    'MUST',
-    'ONLY',
-    'APPLIED',
-    'ENTERED',
-  ]);
-
-  for (const re of patterns) {
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(text))) {
-      const start = Math.max(0, m.index - 24);
-      const before = text.slice(start, m.index).toLowerCase();
-      if (/\bno\s+$/.test(before) || /without\s+(a\s+)?$/.test(before) || /invent\s+$/.test(before)) {
-        continue;
-      }
-      const after = text.slice(m.index + m[0].length, m.index + m[0].length + 12).toLowerCase();
-      if (/^\s*needed\b/.test(after)) continue;
-
-      const raw = m[1];
-      const key = raw.toUpperCase();
-      if (ban.has(key) || seen.has(key)) continue;
-      seen.add(key);
-      codes.push(raw);
-    }
+export function getCategoryCounts(list: Deal[] = getVisibleDeals()): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const d of list) {
+    counts[d.category] = (counts[d.category] || 0) + 1;
   }
-
-  return codes;
+  return counts;
 }
 
 export function getLastVerifiedDate(list: Deal[] = getVisibleDeals()): string {
@@ -247,3 +194,174 @@ export function formatEndDate(endDate: string | null): string {
   if (!endDate) return 'unknown / chưa rõ';
   return endDate;
 }
+
+/** Sort active deals by soonest end_date; unknown end dates last. */
+export function sortEndingSoon(list: Deal[]): Deal[] {
+  return [...list].sort((a, b) => {
+    const ae = a.end_date || '';
+    const be = b.end_date || '';
+    if (!ae && !be) return 0;
+    if (!ae) return 1;
+    if (!be) return -1;
+    return ae.localeCompare(be);
+  });
+}
+
+/**
+ * Pull clearly labeled promo/coupon codes from discount_text + notes.
+ * Conservative: only when the text uses "code …" phrasing; skips "no promo code".
+ */
+export function extractPromoCodes(deal: Deal): string[] {
+  const text = [deal.discount_text, deal.notes].filter(Boolean).join('\n');
+  if (!text) return [];
+
+  const codes: string[] = [];
+  const seen = new Set<string>();
+  const patterns = [
+    /\b(?:(?:use|enter|apply)\s+(?:the\s+)?(?:promo\s+)?code|promo\s+code|with\s+code|uses\s+code)\s*[:=]?\s*([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/g,
+    /\bCodes?:\s*([A-Za-z0-9][A-Za-z0-9_-]{2,})\s*=/g,
+    /\b[Cc]ode\s+([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/g,
+  ];
+  const ban = new Set([
+    'OFF',
+    'THE',
+    'AND',
+    'FOR',
+    'WITH',
+    'FROM',
+    'NEW',
+    'OLD',
+    'USD',
+    'VND',
+    'NEEDED',
+    'OFFICIAL',
+    'HERE',
+    'BELOW',
+    'MUST',
+    'ONLY',
+    'APPLIED',
+    'ENTERED',
+  ]);
+
+  for (const re of patterns) {
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text))) {
+      const start = Math.max(0, m.index - 24);
+      const before = text.slice(start, m.index).toLowerCase();
+      if (/\bno\s+$/.test(before) || /without\s+(a\s+)?$/.test(before) || /invent\s+$/.test(before)) {
+        continue;
+      }
+      const after = text.slice(m.index + m[0].length, m.index + m[0].length + 12).toLowerCase();
+      if (/^\s*needed\b/.test(after)) continue;
+
+      const raw = m[1];
+      const key = raw.toUpperCase();
+      if (ban.has(key) || seen.has(key)) continue;
+      seen.add(key);
+      codes.push(raw);
+    }
+  }
+
+  return codes;
+}
+
+/** First % number found in discount_text (for sorting / badge preference). Never invents. */
+export function parseDiscountPercent(discountText: string | null): number | null {
+  if (!discountText) return null;
+  const m = discountText.match(/(\d{1,3})\s*%/);
+  if (!m) return null;
+  const n = Number(m[1]);
+  return Number.isFinite(n) ? n : null;
+}
+
+/**
+ * Split a price string into original + current only when both are clearly present.
+ * Never invents or computes a missing side.
+ */
+export function parsePriceParts(price: string | null): PriceParts {
+  if (!price) return { original: null, current: null, raw: null };
+  const trimmed = price.trim();
+
+  // "Original price: $3.99 Current price: $2.99"
+  const labeled = trimmed.match(
+    /Original\s+price:\s*([^\n]+?)\s+Current\s+price:\s*([^\n]+)/i
+  );
+  if (labeled) {
+    return { original: labeled[1].trim(), current: labeled[2].trim(), raw: trimmed };
+  }
+
+  // "$69 → $29" / "$330 → $132"
+  const arrow = trimmed.match(/^(.+?)\s*(?:→|->|—|–)\s*(.+)$/);
+  if (arrow) {
+    return { original: arrow[1].trim(), current: arrow[2].trim(), raw: trimmed };
+  }
+
+  // Two money-like tokens: "$12.99 $1.99/mo" or "$9.99 $2.99/month"
+  const money =
+    /(?:\$|€|£|₫)?\s?\d[\d,]*(?:\.\d+)?(?:\s*\/\s*(?:mo(?:nth)?|yr|year|1st\s*yr))?/gi;
+  const matches = trimmed.match(money);
+  if (matches && matches.length >= 2) {
+    const first = matches[0].trim();
+    const second = matches[1].trim();
+    // Prefer showing full remaining text as current when second is clearly the sale
+    const secondIdx = trimmed.indexOf(second, trimmed.indexOf(first) + first.length);
+    const current = trimmed.slice(secondIdx).trim();
+    return { original: first, current, raw: trimmed };
+  }
+
+  return { original: null, current: null, raw: trimmed };
+}
+
+export function merchantDomain(deal: Deal): string {
+  try {
+    return new URL(deal.source_url).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
+}
+
+export function faviconUrl(deal: Deal, size = 64): string {
+  const host = merchantDomain(deal);
+  if (!host) return '';
+  return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=${size}`;
+}
+
+/** Calendar days from today to end_date (inclusive of end day). Null if unknown. */
+export function daysUntilEnd(endDate: string | null, today = new Date()): number | null {
+  if (!endDate) return null;
+  const [y, m, d] = endDate.split('-').map(Number);
+  if (!y || !m || !d) return null;
+  const end = new Date(y, m - 1, d);
+  const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const diff = Math.round((end.getTime() - start.getTime()) / 86400000);
+  return diff;
+}
+
+/**
+ * Featured: prefer affiliate deals with a clear % or soon end date.
+ * Returns up to `limit` deals, largest discount first, then ending soon.
+ */
+export function getFeaturedDeals(list: Deal[], limit = 2): Deal[] {
+  const pool = list.filter((d) => d.aff_status === 'aff-possible');
+  const scored = pool
+    .map((d) => {
+      const pct = parseDiscountPercent(d.discount_text) ?? -1;
+      const days = daysUntilEnd(d.end_date);
+      const soonBoost = days !== null && days >= 0 && days <= 7 ? 20 - days : 0;
+      return { d, score: pct + soonBoost };
+    })
+    .sort((a, b) => b.score - a.score || (a.d.end_date || '9999').localeCompare(b.d.end_date || '9999'));
+  return scored.slice(0, limit).map((x) => x.d);
+}
+
+export function sortByBiggestDiscount(list: Deal[]): Deal[] {
+  return [...list].sort((a, b) => {
+    const ap = parseDiscountPercent(a.discount_text) ?? -1;
+    const bp = parseDiscountPercent(b.discount_text) ?? -1;
+    if (bp !== ap) return bp - ap;
+    return (a.end_date || '9999').localeCompare(b.end_date || '9999');
+  });
+}
+
+export const BLACK_FRIDAY = '2026-11-27';
+export const CYBER_MONDAY = '2026-11-30';
