@@ -2,6 +2,7 @@
 import {
   buildDealLink,
   categoryLabel,
+  extractPromoCodes,
   formatEndDate,
   type Deal,
 } from '../lib/deals';
@@ -16,6 +17,7 @@ const isAff = deal.aff_status === 'aff-possible';
 const endLabel = formatEndDate(deal.end_date);
 const catEn = categoryLabel(deal.category, 'en');
 const catVi = categoryLabel(deal.category, 'vi');
+const promoCodes = extractPromoCodes(deal);
 ---
 
 <article
@@ -59,6 +61,28 @@ const catVi = categoryLabel(deal.category, 'vi');
         <span class="i18n-en">Price: see merchant page</span>
         <span class="i18n-vi">Giá: xem trang merchant</span>
       </p>
+    )
+  }
+
+  {
+    promoCodes.length > 0 && (
+      <div class="deal-card__codes">
+        <span class="deal-card__codes-label">
+          <span class="i18n-en">Code</span>
+          <span class="i18n-vi">Mã</span>
+        </span>
+        {promoCodes.map((code) => (
+          <button
+            type="button"
+            class="code-chip"
+            data-copy-code={code}
+            title={`Copy ${code}`}
+          >
+            <code>{code}</code>
+            <span class="code-chip__hint" aria-hidden="true">copy</span>
+          </button>
+        ))}
+      </div>
     )
   }
 

@@ -131,6 +131,76 @@
       "id_or_tag": "",
       "link_template": "",
       "notes": "TODO — https://pub2.accesstrade.vn/ ; FPT Shop, CellphoneS, ĐMX, Samsung VN"
+    },
+    "ElevenLabs Affiliate (PartnerStack)": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — PartnerStack; see AFFILIATE_SETUP.md §21"
+    },
+    "Kinsta Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — often rejects coupon/deals sites; see AFFILIATE_SETUP.md §22"
+    },
+    "MailerLite Affiliate (Trackdesk)": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — Trackdesk; see AFFILIATE_SETUP.md §23"
+    },
+    "Brevo Affiliate (PartnerStack)": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — PartnerStack; see AFFILIATE_SETUP.md"
+    },
+    "Grammarly Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "WP Rocket Affiliate (Awin)": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — Awin; official rules forbid coupon/deal sites"
+    },
+    "Later Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Rank Math Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "MindPal Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Seobility Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "OptinMonster Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Plerdy Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "TimeCamp Partners": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — https://www.timecamp.com/partners/"
+    },
+    "Pirsch Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
     }
   }
 }

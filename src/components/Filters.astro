@@ -1,5 +1,6 @@
 ---
 import { DEFAULT_REGION_FILTER, categoryLabel } from '../lib/deals';
+import { DEFAULT_SORT } from '../lib/constants';
 
 interface Props {
   categories: string[];
@@ -7,6 +8,7 @@ interface Props {
 
 const { categories } = Astro.props;
 const defaultRegion = DEFAULT_REGION_FILTER;
+const defaultSort = DEFAULT_SORT;
 ---
 
 <section class="filters" aria-label="Deal filters" data-filters>
@@ -73,15 +75,19 @@ const defaultRegion = DEFAULT_REGION_FILTER;
     </label>
     <div class="select-wrap">
       <select id="sort-select" data-sort>
-        <option value="default">Default</option>
-        <option value="ending-soon">Ending soon</option>
+        <option value="ending-soon" selected={defaultSort === 'ending-soon'}>
+          Ending soon
+        </option>
+        <option value="default" selected={defaultSort === 'default'}>
+          Default
+        </option>
       </select>
     </div>
   </div>
 </section>
 
 <script>
-  import { DEFAULT_REGION_FILTER } from '../lib/constants';
+  import { DEFAULT_REGION_FILTER, DEFAULT_SORT } from '../lib/constants';
 
   function todayLocal(): Date {
     return new Date();
@@ -114,7 +120,9 @@ const defaultRegion = DEFAULT_REGION_FILTER;
 
     let region = DEFAULT_REGION_FILTER;
     let category = 'all';
-    let sort = 'default';
+    let sort = DEFAULT_SORT;
+
+    if (sortSelect) sortSelect.value = sort;
 
     const cards = Array.from(grid.querySelectorAll<HTMLElement>('.deal-card'));
     const defaultOrder = cards.map((c) => c);
@@ -189,5 +197,33 @@ const defaultRegion = DEFAULT_REGION_FILTER;
     apply();
   }
 
+  function initCopyCodes() {
+    document.querySelectorAll<HTMLButtonElement>('[data-copy-code]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const code = btn.getAttribute('data-copy-code') || '';
+        if (!code) return;
+        try {
+          await navigator.clipboard.writeText(code);
+          btn.classList.add('is-copied');
+          const hint = btn.querySelector('.code-chip__hint');
+          if (hint) hint.textContent = 'copied';
+          window.setTimeout(() => {
+            btn.classList.remove('is-copied');
+            if (hint) hint.textContent = 'copy';
+          }, 1400);
+        } catch {
+          // Fallback: select text via temporary input
+          const input = document.createElement('input');
+          input.value = code;
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand('copy');
+          input.remove();
+        }
+      });
+    });
+  }
+
   initFilters();
+  initCopyCodes();
 </script>

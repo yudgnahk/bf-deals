@@ -582,6 +582,158 @@ Do these yourself, in this order, **today (Mon 23 Nov 2026)**. Stop before accep
 
 ---
 
+
+---
+
+## New SaaS / AI / dev programs (checked 23 Nov 2026, second pass)
+
+These were added after the focus shifted to international AI, developer, productivity, and SaaS deals. Same rules as the rest of this file: signup URLs and commissions only if they appeared on an official page this session; unknown fields stay “unknown.” A deals/coupon site is explicitly **not accepted** by some of these programs (Kinsta, WP Rocket) — apply only if the site later has original reviews, not a bare deal list.
+
+**Candidates that may still be joinable before Fri 27 Nov (QUICK / short review):**
+
+- **MailerLite Affiliate** — official copy is open to anyone and says you can get a link and monetize today; approval SLA is not stated, but there is no multi-day PartnerStack hop. Apply first.
+- **WP Rocket via Awin** — official: up to **48 hours** after you apply on Awin. **However**, official rules forbid affiliate links on coupon/deal websites. Do not rely on this unless the site is clearly a content/review site, not a coupon list.
+- **Kinsta Affiliate** — official decision within **3 business days**, but official FAQ generally **rejects coupon and deals websites**. Unlikely to help this project as currently scoped.
+- **Awin / Impact / PartnerStack** (already in sections 10–13) — still the way into several of the programs below. PartnerStack Network review is usually **SLOW** (up to 5 business days, then each program reviews again), so ElevenLabs and Brevo are unlikely to be live for Friday 27 Nov if you start today.
+
+Programs already covered above that also apply to this batch: **Nord Security / NordVPN Affiliate** (section 18) may include NordPass — confirm in the dashboard. **Proton** is new below.
+
+---
+
+### 21. ElevenLabs Affiliate (PartnerStack)
+
+- **Official pages:** https://elevenlabs.io/affiliates
+- **Account type:** ElevenLabs Affiliate, official dashboard “from ElevenLabs and PartnerStack.” Apply from the official affiliates page (it routes into PartnerStack). If you already have a PartnerStack Network account (section 13), apply to this program from the marketplace after Network approval.
+- **VN eligible:** unknown (not stated on the official page fetched).
+- **QUICK / SLOW:** **SLOW** for Black Friday week — PartnerStack Network review, then the ElevenLabs program review. No instant-approval wording on the official page.
+- **Commission:** Official: **22% of all payments for the first 12 months** on every new paid subscriber plan, “with no limits.” Recurring only for that first year, not stated as lifetime.
+- **Minimum payout:** unknown on the official page fetched.
+- **Payout / tax / ID:** unknown on the official page beyond “reliable, easy payouts”; complete whatever PartnerStack requires (W-8BEN / Stripe / PayPal as in section 13).
+- **Approval time:** unknown (not stated on the affiliates page; PartnerStack Network is typically within 5 business days).
+- **Gotchas:** Official FAQ on that page is mostly about **hackathon sponsorship**, which is a different program — do not confuse the two. Commission is first-12-months only.
+
+**Steps (you do these):**
+
+1. Read https://elevenlabs.io/affiliates and any PartnerStack terms shown at signup.
+2. If you do not have a PartnerStack account, start at https://partnerstack.com/partners-and-publishers (section 13) **today**, then apply to ElevenLabs.
+3. Do not invent a higher “up to 22% lifetime” claim; official wording is 22% of payments for the first 12 months.
+
+---
+
+### 22. Kinsta Affiliate
+
+- **Official pages:** https://kinsta.com/affiliates/  (signup starts with “Become an affiliate” on that page)
+- **Account type:** Kinsta Affiliate (in-house dashboard; 60-day cookie, last-touch).
+- **VN eligible:** unknown (not excluded on the official page fetched; confirm on the form).
+- **QUICK / SLOW:** **SLOW / probably not usable for this deals site.** Official: decision email within **3 business days**. Official: Kinsta customers are automatically approved. Official FAQ: they **generally do not accept** websites under construction, sites without their own domain, “lists of tools or services with no further information,” sites without an affiliate disclosure, **coupon and deals websites**, or social-media-only profiles.
+- **Commission:** Official: one-time bonus of **up to $500**, plus **lifetime monthly commissions of 10%** for Managed Hosting for WordPress referrals.
+- **Minimum payout:** unknown on the official page fetched.
+- **Payout / tax / ID:** unknown on the official page fetched. Support email listed as affiliates@kinsta.com.
+- **Approval time:** Official: within 3 business days (or instant if already a Kinsta customer).
+- **Gotchas:** A bare BF deals list is the kind of site they say they reject. Only apply later if the site has original hosting reviews and a disclosure. Do not spend BF-week time on this if the site is still a deal directory.
+
+**Steps (you do these):**
+
+1. Read https://kinsta.com/affiliates/ and the linked “who the program is for” / rejection reasons.
+2. Apply only if the site already has a custom domain, disclosure, and original content — otherwise skip.
+
+---
+
+### 23. MailerLite Affiliate (Trackdesk)
+
+- **Official pages:** https://www.mailerlite.com/affiliate  (Get started / Login; terms linked as “Affiliate program terms”)
+- **Account type:** MailerLite Affiliate on **Trackdesk**. Payouts via **Tipalti** (PayPal, Direct Deposit, Wire Transfer) in USD.
+- **VN eligible:** unknown (not excluded on the official page fetched). Official payout methods include PayPal and wire; confirm Vietnam can be selected in Tipalti.
+- **QUICK / SLOW:** **QUICK to apply** — official: “Everyone can apply,” “Get your affiliate link and monetize your audience today.” There is still an approval step (“Once you're approved…”) and no published SLA. This is the most realistic new SaaS program to try before 27 Nov.
+- **Commission:** Official: **30% lifetime** commission on every payment a referred customer makes, no cap. Cookie **45 days**.
+- **Minimum payout:** Official: Open Balance of **$100** from at least **2 unique sales from 2 different referrals**. Sales are held **30 days** for refunds, then approved. Settlements **every Friday** if billing details are complete.
+- **Payout / tax / ID:** Official: Tipalti inside Trackdesk; PayPal fees covered by MailerLite; Direct Deposit / Wire fees are yours; FX fees if you take a non-USD currency.
+- **Approval time:** unknown (not stated).
+- **Gotchas:** Official cookie is 45 days, not lifetime attribution. The $100 minimum requires two different referred customers, not two invoices from one.
+
+**Steps (you do these):**
+
+1. Read https://www.mailerlite.com/affiliate and the linked Affiliate program terms.
+2. Click **Get started**, complete the Trackdesk form, and add Tipalti / PayPal details after approval.
+3. Use only the unique referral link from the dashboard.
+
+---
+
+### 24. WP Rocket Affiliate (Awin)
+
+- **Official pages:** https://wp-rocket.me/wp-rocket-affiliate-program/
+- **Account type:** WP Rocket advertiser on **Awin**. You must have (or create) an Awin publisher account (section 12).
+- **VN eligible:** Follows Awin tax-residency rules (section 12) — confirm Vietnam is listed before relying on this.
+- **QUICK / SLOW:** **QUICK review (up to 48 hours)** after you apply on Awin, **but probably not usable on a coupon/deals site.** Official “You Can Not”: use your affiliate link on coupon and deal websites; use coupons, discounts, or similar keywords for WP Rocket in your website, URL, image URL, SEO title or description; offer unofficial coupons; use the link for your own purchases.
+- **Commission:** Official: **20%** of net revenue on each new license/plan, excluding VAT. Official examples: 1-year Single at $59.95 → $11.99; 3-year Plus at $251.64 → $50.32. Cookie **30 days**.
+- **Minimum payout:** Awin’s publisher minimum (section 12), not restated on the WP Rocket page.
+- **Payout / tax / ID:** Via Awin / Payoneer as in section 12.
+- **Approval time:** Official: up to **48 hours**.
+- **Gotchas:** Keyword and deals-site bans are strict. Even a “WP Rocket 60% off” listing may violate their “coupons, discounts, or any similar keywords” rule. Prefer a genuine review URL if you apply at all.
+
+**Steps (you do these):**
+
+1. Open or finish the Awin publisher account (section 12).
+2. Read https://wp-rocket.me/wp-rocket-affiliate-program/ and the Awin program agreement.
+3. Apply to WP Rocket in Awin only if the site is a content/review site, not a coupon list.
+
+---
+
+### 25. Proton Affiliates
+
+- **Official pages:** https://proton.me/partners/affiliates ; signup https://partners.proton.me/signup
+- **Account type:** Proton Partner / Affiliate (Proton’s own partner portal).
+- **VN eligible:** unknown (not stated on the official pages named above in this session’s search/fetch). Confirm on the signup form (it asks for target countries).
+- **QUICK / SLOW:** **SLOW / unknown** — a signup form exists, but this session did not capture a published approval SLA.
+- **Commission:** unknown on the official pages confirmed this session — do not invent a Proton rate.
+- **Minimum payout:** unknown.
+- **Payout / tax / ID:** unknown; complete whatever the partner portal asks, including partner terms and privacy policy.
+- **Approval time:** unknown.
+- **Gotchas:** Covers Mail, Pass, Drive, and Unlimited deals from the same vendor. Wait for approval before tagging Proton links.
+
+**Steps (you do these):**
+
+1. Read https://proton.me/partners/affiliates and the partner terms at signup.
+2. Apply at https://partners.proton.me/signup with the deals site URL and the products you plan to promote.
+3. Do not publish Proton affiliate links until the portal shows you as approved.
+
+---
+
+### 26. Brevo Affiliate (PartnerStack)
+
+- **Official pages:** https://www.brevo.com/partners/affiliates/
+- **Account type:** Brevo Affiliate Partner on **PartnerStack**. Official: 90-day cookie.
+- **VN eligible:** unknown (not stated on the official page excerpt confirmed this session). Follow PartnerStack payout/tax rules (section 13).
+- **QUICK / SLOW:** **SLOW** for BF week — PartnerStack Network + program review.
+- **Commission:** Official page language is “fixed commissions” / “interesting rewards,” which is **not a percentage**. Do not invent a rate; read the amount inside PartnerStack after you can apply.
+- **Minimum payout:** unknown on the official page.
+- **Payout / tax / ID:** PartnerStack (section 13).
+- **Approval time:** unknown beyond PartnerStack Network timing.
+- **Gotchas:** The BF deal itself is tightly restricted (new annual Starter/Standard, ecommerce declared at onboarding, 23–30 Nov CET). An affiliate click still has to land an eligible customer.
+
+**Steps (you do these):**
+
+1. Read https://www.brevo.com/partners/affiliates/.
+2. After PartnerStack Network approval (section 13), apply to the Brevo program.
+3. Copy the commission figure only from the official PartnerStack program terms.
+
+---
+
+### 27. Other official SaaS / AI affiliate pages (not fully read this session)
+
+These URLs are official vendor pages located while checking the new deals. Read each live page before you apply; **do not treat search-snippet commission figures as confirmed**.
+
+- **Later Affiliate:** https://later.com/affiliate-program/
+- **Rank Math Affiliate:** https://rankmath.com/affiliates/
+- **Seobility Affiliate:** https://www.seobility.net/en/affiliates/
+- **TimeCamp Partners:** https://www.timecamp.com/partners/
+- **MindPal Affiliate docs:** https://docs.mindpal.space/affiliate
+- **Grammarly:** a Grammarly Support article on commissions exists, but a current public signup URL / network was not confirmed on an official marketing page this session. Do not apply from a third-party “Grammarly affiliate” blog.
+- **OptinMonster / Plerdy / Pirsch:** each vendor mentions an affiliate program (Pirsch’s official pricing FAQ says you can copy a personal affiliate link). Confirm the join URL on the vendor site before signing up.
+
+No official joinable affiliate program was confirmed this session for: Sembly, Katteb, VoiceInk, BoltAI, Recraft, invideo, Craft, ProWritingAid, Koofr, Paperform, TypingMind, Chanty, Leave Me Alone, Wasmer, Teachable (publisher), Wins, SpaceWise, or Omnisend. Those deals can still be listed as hooks (plain official URLs) until a program is found.
+
+---
 ## Practical order after the “top 5”
 
 Same day (account opening, still 23/11):
@@ -624,3 +776,14 @@ This week, but not before the site has real content:
 - ExpressVPN: https://www.expressvpn.com/affiliates
 - Notion: https://www.notion.com/affiliates
 - Vercel terms: https://vercel.com/legal/affiliate-marketing-terms
+- ElevenLabs: https://elevenlabs.io/affiliates
+- Kinsta: https://kinsta.com/affiliates/
+- MailerLite: https://www.mailerlite.com/affiliate
+- WP Rocket: https://wp-rocket.me/wp-rocket-affiliate-program/
+- Proton: https://proton.me/partners/affiliates ; https://partners.proton.me/signup
+- Brevo: https://www.brevo.com/partners/affiliates/
+- Later: https://later.com/affiliate-program/
+- Rank Math: https://rankmath.com/affiliates/
+- Seobility: https://www.seobility.net/en/affiliates/
+- TimeCamp: https://www.timecamp.com/partners/
+- MindPal: https://docs.mindpal.space/affiliate

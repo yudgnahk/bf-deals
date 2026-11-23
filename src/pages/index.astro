@@ -7,10 +7,11 @@ import {
   getCategories,
   getLastVerifiedDate,
   matchesRegion,
+  sortEndingSoon,
   DEFAULT_REGION_FILTER,
 } from '../lib/deals';
 
-const activeDeals = getActiveDeals();
+const activeDeals = sortEndingSoon(getActiveDeals());
 const categories = getCategories(activeDeals);
 const lastVerified = getLastVerifiedDate(activeDeals);
 

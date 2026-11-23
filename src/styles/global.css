@@ -396,6 +396,55 @@ a:hover {
   letter-spacing: -0.02em;
 }
 
+.deal-card__codes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.deal-card__codes-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.code-chip {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px dashed rgba(255, 138, 61, 0.55);
+  background: rgba(255, 138, 61, 0.08);
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 0.28rem 0.55rem;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.code-chip code {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.code-chip__hint {
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-transform: lowercase;
+}
+
+.code-chip:hover,
+.code-chip.is-copied {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
 .deal-card__meta {
   margin: 0;
   font-size: 0.82rem;

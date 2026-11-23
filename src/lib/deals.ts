@@ -63,9 +63,97 @@ export function getAllDeals(): Deal[] {
   return deals;
 }
 
+/** Preferred filter order: AI / dev / SaaS first, then the rest A–Z. */
+export const CATEGORY_PRIORITY = [
+  'ai',
+  'dev-tools',
+  'saas',
+  'productivity',
+  'design',
+  'marketing',
+] as const;
+
 /** Categories derived from currently visible (non-hidden) deals. */
 export function getCategories(list: Deal[] = getVisibleDeals()): string[] {
-  return [...new Set(list.map((d) => d.category))].sort();
+  const cats = [...new Set(list.map((d) => d.category))];
+  return cats.sort((a, b) => {
+    const ai = CATEGORY_PRIORITY.indexOf(a as (typeof CATEGORY_PRIORITY)[number]);
+    const bi = CATEGORY_PRIORITY.indexOf(b as (typeof CATEGORY_PRIORITY)[number]);
+    const ap = ai === -1 ? 1000 : ai;
+    const bp = bi === -1 ? 1000 : bi;
+    if (ap !== bp) return ap - bp;
+    return a.localeCompare(b);
+  });
+}
+
+/** Sort active deals by soonest end_date; unknown end dates last. */
+export function sortEndingSoon(list: Deal[]): Deal[] {
+  return [...list].sort((a, b) => {
+    const ae = a.end_date || '';
+    const be = b.end_date || '';
+    if (!ae && !be) return 0;
+    if (!ae) return 1;
+    if (!be) return -1;
+    return ae.localeCompare(be);
+  });
+}
+
+/**
+ * Pull clearly labeled promo/coupon codes from discount_text + notes.
+ * Conservative: only when the text uses "code …" phrasing; skips "no promo code".
+ */
+export function extractPromoCodes(deal: Deal): string[] {
+  const text = [deal.discount_text, deal.notes].filter(Boolean).join('\n');
+  if (!text) return [];
+
+  const codes: string[] = [];
+  const seen = new Set<string>();
+  const patterns = [
+    /\b(?:(?:use|enter|apply)\s+(?:the\s+)?(?:promo\s+)?code|promo\s+code|with\s+code|uses\s+code)\s*[:=]?\s*([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/g,
+    /\bCodes?:\s*([A-Za-z0-9][A-Za-z0-9_-]{2,})\s*=/g,
+    /\b[Cc]ode\s+([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/g,
+  ];
+  const ban = new Set([
+    'OFF',
+    'THE',
+    'AND',
+    'FOR',
+    'WITH',
+    'FROM',
+    'NEW',
+    'OLD',
+    'USD',
+    'VND',
+    'NEEDED',
+    'OFFICIAL',
+    'HERE',
+    'BELOW',
+    'MUST',
+    'ONLY',
+    'APPLIED',
+    'ENTERED',
+  ]);
+
+  for (const re of patterns) {
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text))) {
+      const start = Math.max(0, m.index - 24);
+      const before = text.slice(start, m.index).toLowerCase();
+      if (/\bno\s+$/.test(before) || /without\s+(a\s+)?$/.test(before) || /invent\s+$/.test(before)) {
+        continue;
+      }
+      const after = text.slice(m.index + m[0].length, m.index + m[0].length + 12).toLowerCase();
+      if (/^\s*needed\b/.test(after)) continue;
+
+      const raw = m[1];
+      const key = raw.toUpperCase();
+      if (ban.has(key) || seen.has(key)) continue;
+      seen.add(key);
+      codes.push(raw);
+    }
+  }
+
+  return codes;
 }
 
 export function getLastVerifiedDate(list: Deal[] = getVisibleDeals()): string {

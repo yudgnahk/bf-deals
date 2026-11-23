@@ -12,7 +12,8 @@
     "aff_program": "Hostinger Affiliates",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official /black-friday page, 48-month Premium. Today you pay $95.52 for 48 months; renews at $10.99/mo for the same term. Sale runs October 19 to December 14, 2026 (FAQ on the same page). First term prepaid; monthly rate is total divided by months. Also listed: Unlimited $18.99 → $2.79/mo (85% off) and Cloud Startup $27.99 → $7.99/mo (71% off)."
+    "notes": "Official /black-friday page, 48-month Premium. Today you pay $95.52 for 48 months; renews at $10.99/mo for the same term. Sale runs October 19 to December 14, 2026 (FAQ on the same page). First term prepaid; monthly rate is total divided by months. Also listed: Unlimited $18.99 → $2.79/mo (85% off) and Cloud Startup $27.99 → $7.99/mo (71% off).",
+    "hidden": false
   },
   {
     "id": "hostinger-vps-649",
@@ -27,7 +28,8 @@
     "aff_program": "Hostinger Affiliates",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official BF page VPS card. Same sale window as other Hostinger BF deals (Oct 19–Dec 14, 2026). Renewal price not printed on the VPS card in this fetch."
+    "notes": "Official BF page VPS card. Same sale window as other Hostinger BF deals (Oct 19–Dec 14, 2026). Renewal price not printed on the VPS card in this fetch.",
+    "hidden": false
   },
   {
     "id": "hostinger-com-001",
@@ -42,7 +44,8 @@
     "aff_program": "Hostinger Affiliates",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official BF domains card also mentions buy a .com, get 2 domains free, and ultra low price on 3-year periods. Renewal not printed on this card."
+    "notes": "Official BF domains card also mentions buy a .com, get 2 domains free, and ultra low price on 3-year periods. Renewal not printed on this card.",
+    "hidden": false
   },
   {
     "id": "nordvpn-bf-299",
@@ -57,7 +60,8 @@
     "aff_program": "NordVPN Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official /black-friday: deal starts Oct 21, 2026 and runs until December 9, 2026. Official /pricing confirms Basic $2.99/mo, $80.73 for the first 27 months, renews at $139.08/year; Complete $3.99/mo ($107.73 / 27 mo, renews $219.48/year); Prime $6.99/mo ($188.73 / 27 mo, renews $296.28/year). 30-day money-back guarantee."
+    "notes": "Official /black-friday: deal starts Oct 21, 2026 and runs until December 9, 2026. Official /pricing confirms Basic $2.99/mo, $80.73 for the first 27 months, renews at $139.08/year; Complete $3.99/mo ($107.73 / 27 mo, renews $219.48/year); Prime $6.99/mo ($188.73 / 27 mo, renews $296.28/year). 30-day money-back guarantee.",
+    "hidden": false
   },
   {
     "id": "expressvpn-basic-279",
@@ -72,7 +76,8 @@
     "aff_program": "ExpressVPN Affiliates",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official pricing page shows a Black Friday banner image and 2-year+4-month plans: Basic Save 81% $2.79/mo, billed $78.12 for the first 28 months, then autorenews at $99.95 annually; Advanced Save 76% $3.99/mo ($111.72 / 28 mo, renews $119.95); Express Pro Save 69% $6.99/mo ($195.72 / 28 mo, renews $199.95). No official end date printed. Dedicated landing https://www.expressvpn.com/black-friday-cyber-monday currently says 'Stay tuned for our next Black Friday offers' — prices taken only from /pricing. Uncertain whether the dedicated BF page will change."
+    "notes": "Official pricing page shows a Black Friday banner image and 2-year+4-month plans: Basic Save 81% $2.79/mo, billed $78.12 for the first 28 months, then autorenews at $99.95 annually; Advanced Save 76% $3.99/mo ($111.72 / 28 mo, renews $119.95); Express Pro Save 69% $6.99/mo ($195.72 / 28 mo, renews $199.95). No official end date printed. Dedicated landing https://www.expressvpn.com/black-friday-cyber-monday currently says 'Stay tuned for our next Black Friday offers' — prices taken only from /pricing. Uncertain whether the dedicated BF page will change.",
+    "hidden": false
   },
   {
     "id": "surfshark-one-249",
@@ -87,7 +92,8 @@
     "aff_program": "Surfshark Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official /pricing labels Surfshark Starter as a Black Friday deal: $2.49/mo +3 extra months, old price $511.65, sale price $67.23 for the first 27 months (VAT may apply); Starter also shows Save 87%. Surfshark One is the same $2.49/mo +3 months / $67.23 for 27 months. One+ is $3.99/mo +3 months. 30-day money-back guarantee. Official /black-friday page is live but prices failed to load in this fetch ('We had an issue loading prices'); figures taken from /pricing. End date not printed."
+    "notes": "Official /pricing labels Surfshark Starter as a Black Friday deal: $2.49/mo +3 extra months, old price $511.65, sale price $67.23 for the first 27 months (VAT may apply); Starter also shows Save 87%. Surfshark One is the same $2.49/mo +3 months / $67.23 for 27 months. One+ is $3.99/mo +3 months. 30-day money-back guarantee. Official /black-friday page is live but prices failed to load in this fetch ('We had an issue loading prices'); figures taken from /pricing. End date not printed.",
+    "hidden": false
   },
   {
     "id": "proton-vpn-plus-70",
@@ -102,7 +108,8 @@
     "aff_program": "Proton Affiliates",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official /pricing (1-year tab in this fetch): VPN Plus 70% off, billed at $35.88 for the first 12 months, then renews at $83.88 every 12 months. Official /vpn-deals also shows a 2-year Plus at 70% off $2.99/month, billed at $71.76 for the first 24 months, then renews at $83.88 every 12 months. Official /black-friday is live and prints '-70%' but did not render a dollar price in this fetch. Third-party $2.49/mo figures were not seen on Proton pages and are not used. End date not stated."
+    "notes": "Official /pricing (1-year tab in this fetch): VPN Plus 70% off, billed at $35.88 for the first 12 months, then renews at $83.88 every 12 months. Official /vpn-deals also shows a 2-year Plus at 70% off $2.99/month, billed at $71.76 for the first 24 months, then renews at $83.88 every 12 months. Official /black-friday is live and prints '-70%' but did not render a dollar price in this fetch. Third-party $2.49/mo figures were not seen on Proton pages and are not used. End date not stated.",
+    "hidden": false
   },
   {
     "id": "purevpn-standard-149",
@@ -117,7 +124,8 @@
     "aff_program": "PureVPN Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official BF plan card: Standard $12.95 → $1.49/mo, billed $93.87 for 63 months, then auto-renews at $47.95 annually. Plus $2.19/mo also listed. 31-day money-back guarantee. FAQ on the same page inconsistently says 'For just $1.69/month, you can get the 5-year plan' — the plan card $1.49/mo is what is used here. End date not printed (FAQ says offers often extend through Cyber Monday)."
+    "notes": "Official BF plan card: Standard $12.95 → $1.49/mo, billed $93.87 for 63 months, then auto-renews at $47.95 annually. Plus $2.19/mo also listed. 31-day money-back guarantee. FAQ on the same page inconsistently says 'For just $1.69/month, you can get the 5-year plan' — the plan card $1.49/mo is what is used here. End date not printed (FAQ says offers often extend through Cyber Monday).",
+    "hidden": false
   },
   {
     "id": "cyberghost-85-199",
@@ -132,7 +140,8 @@
     "aff_program": "CyberGhost Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official homepage pricing (this fetch) shows 2 Years + 4 Months at $1.99/mo, billed $55.72 for first 28 months, then autorenews at $55.72 annually; 45-day money-back guarantee. The homepage did not print a 'Black Friday' label in this fetch — included as the current official promo visible on Nov 23 during BF week. End date not stated."
+    "notes": "Official homepage pricing (this fetch) shows 2 Years + 4 Months at $1.99/mo, billed $55.72 for first 28 months, then autorenews at $55.72 annually; 45-day money-back guarantee. The homepage did not print a 'Black Friday' label in this fetch — included as the current official promo visible on Nov 23 during BF week. End date not stated.",
+    "hidden": false
   },
   {
     "id": "windscribe-pro-29",
@@ -147,7 +156,8 @@
     "aff_program": null,
     "aff_status": "hook",
     "verified_at": "2026-11-23",
-    "notes": "Official page: annual plan normally $69, Black Friday $29 (58% off), $2.42 per month billed annually. Page says the subscription renews at the discounted price until you cancel, and the price returns to $69 after Cyber Monday. No paid cash affiliate program found this session (Windscribe ended paid affiliates in 2021; refer-a-friend only)."
+    "notes": "Official page: annual plan normally $69, Black Friday $29 (58% off), $2.42 per month billed annually. Page says the subscription renews at the discounted price until you cancel, and the price returns to $69 after Cyber Monday. No paid cash affiliate program found this session (Windscribe ended paid affiliates in 2021; refer-a-friend only).",
+    "hidden": false
   },
   {
     "id": "namecheap-bf-games",
@@ -162,7 +172,8 @@
     "aff_program": "Impact",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official page: 'Sale ends December 4 at 11:59 PM ET.' Domain registration prices $6.48/yr and $5.98/yr are shown with code THEGAMESTLD26 (TLD labels did not extract clearly — do not assume .com). Shared Hosting uses code THEGAMESHOST26; EasyWP Starter is 74% off at $1.48/mo, total $17.76/1st yr. Discounts are first billing cycle; renewals at regular prices. Timezone on the deadline is ET, not Asia/Saigon."
+    "notes": "Official page: 'Sale ends December 4 at 11:59 PM ET.' Domain registration prices $6.48/yr and $5.98/yr are shown with code THEGAMESTLD26 (TLD labels did not extract clearly — do not assume .com). Shared Hosting uses code THEGAMESHOST26; EasyWP Starter is 74% off at $1.48/mo, total $17.76/1st yr. Discounts are first billing cycle; renewals at regular prices. Timezone on the deadline is ET, not Asia/Saigon.",
+    "hidden": false
   },
   {
     "id": "siteground-startup-199",
@@ -177,7 +188,8 @@
     "aff_program": "SiteGround Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official web hosting page (OG image labeled black_friday). StartUp prepaid for 12 months, renews at $17.99/mo. Also listed: GrowBig $29.99 Save 86% $3.99/mo; GoGeek $44.99 Save 86% $5.99/mo. No promo code needed (discount is automatic). End date not printed on the page."
+    "notes": "Official web hosting page (OG image labeled black_friday). StartUp prepaid for 12 months, renews at $17.99/mo. Also listed: GrowBig $29.99 Save 86% $3.99/mo; GoGeek $44.99 Save 86% $5.99/mo. No promo code needed (discount is automatic). End date not printed on the page.",
+    "hidden": false
   },
   {
     "id": "inmotion-bf-75",
@@ -192,7 +204,8 @@
     "aff_program": "InMotion Hosting Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official /deals: Black Friday Web Hosting Deals 2026. FAQ: deals run from November 9 through December 1, 2026. Up to 75% Shared, 73% WordPress, 70% VPS, 50% Dedicated. First term then standard renewal. No specific monthly dollar price was printed on the deals hub in this fetch."
+    "notes": "Official /deals: Black Friday Web Hosting Deals 2026. FAQ: deals run from November 9 through December 1, 2026. Up to 75% Shared, 73% WordPress, 70% VPS, 50% Dedicated. First term then standard renewal. No specific monthly dollar price was printed on the deals hub in this fetch.",
+    "hidden": false
   },
   {
     "id": "hostpapa-essentials-125",
@@ -207,7 +220,8 @@
     "aff_program": "HostPapa Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official deals page is titled Black Friday Deals. Web Hosting and WordPress Hosting from $1.25/mo; VPS from $2.95/mo; Dedicated from $47.96/mo. Example on the same page: Web Hosting Essentials on a 3-year term is $1.25 per month for the first term, then renews at $8.99 per month; 3-year term saves 90% vs monthly billing. No coupon needed. End date not printed on this page."
+    "notes": "Official deals page is titled Black Friday Deals. Web Hosting and WordPress Hosting from $1.25/mo; VPS from $2.95/mo; Dedicated from $47.96/mo. Example on the same page: Web Hosting Essentials on a 3-year term is $1.25 per month for the first term, then renews at $8.99 per month; 3-year term saves 90% vs monthly billing. No coupon needed. End date not printed on this page.",
+    "hidden": false
   },
   {
     "id": "hostingcom-bf-89",
@@ -222,7 +236,8 @@
     "aff_program": "Hosting.com Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official BF page FAQ: deals start 2 November and run until 14 December; BF is 27 Nov and CM is 30 Nov; prices stay the same through Cyber Monday. Discount is on 12-month plans; you pay the BF price for the first 12 months, then regular renewal shown before you pay. No specific dollar price was printed in this fetch."
+    "notes": "Official BF page FAQ: deals start 2 November and run until 14 December; BF is 27 Nov and CM is 30 Nov; prices stay the same through Cyber Monday. Discount is on 12-month plans; you pay the BF price for the first 12 months, then regular renewal shown before you pay. No specific dollar price was printed in this fetch.",
+    "hidden": false
   },
   {
     "id": "ionos-wordpress-1",
@@ -237,7 +252,8 @@
     "aff_program": "IONOS Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official special-deals page has a 'Black Friday Deals' section and says 'Six hero plans, one year, one price.' Clearly printed: Hosting for WordPress $14 → $1; AI App & Site Builder $25 → $1; Mail Basic 25 $6 → $2. Web Hosting is labeled Save 94% with a $16 regular price; the sale price for that specific card did not extract cleanly, so it is not stated here. End date not printed."
+    "notes": "Official special-deals page has a 'Black Friday Deals' section and says 'Six hero plans, one year, one price.' Clearly printed: Hosting for WordPress $14 → $1; AI App & Site Builder $25 → $1; Mail Basic 25 $6 → $2. Web Hosting is labeled Save 94% with a $16 regular price; the sale price for that specific card did not extract cleanly, so it is not stated here. End date not printed.",
+    "hidden": false
   },
   {
     "id": "bluehost-shared-bf",
@@ -252,7 +268,8 @@
     "aff_program": "Bluehost Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official Bluehost blog for the 2026 sale. Discount tier depends on how many eligible 12-month products are in the cart; no promo code. New customers, initial term only; renewals at regular rate. 'Black Friday and Cyber Monday run as one sale. It ends Nov 30, 2026.' No specific monthly dollar prices on this article."
+    "notes": "Official Bluehost blog for the 2026 sale. Discount tier depends on how many eligible 12-month products are in the cart; no promo code. New customers, initial term only; renewals at regular rate. 'Black Friday and Cyber Monday run as one sale. It ends Nov 30, 2026.' No specific monthly dollar prices on this article.",
+    "hidden": false
   },
   {
     "id": "cloudways-bfcm802",
@@ -267,7 +284,8 @@
     "aff_program": "Cloudways Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official promo page FAQ: 'Black Friday and Cyber Monday' deal offers 80% off for 2 months on all hosting plans, including Flexible, Autonomous, Velocity, and Managed AI Agents. Enter promo code BFCM802 at signup. New customers during the campaign period; cannot combine with other codes. On-page countdown rendered 0 days/hours/mins/sec in this fetch (possible JS failure) while the FAQ still described the offer as current — re-check before promoting."
+    "notes": "Official promo page FAQ: 'Black Friday and Cyber Monday' deal offers 80% off for 2 months on all hosting plans, including Flexible, Autonomous, Velocity, and Managed AI Agents. Enter promo code BFCM802 at signup. New customers during the campaign period; cannot combine with other codes. On-page countdown rendered 0 days/hours/mins/sec in this fetch (possible JS failure) while the FAQ still described the offer as current — re-check before promoting.",
+    "hidden": false
   },
   {
     "id": "datacamp-premium-60",
@@ -282,7 +300,8 @@
     "aff_program": "DataCamp Affiliates",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official promo page terms: limited time from November 11 to November 29, 2026, 60% off annual DataCamp Premium, DataCamp Teams or DataLab Premium. Page shows $330 struck through and $132."
+    "notes": "Official promo page terms: limited time from November 11 to November 29, 2026, 60% off annual DataCamp Premium, DataCamp Teams or DataLab Premium. Page shows $330 struck through and $132.",
+    "hidden": false
   },
   {
     "id": "coursera-plus-239",
@@ -297,7 +316,8 @@
     "aff_program": "Coursera Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official Coursera Plus page currently prints $399 → $239/year. End date and 'Black Friday' wording were not on this page in this fetch. The dedicated https://www.coursera.org/explore/black-friday-and-cyber-monday page still refers to the 2025 sale ending December 1, 2025 and should not be used for 2026 dates. Local currency may apply at checkout."
+    "notes": "Official Coursera Plus page currently prints $399 → $239/year. End date and 'Black Friday' wording were not on this page in this fetch. The dedicated https://www.coursera.org/explore/black-friday-and-cyber-monday page still refers to the 2025 sale ending December 1, 2025 and should not be used for 2026 dates. Local currency may apply at checkout.",
+    "hidden": false
   },
   {
     "id": "udemy-bfcm-sale",
@@ -312,7 +332,8 @@
     "aff_program": "Udemy Affiliates",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official BF/CM sales page is live and titled as a sale, with course collections (AI, certifications, marketing, etc.). Individual course prices and a sitewide percentage were not printed in the static HTML of this fetch, so no $ or % is stated. Re-check course-level prices on Nov 23–30."
+    "notes": "Official BF/CM sales page is live and titled as a sale, with course collections (AI, certifications, marketing, etc.). Individual course prices and a sitewide percentage were not printed in the static HTML of this fetch, so no $ or % is stated. Re-check course-level prices on Nov 23–30.",
+    "hidden": false
   },
   {
     "id": "adobe-bfcm-55",
@@ -327,7 +348,8 @@
     "aff_program": "Adobe Affiliate Marketing",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official special-offers page title/heading is 'Adobe Black Friday & Cyber Monday Deals | Save up to 55%'. Plan prices and end date did not render (JS merch cards). Third-party 57% / $29.99 figures were not seen on this official page and are not used."
+    "notes": "Official special-offers page title/heading is 'Adobe Black Friday & Cyber Monday Deals | Save up to 55%'. Plan prices and end date did not render (JS merch cards). Third-party 57% / $29.99 figures were not seen on this official page and are not used.",
+    "hidden": false
   },
   {
     "id": "onepassword-holiday-25",
@@ -342,7 +364,8 @@
     "aff_program": "1Password Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official holiday-sale page (Open Graph image is a Black Friday graphic). Promotional pricing for new customers subscribing directly on 1Password.com, first year, annual billing only; not available via app stores. 14-day trial mentioned. Families is also listed (page showed $5.99; original vs current for Families was not clearly paired in this fetch, so only Individual is priced here). End date not printed. Official affiliate landing also exists at 1password.com/landing/affiliate — do not use that landing's $2.39 price, which was not on the public holiday-sale page."
+    "notes": "Official holiday-sale page (Open Graph image is a Black Friday graphic). Promotional pricing for new customers subscribing directly on 1Password.com, first year, annual billing only; not available via app stores. 14-day trial mentioned. Families is also listed (page showed $5.99; original vs current for Families was not clearly paired in this fetch, so only Individual is priced here). End date not printed. Official affiliate landing also exists at 1password.com/landing/affiliate — do not use that landing's $2.39 price, which was not on the public holiday-sale page.",
+    "hidden": false
   },
   {
     "id": "amazon-bf-week",
@@ -357,7 +380,8 @@
     "aff_program": "Amazon Associates",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official About Amazon article, updated Nov 19, 2026: events kicked off 12:01 a.m. PST Nov 19 and run through November 30. Today's Big Deals up to 60% off, dropping twice on Black Friday and Cyber Monday at midnight and 8 a.m. PST. Also: save up to 35% on all-new Amazon devices; up to 45% on Amazon Ember 55” TVs and Kindle Colorsoft (2024). Individual product prices change; this is a campaign-level entry. US store / PST times."
+    "notes": "Official About Amazon article, updated Nov 19, 2026: events kicked off 12:01 a.m. PST Nov 19 and run through November 30. Today's Big Deals up to 60% off, dropping twice on Black Friday and Cyber Monday at midnight and 8 a.m. PST. Also: save up to 35% on all-new Amazon devices; up to 45% on Amazon Ember 55” TVs and Kindle Colorsoft (2024). Individual product prices change; this is a campaign-level entry. US store / PST times.",
+    "hidden": false
   },
   {
     "id": "bestbuy-bf-2026",
@@ -372,7 +396,8 @@
     "aff_program": "Best Buy Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official BF hub. Disclosures: Event ends 11/28/26 at 11:59 p.m. CT; Doorbusters end the same time; Deal of the Day valid one day only through 11:59 p.m. CT or until sold out. Limited quantities, no rainchecks. Corporate news also states the sale began Nov 19 and lists specific doorbusters. US store / CT timezone."
+    "notes": "Official BF hub. Disclosures: Event ends 11/28/26 at 11:59 p.m. CT; Doorbusters end the same time; Deal of the Day valid one day only through 11:59 p.m. CT or until sold out. Limited quantities, no rainchecks. Corporate news also states the sale began Nov 19 and lists specific doorbusters. US store / CT timezone.",
+    "hidden": false
   },
   {
     "id": "bestbuy-hp-omnibook-449",
@@ -387,7 +412,8 @@
     "aff_program": "Best Buy Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official BF page doorbuster: 'Save $350 on HP Omnibook 5 14\" 2K OLED touchscreen laptop, only $449.99 after savings.' Also confirmed on official corporate news. Event/doorbusters end 11/28/26 11:59 p.m. CT; limited quantities, no rainchecks."
+    "notes": "Official BF page doorbuster: 'Save $350 on HP Omnibook 5 14\" 2K OLED touchscreen laptop, only $449.99 after savings.' Also confirmed on official corporate news. Event/doorbusters end 11/28/26 11:59 p.m. CT; limited quantities, no rainchecks.",
+    "hidden": false
   },
   {
     "id": "microsoft-surface-pro-13-1199",
@@ -402,7 +428,8 @@
     "aff_program": "Microsoft Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official US Microsoft Store BF page. FAQ: 2026 sale runs from November 19th to November 28th. Other printed sale prices on the same page include Surface Laptop 13.8-inch (8th Edition) Originally From $1,599.99 now From $1,199.99, and Surface Laptop 15-inch (8th Edition) Originally From $1,699.99 now From $1,292.67. Supplies limited."
+    "notes": "Official US Microsoft Store BF page. FAQ: 2026 sale runs from November 19th to November 28th. Other printed sale prices on the same page include Surface Laptop 13.8-inch (8th Edition) Originally From $1,599.99 now From $1,199.99, and Surface Laptop 15-inch (8th Edition) Originally From $1,699.99 now From $1,292.67. Supplies limited.",
+    "hidden": false
   },
   {
     "id": "booking-bf-30",
@@ -417,7 +444,8 @@
     "aff_program": "Booking.com Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Official deals page: 'Black Friday Deals are here!' FAQ: discount applied to the price before taxes and fees; bookable between November 19 and December 2, 2026; stays between November 19, 2026 and December 31, 2027 at participating properties. Example starting rates shown (Rome from $40 per night, Tokyo from $49, etc.) are destination starting points, not a sitewide floor."
+    "notes": "Official deals page: 'Black Friday Deals are here!' FAQ: discount applied to the price before taxes and fees; bookable between November 19 and December 2, 2026; stays between November 19, 2026 and December 31, 2027 at participating properties. Example starting rates shown (Rome from $40 per night, Tokyo from $49, etc.) are destination starting points, not a sitewide floor.",
+    "hidden": false
   },
   {
     "id": "traveloka-xperience-bf-50",
@@ -448,7 +476,8 @@
     "aff_program": null,
     "aff_status": "hook",
     "verified_at": "2026-11-23",
-    "notes": "Official Vietjet promotion page. Codes: FRIDAY20 = 20% off base Deluxe fare on Vietnam domestic routes; FRIDAY10 = 10% off international. Discount is on the base Deluxe fare, excluding taxes/fees. Booking and successful payment 00:00 25/11/2026–23:00 27/11/2026 (GMT+7). Travel 04/01/2027–31/05/2027, excluding peak/holiday periods per route rules. Book on vietjetair.com, the Vietjet app, WeChat, OTAs, agents, GDS. No joinable affiliate program was confirmed on an official partner page this session (re-check AccessTrade before treating as aff-possible)."
+    "notes": "Official Vietjet promotion page. Codes: FRIDAY20 = 20% off base Deluxe fare on Vietnam domestic routes; FRIDAY10 = 10% off international. Discount is on the base Deluxe fare, excluding taxes/fees. Booking and successful payment 00:00 25/11/2026–23:00 27/11/2026 (GMT+7). Travel 04/01/2027–31/05/2027, excluding peak/holiday periods per route rules. Book on vietjetair.com, the Vietjet app, WeChat, OTAs, agents, GDS. No joinable affiliate program was confirmed on an official partner page this session (re-check AccessTrade before treating as aff-possible).",
+    "hidden": false
   },
   {
     "id": "fptshop-bf-50",
@@ -543,7 +572,8 @@
     "aff_program": null,
     "aff_status": "hook",
     "verified_at": "2026-11-23",
-    "notes": "Official Google Store offers page, labeled Black Friday deals. Terms: Save $350 on Pixel 11 Pro (Unlocked); Save $400 on Pixel 11 Pro XL (Unlocked). Starts November 19, 2026 12:00 AM PST, ends December 5, 2026 11:59 PM PST, while supplies last. Unlocked carrier-selection SKU only; US residents with US shipping addresses; 18+. Plus up to $600 back with eligible trade-in (separate terms, through December 27, 2026). No public cash affiliate program for Google Store Pixel sales found; Pixel referrals are invite/credit-based, not a joinable publisher program."
+    "notes": "Official Google Store offers page, labeled Black Friday deals. Terms: Save $350 on Pixel 11 Pro (Unlocked); Save $400 on Pixel 11 Pro XL (Unlocked). Starts November 19, 2026 12:00 AM PST, ends December 5, 2026 11:59 PM PST, while supplies last. Unlocked carrier-selection SKU only; US residents with US shipping addresses; 18+. Plus up to $600 back with eligible trade-in (separate terms, through December 27, 2026). No public cash affiliate program for Google Store Pixel sales found; Pixel referrals are invite/credit-based, not a joinable publisher program.",
+    "hidden": false
   },
   {
     "id": "google-pixel-watch-5-100",
@@ -558,7 +588,8 @@
     "aff_program": null,
     "aff_status": "hook",
     "verified_at": "2026-11-23",
-    "notes": "Official offers-page terms: starts November 19, 2026 12:00 AM PST, ends December 1, 2026 11:59 PM PST, while supplies last. US residents with US shipping addresses only. Same hook rationale as other Google Store deals (no public joinable affiliate program found)."
+    "notes": "Official offers-page terms: starts November 19, 2026 12:00 AM PST, ends December 1, 2026 11:59 PM PST, while supplies last. US residents with US shipping addresses only. Same hook rationale as other Google Store deals (no public joinable affiliate program found).",
+    "hidden": false
   },
   {
     "id": "google-fitbit-air-bundle-30",
@@ -573,7 +604,8 @@
     "aff_program": null,
     "aff_status": "hook",
     "verified_at": "2026-11-23",
-    "notes": "Official offers-page terms: starts November 19, 2026 12:00 AM PST, ends December 2, 2026 11:59 PM PST, while supplies last. US residents with US shipping addresses only. Hook: no public joinable Google Store affiliate program found this session."
+    "notes": "Official offers-page terms: starts November 19, 2026 12:00 AM PST, ends December 2, 2026 11:59 PM PST, while supplies last. US residents with US shipping addresses only. Hook: no public joinable Google Store affiliate program found this session.",
+    "hidden": false
   },
   {
     "id": "pink-elephant-bf-30",
@@ -588,6 +620,567 @@
     "aff_program": null,
     "aff_status": "hook",
     "verified_at": "2026-11-23",
-    "notes": "Official sale page. Purchases must be made before 5:00 p.m. ET, November 27. 30% applies to the AI Governance course and to in-house training base delivery fees; other offers include a free Pink27 conference pass with Individual Training Subscription or PinkATLAS (conference Feb 1–4, 2027, Bellagio Las Vegas; hotel not included). All sales final; offers cannot be combined. No public joinable affiliate program found this session (sales via customerservice@pinkelephant.com / 1-888-273-PINK). Deadline is 17:00 ET, not midnight Asia/Saigon."
+    "notes": "Official sale page. Purchases must be made before 5:00 p.m. ET, November 27. 30% applies to the AI Governance course and to in-house training base delivery fees; other offers include a free Pink27 conference pass with Individual Training Subscription or PinkATLAS (conference Feb 1–4, 2027, Bellagio Las Vegas; hotel not included). All sales final; offers cannot be combined. No public joinable affiliate program found this session (sales via customerservice@pinkelephant.com / 1-888-273-PINK). Deadline is 17:00 ET, not midnight Asia/Saigon.",
+    "hidden": false
+  },
+  {
+    "id": "elevenlabs-bfcm-55",
+    "title": "ElevenLabs Black Friday & Cyber Monday: up to 55% off Creator and Pro annual",
+    "merchant": "ElevenLabs",
+    "category": "ai",
+    "discount_text": "Up to 55% off select ElevenLabs plans",
+    "price": "Creator annual is $99 for your first year",
+    "end_date": "2026-12-01",
+    "source_url": "https://elevenlabs.io/black-friday-promo",
+    "aff_program": "ElevenLabs Affiliate (PartnerStack)",
+    "aff_status": "aff-possible",
+    "notes": "Official promo page: offer runs Nov 16 to Dec 1, 2026, ends 11:59pm ET on Dec 1. Creator annual $99 first year, 55% off. Pro annual 55% off first year for new and upgrading subscribers, or 50% off when switching from Pro monthly. Renews at regular annual price. Eligible: new subscribers, anyone not already on Creator annual, Pro annual, or a higher plan, and Pro monthly switching to annual. App: new users 50% off first month; Creator monthly can switch to annual at 55%; Pro discount is web only. Affiliate: https://elevenlabs.io/affiliates — official: 22% of all payments for the first 12 months on new paid subscriber plans; dashboard via PartnerStack. Signup URL is on that affiliates page.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "sembly-bf2026-20",
+    "title": "Sembly Black Friday: 20% off for 12 months",
+    "merchant": "Sembly",
+    "category": "ai",
+    "discount_text": "20% off Sembly for 12 months",
+    "price": "from $8 a month",
+    "end_date": "2026-11-30",
+    "source_url": "https://www.sembly.ai/black-friday-2026/",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official page: use code BF2026 on any plan (Basic, Pro, MAX; team seats too), monthly or annual, until November 30, 2026. Discount lasts 12 months (12 monthly charges, or first annual charge). Code is not applied automatically. Annual examples printed: Basic $10→$8; Pro $20→$16 per user; MAX $30→$24 per user. After 12 months, regular price. No joinable affiliate program confirmed on an official Sembly page this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "katteb-bfcm-50",
+    "title": "Katteb Black Friday & Cyber Monday: 50% off yearly or 25% off monthly",
+    "merchant": "Katteb",
+    "category": "ai",
+    "discount_text": "50% Off Yearly, 25% Off Monthly",
+    "price": "Lite $245 for the first year instead of $490",
+    "end_date": "2026-12-01",
+    "source_url": "https://katteb.com/black-friday",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official page: offer runs November 12 to the end of December 1 (Cairo time). Yearly first year: Lite $245 (was $490), Business $495 (was $990), Max $995 (was $1,990); renews at usual yearly price. Monthly 25% off every month for as long as you stay: Lite $36.75 (was $49), Business $74.25 (was $99), Max $149.25 (was $199). 7-day refund. Enterprise excluded. No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "kinsta-bf-50",
+    "title": "Kinsta Black Friday: 50% off monthly plans for 3 months, or 3 months off annual",
+    "merchant": "Kinsta",
+    "category": "hosting",
+    "discount_text": "Monthly plans: 50% off for 3 months",
+    "price": "Pay $17.50 for 3 months after the first month, renews at $35",
+    "end_date": "2026-12-01",
+    "source_url": "https://kinsta.com/black-friday/",
+    "aff_program": "Kinsta Affiliate",
+    "aff_status": "aff-possible",
+    "notes": "Official BF page: offer ends December 1. New customers on eligible plans. Select plans also get first month free, then the BF discount. Example Launch/Single 20GB: $35 regular; $17.50 for 3 months after the first month; annual $420→$315 after the first month. 30-day money-back. Affiliate: https://kinsta.com/affiliates/ — official: one-time bonus up to $500 plus lifetime 10% monthly commissions; decision email within 3 business days (customers auto-approved). Official FAQ: they generally do not accept coupon/deals websites, unfinished sites, or sites without a disclosure — a new deals site is likely to be rejected.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "proton-pass-60",
+    "title": "Proton Pass Black Friday: 60% off",
+    "merchant": "Proton",
+    "category": "saas",
+    "discount_text": "-60%",
+    "price": null,
+    "end_date": null,
+    "source_url": "https://proton.me/pass/black-friday",
+    "aff_program": "Proton Affiliates",
+    "aff_status": "aff-possible",
+    "notes": "Official Pass BF page prints '-60%' as the main offer. A dollar price for Pass Plus was not rendered in this fetch (do not use third-party $1.99 figures). The same page also mentions 50% off Proton Unlimited. End date not printed. Affiliate: https://proton.me/partners/affiliates ; signup https://partners.proton.me/signup.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "proton-mail-plus-50",
+    "title": "Proton Mail Plus Black Friday: 50% off first year",
+    "merchant": "Proton",
+    "category": "productivity",
+    "discount_text": "50% off",
+    "price": "$4.99 → $2.49/month",
+    "end_date": null,
+    "source_url": "https://proton.me/mail/black-friday",
+    "aff_program": "Proton Affiliates",
+    "aff_status": "aff-possible",
+    "notes": "Official Mail BF page: Mail Plus billed at $29.88 for the first 12 months, then renews at $47.88 every 12 months. Same page also shows Proton Unlimited 50% off at $6.49/month (billed $77.88 first 12 months, renews $119.88) and a 1-month welcome offer 92% off: Unlimited $1.00 first month, then $12.99/month. End date not printed. Affiliate: https://proton.me/partners/affiliates ; https://partners.proton.me/signup.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "nordpass-bf-50",
+    "title": "NordPass Black Friday: up to 50% off annual Personal + 3 extra months",
+    "merchant": "NordPass",
+    "category": "saas",
+    "discount_text": "up to 50% OFF",
+    "price": null,
+    "end_date": "2026-12-09",
+    "source_url": "https://nordpass.com/black-friday/",
+    "aff_program": "NordVPN Affiliate",
+    "aff_status": "aff-possible",
+    "notes": "Official FAQ: up to 50% OFF an annual Personal plan, plus 3 extra months at no extra cost. Business and Enterprise plans with up to 30 seats: 20% OFF with code BF20OFF. Deal runs until December 9. Plan-card dollar prices did not render in this fetch. Affiliate is the existing Nord Security / NordVPN program (https://nordvpn.com/affiliate/) which also covers other Nord products — confirm NordPass is in the advertiser list after login.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "mailerlite-litefriday26",
+    "title": "MailerLite Black Lite Friday: 26% off annual plans",
+    "merchant": "MailerLite",
+    "category": "marketing",
+    "discount_text": "26% off annual plans",
+    "price": "Comfort from $107/year; Power from $222/year",
+    "end_date": "2026-12-18",
+    "source_url": "https://www.mailerlite.com/black-friday-deal",
+    "aff_program": "MailerLite Affiliate (Trackdesk)",
+    "aff_status": "aff-possible",
+    "notes": "Official deal page plus legal terms https://www.mailerlite.com/legal/bfcm-terms: sale 14:00 UTC 17 Nov 2026 to 16:00 UTC 18 Dec 2026. Code LITEFRIDAY26 must be entered (not automatic). Annual Comfort or Power only. Page shows Comfort $144/year from $107/year; Power $300/year from $222/year. Discount lasts one year including upgrades. Not for Shopify-billed or Legacy plans. On-page countdown rendered 00:00:00 in this fetch; dates are taken from the official terms, not the timer. Affiliate: https://www.mailerlite.com/affiliate — official 30% lifetime commission; cookie 45 days; Trackdesk + Tipalti (PayPal/direct deposit/wire); payouts Friday after $100 from at least 2 unique sales; 30-day hold. Official: 'Anyone with an audience or platform… is welcome to join.'",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "brevo-friday-30",
+    "title": "Brevo Black Friday: 30% off new annual Starter/Standard plans",
+    "merchant": "Brevo",
+    "category": "marketing",
+    "discount_text": "Black Friday 30% OFF",
+    "price": null,
+    "end_date": "2026-11-30",
+    "source_url": "https://www.brevo.com/black-friday/",
+    "aff_program": "Brevo Affiliate (PartnerStack)",
+    "aff_status": "aff-possible",
+    "notes": "Official terms page: code BREVOFRIDAY2026. Valid 23 Nov 2026 00:00:00 CET to 30 Nov 2026 23:59:59 CET. 30% off first year of new annual Starter and/or Standard (or Business for older Self-Service customers) between 10k and 350k emails/month. The 30% includes the regular 10% annual discount. Existing annual/Enterprise/Pro customers excluded; must have declared ecommerce at onboarding. Affiliate: https://www.brevo.com/partners/affiliates/ — official: PartnerStack tracking, 90-day cookie. Commission amount not stated as a fixed % on the page fetched via search; confirm in PartnerStack.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "grammarly-pro-bf-50",
+    "title": "Grammarly Black Friday: 50% off Grammarly Pro",
+    "merchant": "Grammarly",
+    "category": "ai",
+    "discount_text": "50% off Grammarly Pro",
+    "price": null,
+    "end_date": null,
+    "source_url": "https://www.grammarly.com/black-friday",
+    "aff_program": "Grammarly Affiliate",
+    "aff_status": "aff-possible",
+    "notes": "Official BF page: 50% off Grammarly Pro, applied automatically via Claim Offer (no code). First term only; renews at regular price. New Pro customers and Free-plan upgrades; existing paid users can get it on next renewal. Cannot combine with other discounts or a free trial. Enterprise excluded. End date not printed ('limited-time'). Dollar price not printed on this page. Affiliate details: official support article exists; confirm the current join URL and network (often Impact) on Grammarly’s partner pages before applying. Commissions not copied from third-party summaries.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "wp-rocket-bf-60",
+    "title": "WP Rocket Black Friday: save up to 60%",
+    "merchant": "WP Rocket",
+    "category": "dev-tools",
+    "discount_text": "Save up to 60%",
+    "price": null,
+    "end_date": "2026-11-27",
+    "source_url": "https://wp-rocket.me/black-friday-2026/",
+    "aff_program": "WP Rocket Affiliate (Awin)",
+    "aff_status": "aff-possible",
+    "notes": "Official BF page: 'Get Our Biggest Black Friday Deal Ever' / 'Save up to 60%' and 'Only until November 27, 2026.' First-time purchase; renews at regular price. A Single price of $1.95 appeared on the page without a clearly labeled billing term, which does not match the affiliate page’s regular 1-year Single at $59.95 — do not treat $1.95 as a confirmed license price; confirm at checkout. Affiliate: https://wp-rocket.me/wp-rocket-affiliate-program/ — official 20% per new license, 30-day cookie, join via Awin, manual review up to 48 hours. Official 'You Can Not': use affiliate links on coupon/deal websites, or use coupon/discount keywords for WP Rocket — a deals site may be ineligible.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "later-bf-6-months",
+    "title": "Later Black Friday: 6 months free on annual Growth or Scale",
+    "merchant": "Later",
+    "category": "marketing",
+    "discount_text": "6 months free",
+    "price": "Growth $37.50/mo",
+    "end_date": "2026-12-04",
+    "source_url": "https://later.com/black-friday-sale/",
+    "aff_program": "Later Affiliate",
+    "aff_status": "aff-possible",
+    "notes": "Official page: code LATERBF26. New customers only, annual Growth or Scale on later.com (not iOS app), Nov 1–Dec 4, 2026. Annual plans already include 3 months free; this adds 3 more (6 months free total) on the first annual purchase; renews at standard annual rate. Growth card showed $37.50/mo (confirm whether that is already the discounted estimate). Affiliate: official program page https://later.com/affiliate-program/ — read live terms/commission before applying (not fully fetched this session).",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "rankmath-bf-50",
+    "title": "Rank Math Black Friday: save up to 50% on SEO licenses",
+    "merchant": "Rank Math",
+    "category": "marketing",
+    "discount_text": "Save up to 50%",
+    "price": "Business $14.99 / $12.99 per month billed annually (ex VAT)",
+    "end_date": null,
+    "source_url": "https://rankmath.com/offer/",
+    "aff_program": "Rank Math Affiliate",
+    "aff_status": "aff-possible",
+    "notes": "Official offer page titled Black Friday Sale, 50% OFF (Business also printed 46% OFF; Agency 50%/51% OFF). Business previously $27.99, now $14.99 / $12.99 per month billed annually ex VAT; renews at $27.99 / $23.99. Agency previously $64.99, now $32.49 / $27.99 per month billed annually. End date not clearly printed in this fetch. Affiliate: https://rankmath.com/affiliates/ — confirm live commission on that official page before quoting a rate.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "voiceink-lifetime-40",
+    "title": "VoiceInk Black Friday: 40% off lifetime Mac license",
+    "merchant": "VoiceInk",
+    "category": "ai",
+    "discount_text": "40% off VoiceInk, for life",
+    "price": null,
+    "end_date": null,
+    "source_url": "https://tryvoiceink.com/black-friday",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official BF page: private on-device Mac dictation, pay once, no subscription. Countdown rendered as placeholders in this fetch; no dollar price or end date was printed in the extracted text. Do not invent a sale price. No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "boltai-bf-sale",
+    "title": "BoltAI sale: one-time Pro, Pro+ and Lifetime licenses",
+    "merchant": "BoltAI",
+    "category": "ai",
+    "discount_text": "Sale price",
+    "price": "Pro Regular $99 Sale $59",
+    "end_date": null,
+    "source_url": "https://boltai.com/pricing",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official pricing page shows Sale prices: Pro $99→$59 (2 desktop + 1 mobile); Pro+ $199→$119 (3+2); Lifetime $399→$239 (5+3, lifetime updates). 30-day money-back. FAQ mentions Black Friday as a sale that does not combine with the student discount, but a BF code and end date were not printed on the pricing page in this fetch. No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "mindpal-bf-60",
+    "title": "MindPal Early Black Friday: 60% off first year of annual plans",
+    "merchant": "MindPal",
+    "category": "ai",
+    "discount_text": "60% off your first year on annual plans",
+    "price": "Pro $15.60/month — $187.20 billed yearly (was $468)",
+    "end_date": "2026-12-11",
+    "source_url": "https://mindpal.space/pricing",
+    "aff_program": "MindPal Affiliate",
+    "aff_status": "aff-possible",
+    "notes": "Official pricing page: 'Early Black Friday' / code BLACKFRIDAY2026 applied at checkout, until December 11. Advanced $59.60/month, $715.20 billed yearly (was $1,788). After the first year, yearly list prices on the comparison table are Pro $468/yr and Advanced $1,788/yr. Affiliate docs were cited at https://docs.mindpal.space/affiliate — confirm the live signup URL and commission on that official doc before applying.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "recraft-yearly-40",
+    "title": "Recraft Black Friday: 40% off the first year of new yearly plans",
+    "merchant": "Recraft",
+    "category": "design",
+    "discount_text": "40% off the first year of any new yearly plan",
+    "price": null,
+    "end_date": "2026-12-01",
+    "source_url": "https://www.recraft.ai/pricing",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official pricing FAQ: 40% off the first year of any new yearly plan, billed annually; renews at regular price. Not for accounts with an active yearly subscription; cannot combine; not available in some countries. Ends Dec 1, 2026, 11:59 pm PT. Sale dollar amounts were not printed on the plan cards in this fetch. No official Recraft affiliate signup page found this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "invideo-limited-75",
+    "title": "invideo AI pricing: up to 75% off Max, 50% off Starter/Plus",
+    "merchant": "invideo",
+    "category": "ai",
+    "discount_text": "75% off Limited offer",
+    "price": "Max $250 → $62.50 per seat/mo for 2 years",
+    "end_date": null,
+    "source_url": "https://invideo.io/pricing",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official pricing page. Starter 50% off: $20→$10 per seat/mo billed annually. Plus 50% off Limited offer: $60→$30 per seat/mo billed annually. Max 75% off Limited offer: $250→$62.50 per seat/mo for 2 years. A 'Black Friday' label was not printed in this fetch — included as the current official limited offer. End date not stated. No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "craft-plus-40",
+    "title": "Craft Black Friday: up to 40% off Plus and Family",
+    "merchant": "Craft",
+    "category": "productivity",
+    "discount_text": "Get up to 40% off Craft Plus and Family",
+    "price": "Plus $8.0 → $4.8/month",
+    "end_date": null,
+    "source_url": "https://www.craft.do/pricing",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official pricing banner: 40% off yearly with code BLACKFRIDAY26-A; 20% off monthly with BLACKFRIDAY26-M. Plus yearly card printed $8.0 and $4.8/month. End date not printed. No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "prowritingaid-bf-50",
+    "title": "ProWritingAid Black Friday: 50% off yearly and lifetime plans",
+    "merchant": "ProWritingAid",
+    "category": "ai",
+    "discount_text": "Get 50% Off ProWritingAid",
+    "price": null,
+    "end_date": "2026-11-29",
+    "source_url": "https://prowritingaid.com/pricing",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official pricing page: 'Black Friday Sale Ends Soon' / 'Get the discount before Sun 29 Nov 23:59 PT.' Yearly and lifetime plans are half price; also '25% off Story Credits' was in a prior vendor-checked lead but the 25% Story Credits line was not clearly re-read as a BF headline in this fetch — the page does mention discounts on Story Credits for Premium. Monthly cards showed $30.00 / $36.00, which appear to be monthly rates, not the half-price yearly figures (those were not clearly extracted). Affiliate program not confirmed on an official page this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "seobility-bf-60days",
+    "title": "Seobility Black Friday: 60 days of Premium free, then 15% off forever",
+    "merchant": "Seobility",
+    "category": "marketing",
+    "discount_text": "60 days of Premium free",
+    "price": "Then $59.41 instead of $69.90 a month (plus VAT)",
+    "end_date": "2026-12-06",
+    "source_url": "https://www.seobility.net/en/lp/blackfriday26/",
+    "aff_program": "Seobility Affiliate",
+    "aff_status": "aff-possible",
+    "notes": "Official LP: deal Nov 17–Dec 6, 2026. New and Basic (free) accounts. After 60 days, Premium continues at $59.41 instead of $69.90/month (plus VAT), monthly, cancel anytime; 15% off lasts as long as you stay on Premium. Existing free accounts: enter code blackfriday26ext when upgrading. Affiliate: https://www.seobility.net/en/affiliates/ — confirm live commission on that official page (search snippets said 30% lifetime; not copied unless re-read on the page).",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "koofr-bf-55",
+    "title": "Koofr Black Friday: save 55% on yearly storage",
+    "merchant": "Koofr",
+    "category": "saas",
+    "discount_text": "Black Friday: Save 55%",
+    "price": "250 GB 40 EUR → 17.70 EUR",
+    "end_date": "2026-11-30",
+    "source_url": "https://koofr.eu/black-friday/",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official page: valid Nov 16 until Nov 30, 2026. Yearly, prices without VAT; code BF2026. Also listed: 500 GB 69→30.98 EUR; 1 TB 99→44.26 EUR; 2.5 TB 197→88.52 EUR; 5 TB 345→154.92 EUR. Free accounts upgrade in-app; previous paid users buy a gift card with the same code. No automatic renewals (Koofr does not store banking info). No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "paperform-pfbf26",
+    "title": "Paperform Black Friday: 50% off first 12 months of Pro and Business",
+    "merchant": "Paperform",
+    "category": "saas",
+    "discount_text": "Get 50% off your first 12 months of Paperform Pro and Business",
+    "price": "Pro $29.50/month instead of $59 billed monthly, or $294 instead of $588 billed annually",
+    "end_date": "2026-11-30",
+    "source_url": "https://paperform.co/black-friday/",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official FAQ/schema: code PFBF26, new subscriptions only, 12am 16 Nov 2026 to midnight at the end of 30 Nov 2026 PT. Business $74.50/month instead of $149, or $744 instead of $1,488 annually. UNCERTAIN: the same page also contains a heading 'The Paperform Black Friday 2026 deal has ended' above still-live Nov 16–30 terms. Re-check before publishing as live. No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "typingmind-premium-60",
+    "title": "TypingMind Black Friday: 60% off Premium lifetime license",
+    "merchant": "TypingMind",
+    "category": "ai",
+    "discount_text": "60% off the Premium lifetime license",
+    "price": "$79.20 instead of $198",
+    "end_date": "2026-11-30",
+    "source_url": "https://www.typingmind.com/buy",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official /buy shows Premium $79.20 vs $198. Official changelog https://feedback.typingmind.com/changelog/black-friday-cyber-monday-2026-sale (19 Nov 2026): code BLACKFRIDAY2026, one-time payment with free updates, offer ends November 30. TypingMind docs page said December 15 — that conflicts with the changelog; this entry uses the changelog end date. 14-day money-back on /buy FAQ. No official affiliate signup page confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "optinmonster-bf-60",
+    "title": "OptinMonster Black Friday: up to 60% off",
+    "merchant": "OptinMonster",
+    "category": "marketing",
+    "discount_text": "Up to 60% off",
+    "price": "Basic $9/month — $108 billed today, renews at $210/yr",
+    "end_date": "2026-12-01",
+    "source_url": "https://optinmonster.com/black-friday",
+    "aff_program": "OptinMonster Affiliate",
+    "aff_status": "aff-possible",
+    "notes": "Official page: sale opens 9 Nov 2026 10 a.m. Eastern; final sale day is December 1. Also printed: Plus $24/month, $288 billed, renews $570/yr; Pro $29, $348 billed, renews $870/yr; Growth $49, $588 billed, renews $1,470/yr. On-page countdown rendered 00:00:00; dates taken from the FAQ, not the timer. Affiliate program exists; confirm official join URL and commission on OptinMonster’s partner page before applying.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "chanty-bf-40",
+    "title": "Chanty Black Friday: 40% off annual Business, 25% off monthly",
+    "merchant": "Chanty",
+    "category": "productivity",
+    "discount_text": "40% off the annual business plan",
+    "price": "Annual plan $2.40 (was $4)",
+    "end_date": "2026-12-01",
+    "source_url": "https://www.chanty.com/black-friday/",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official FAQ: offer lasts until Dec. 01 2026 at 12:00 AM Geneva time (CET). 40% off annual business, 25% off monthly business. Eligible: new users, Free plan, or AppSumo users. After one year switches to Basic Business. Hero also contains 'coming soon' / 'ended' wording — terms are taken from the FAQ. Page also printed Monthly $3 (was $4) and Annual $2.40 (was $4). No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "plerdy-bf-50",
+    "title": "Plerdy Black Friday: 50% off every yearly plan",
+    "merchant": "Plerdy",
+    "category": "marketing",
+    "discount_text": "50% off every yearly plan",
+    "price": "Scale $252 for the first year instead of $504",
+    "end_date": "2026-12-02",
+    "source_url": "https://plerdy.com/black-friday/",
+    "aff_program": "Plerdy Affiliate",
+    "aff_status": "aff-possible",
+    "notes": "Official page: code plerdyBF2026, yearly plans only, Nov 13–Dec 2, 2026 11:59 pm PT. Startup $126 first year (was $252). Thrive $420 (was $840). After 12 months renews at regular yearly price. Countdown rendered 00:00:00; end date taken from FAQ/body. Affiliate program advertised; confirm official signup URL and commission on Plerdy’s partner page before applying.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "timecamp-ultimate-30",
+    "title": "TimeCamp Black Friday: 30% off Ultimate for 12 months",
+    "merchant": "TimeCamp",
+    "category": "productivity",
+    "discount_text": "Save 30% on TimeCamp Ultimate",
+    "price": "Per user, per month $6.99 — first year example 10 users $839.16",
+    "end_date": "2026-12-05",
+    "source_url": "https://www.timecamp.com/black-friday/",
+    "aff_program": "TimeCamp Partners",
+    "aff_status": "aff-possible",
+    "notes": "Official page: code TCBF26. Starts 23 Nov 2026 00:00 UTC, ends 5 Dec 2026 23:59 UTC. First-time annual Ultimate only; renews at $9.99/user/mo billed annually. Standard annual price example $1,198.80 → first year $839.16 (10 users). Affiliate: https://www.timecamp.com/partners/ — confirm live commission on that official page.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "leavemealone-bf-83",
+    "title": "Leave Me Alone Black Friday: 83% off Unlimited inboxes",
+    "merchant": "Leave Me Alone",
+    "category": "productivity",
+    "discount_text": "Black Friday: All your inboxes. 83% off.",
+    "price": "Unlimited $30.00 → $4.92/month, billed yearly at $59.00/year",
+    "end_date": null,
+    "source_url": "https://leavemealone.com/pricing/",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official pricing page BF banner. Also printed: 1 inbox 68% off $12.50→$4.00/month billed yearly ($48/year); 3 inboxes 70% off $20→$6.00/month ($72/year). 14-day money-back. End date not printed. No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "wasmer-pro-bf-50",
+    "title": "Wasmer Black Friday: 50% off Pro for 12 months",
+    "merchant": "Wasmer",
+    "category": "dev-tools",
+    "discount_text": "50% off Wasmer Pro for 12 months",
+    "price": "$10 → $5 a month for 12 months",
+    "end_date": "2026-11-30",
+    "source_url": "https://wasmer.io/black-friday-2026",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official page: $5/month for 12 months, then $10 a month; or $50 first year renewing at $100/year. Code BLACKFRIDAY26. Redeem through November 30, 2026 at 11:59 PM PST. First-time Pro customers only; base subscription only (metered usage excluded). No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "teachable-bf",
+    "title": "Teachable Black Friday plan pricing",
+    "merchant": "Teachable",
+    "category": "saas",
+    "discount_text": "Pay less, build more this Black Friday",
+    "price": "Builder $89 → $44.50/mo",
+    "end_date": null,
+    "source_url": "https://teachable.com/pricing",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official pricing page has a Black Friday section showing Builder $89 → $44.50/mo and Growth $189 → $94.50/mo (30-day money-back). A separate yearly toggle also shows a standard 22% OFF, which is not the BF headline. End date not printed. No official Teachable affiliate join page confirmed for publishers this session (Teachable has an affiliate feature for course creators on paid plans — that is not the same as a vendor affiliate program).",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "pirsch-bf-20",
+    "title": "Pirsch Analytics Black Friday: 20% off first payment",
+    "merchant": "Pirsch Analytics",
+    "category": "marketing",
+    "discount_text": "Get 20% off Using Our Black Friday Coupon Code",
+    "price": "Starting at only $6 per month",
+    "end_date": "2026-12-31",
+    "source_url": "https://pirsch.io/pricing",
+    "aff_program": "Pirsch Affiliate",
+    "aff_status": "aff-possible",
+    "notes": "Official pricing page: coupon applies to the first payment of a monthly or annual subscription, valid until December 31, 2026. The actual coupon string was not printed in this fetch — do not invent BLACKFRIDAY26 or any other code; copy it from the live page at checkout. Official FAQ: an affiliate program exists (personal affiliate link, reward on subscription). Confirm the join URL from the on-page 'Learn More' link.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "wins-bf-40",
+    "title": "Wins (Mac) Black Friday: 40% off licenses",
+    "merchant": "Wins",
+    "category": "dev-tools",
+    "discount_text": "Black Friday Sale",
+    "price": "Wins Single $19.99 → $11.99",
+    "end_date": "2026-12-01",
+    "source_url": "https://wins.cool/",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official site: 'Save 40% on new licenses and update renewals.' Code BF_26. Ends December 1, 2026. Also Wins Pro $39.99→$23.99 and Wins X $49.99→$29.99. No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "spacewise-bf-599",
+    "title": "SpaceWise Pro Black Friday: $5.99 lifetime",
+    "merchant": "SpaceWise",
+    "category": "dev-tools",
+    "discount_text": "Black Friday sale",
+    "price": "$5.99 (normally $7.99) once",
+    "end_date": null,
+    "source_url": "https://www.spacewisemac.in/pricing",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official pricing FAQ: one-time payment $5.99 during Black Friday sale with code BLACKFRI25, normally $7.99; covers up to 3 devices, lifetime updates (v1.x–v3.x). 14-day money-back. End date not printed on this fetch. No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
+  },
+  {
+    "id": "omnisend-bf-30",
+    "title": "Omnisend BFCM: 30% off for 3 months (former paying customers on Free)",
+    "merchant": "Omnisend",
+    "category": "marketing",
+    "discount_text": "Get 30% off for 3 months",
+    "price": null,
+    "end_date": "2026-12-01",
+    "source_url": "https://www.omnisend.com/bfcm/",
+    "aff_program": null,
+    "aff_status": "hook",
+    "notes": "Official page: offer valid until Dec 1, 2026, exclusively for former paying customers now on the Free plan; code BLACK-FRIDAY-2026; cannot combine; regular pricing after 3 months. Restricted eligibility — not a general new-customer sale. A separate 'Pay 3 months upfront (save 30%)' pricing control also appears and may be a standing option. No official affiliate program confirmed this session.",
+    "hidden": false,
+    "verified_at": "2026-11-23",
+    "region": "both"
   }
 ]

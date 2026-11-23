@@ -51,7 +51,7 @@ Default filter is **International**. VN filter UI remains for a later re-enable.
 
 ### Categories
 
-The filter chips are **derived from the data**. Suggested slugs for upcoming AI/SaaS expansions:
+Filter chips are **derived from the data**. Priority order puts AI / developer / SaaS first:
 
 | Slug | Label |
 | --- | --- |
@@ -61,8 +61,9 @@ The filter chips are **derived from the data**. Suggested slugs for upcoming AI/
 | `productivity` | Productivity |
 | `design` | Design |
 | `marketing` | Marketing |
+| `hosting` / `vpn` / `courses` / … | Hosting, VPN, Courses, Electronics, Travel, Home, … |
 
-Existing data also uses `hosting`, `vpn`, `courses`, `electronics`, `travel`, `home`, etc.
+Default sort is **Ending soon** (unknown end dates last). Clearly labeled promo codes in notes (`code XYZ`) show as copyable chips on the card.
 
 ## Affiliate IDs
 
