@@ -13,7 +13,9 @@ const dealsPath = join(__dirname, '..', 'src', 'data', 'deals.json');
 const deals = JSON.parse(readFileSync(dealsPath, 'utf8'));
 const urls = [...new Set(deals.map((d) => d.source_url).filter(Boolean))];
 
-const TIMEOUT_MS = 15000;
+const TIMEOUT_MS = 30000;
+const BROWSER_UA =
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 const CONCURRENCY = 5;
 
 async function checkOne(url) {
@@ -25,7 +27,7 @@ async function checkOne(url) {
       redirect: 'follow',
       signal: controller.signal,
       headers: {
-        'user-agent': 'bf-deals-check-links/1.0 (+https://bf-deals.haleduykhang.workers.dev)',
+        'user-agent': BROWSER_UA,
       },
     });
     // Some CDNs reject HEAD — retry GET
@@ -35,7 +37,7 @@ async function checkOne(url) {
         redirect: 'follow',
         signal: controller.signal,
         headers: {
-          'user-agent': 'bf-deals-check-links/1.0 (+https://bf-deals.haleduykhang.workers.dev)',
+          'user-agent': BROWSER_UA,
         },
       });
     }
