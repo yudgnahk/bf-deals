@@ -1,0 +1,20 @@
+---
+/**
+ * Ranking shell — filled client-side from /api/likes.
+ * Hidden until at least one deal has likes.
+ */
+---
+
+<section class="top-liked" data-top-liked hidden aria-label="Top liked deals">
+  <div class="top-liked__head">
+    <p class="featured__label">
+      <span class="i18n-en">Top 10 this week</span>
+      <span class="i18n-vi">Top 10 tuần này</span>
+    </p>
+    <p class="top-liked__hint">
+      <span class="i18n-en">Ranked by community likes</span>
+      <span class="i18n-vi">Xếp theo lượt thích</span>
+    </p>
+  </div>
+  <ol class="top-liked__list" data-top-liked-list></ol>
+</section>

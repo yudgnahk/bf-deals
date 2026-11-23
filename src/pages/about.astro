@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getLastVerifiedDate } from '../lib/deals';
+
+const lastVerified = getLastVerifiedDate();
+---
+
+<BaseLayout
+  title="About & disclosure — BF Deals 2026"
+  description="About this Black Friday / Cyber Monday 2026 deals site, how prices are verified, and affiliate / advertising disclosure."
+  path="/about/"
+>
+  <article class="page wrap prose">
+    <h1>About &amp; disclosure</h1>
+
+    <p>
+      <strong>BF Deals 2026</strong> is a lightweight, static roundup of Black Friday
+      and Cyber Monday offers for shoppers interested in AI tools, developer tools,
+      SaaS apps, hosting, VPN, and related software. The live site is hosted on
+      a Cloudflare Worker with static assets at
+      <a href="https://bf-deals.haleduykhang.workers.dev">bf-deals.haleduykhang.workers.dev</a>.
+      Last-checked dates and affiliate vs hook labelling live here and in quiet
+      page metadata — not as loud badges on every row.
+    </p>
+
+    <h2>How deals are chosen</h2>
+    <ul>
+      <li>
+        Every listed price and discount string is copied from an official merchant
+        page on the <code>verified_at</code> date — we do not invent or recompute prices.
+      </li>
+      <li>
+        Deals whose <code>end_date</code> is in the past are hidden automatically.
+      </li>
+      <li>
+        Vietnam marketplace campaigns can live in the data file with
+        <code>hidden: true</code>; v1 focuses on international deals.
+      </li>
+      <li>Last research pass reflected on this build: {lastVerified || '—'}</li>
+    </ul>
+
+    <h2>Affiliate &amp; advertising disclosure</h2>
+    <p>
+      Some links are affiliate links; we may earn a commission at no extra cost to you.
+    </p>
+    <p>
+      Một số link là link affiliate, mình có thể nhận hoa hồng mà bạn không tốn thêm tiền.
+    </p>
+    <p>
+      Affiliate links use <code>rel="sponsored nofollow noopener"</code> and point to
+      the real merchant (no cloaking redirects). Deals without a configured affiliate
+      program are labeled <em>Hook deal, no affiliate</em> and link to the official
+      source URL.
+    </p>
+    <p>
+      This site may participate in affiliate networks and merchant programs such as
+      AccessTrade, Impact, CJ, Awin, Amazon Associates, Hostinger, NordVPN, and others
+      listed in <code>AFFILIATE_SETUP.md</code>. Commission rates and approval status
+      are set by each program — not by this site.
+    </p>
+
+    <h2>Prices may change</h2>
+    <p>
+      Merchants update sale pages frequently during BF/CM week. Always confirm the
+      live price, stock, and terms on the merchant page before buying.
+    </p>
+
+    <h2>Likes &amp; ranking</h2>
+    <p>
+      Anyone can like a deal without logging in. To keep “one like per person per
+      deal,” we store only an anonymized hash of your IP address (SHA-256 with a
+      server-side salt) — never the raw IP. Liked state is also remembered in your
+      browser via <code>localStorage</code> for the button UI. Rankings (“Most liked”,
+      “Top 10 this week”) use these aggregates.
+    </p>
+    <p>
+      Ai cũng có thể thích một deal mà không cần đăng nhập. Để giới hạn một like /
+      người / deal, chúng tôi chỉ lưu bản hash ẩn danh của địa chỉ IP (SHA-256 +
+      salt phía server) — không lưu IP thô. Trạng thái nút like còn được nhớ trên
+      trình duyệt qua <code>localStorage</code>.
+    </p>
+
+    <h2>Contact / owner</h2>
+    <p>
+      Editorial ownership: Duy Khang Hà Lê. Affiliate signup steps for the owner are
+      documented in the repository file <code>AFFILIATE_SETUP.md</code> (not a public
+      signup form on this site).
+    </p>
+
+    <p><a href="/">← Back to deals</a></p>
+  </article>
+</BaseLayout>

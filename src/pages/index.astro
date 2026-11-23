@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DealRow from '../components/DealRow.astro';
+import FeaturedDeal from '../components/FeaturedDeal.astro';
+import Filters from '../components/Filters.astro';
+import LikesInit from '../components/LikesInit.astro';
+import TopLiked from '../components/TopLiked.astro';
+import {
+  formatDiscountBadge,
+  getActiveDeals,
+  getCategories,
+  getCategoryCounts,
+  getFeaturedDeals,
+  getLastVerifiedDate,
+  matchesRegion,
+  parseDiscountPercent,
+  sortEndingSoon,
+  DEFAULT_REGION_FILTER,
+} from '../lib/deals';
+
+const activeDeals = sortEndingSoon(getActiveDeals());
+const categories = getCategories(activeDeals);
+const counts = getCategoryCounts(activeDeals);
+const lastVerified = getLastVerifiedDate(activeDeals);
+const featured = getFeaturedDeals(activeDeals, 5);
+const [heroDeal, ...sideDeals] = featured;
+const listDeals = activeDeals;
+
+const initialVisible = activeDeals.filter((d) =>
+  matchesRegion(d, DEFAULT_REGION_FILTER)
+);
+const initialCount = initialVisible.length;
+
+const checkedLabel = lastVerified
+  ? lastVerified.replace(/^(\d{4})-(\d{2})-(\d{2})$/, (_, y, m, d) => {
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${Number(d)} ${months[Number(m) - 1]} ${y}`;
+    })
+  : '—';
+
+const marqueeItems = activeDeals
+  .map((d) => {
+    const badge = formatDiscountBadge(d.discount_text);
+    const pct = parseDiscountPercent(d.discount_text);
+    if (!badge && !pct) return null;
+    const label = badge || `${pct}%`;
+    return `${d.merchant} · ${label}`;
+  })
+  .filter((x): x is string => Boolean(x))
+  .slice(0, 14);
+---
+
+<BaseLayout
+  title="BF Deals 2026 — Black Friday & Cyber Monday AI, SaaS & Dev Tools"
+  description="International Black Friday and Cyber Monday 2026 deals for AI tools, developer tools, SaaS, hosting, and more. Prices verified from official merchant pages."
+  path="/"
+  marqueeItems={marqueeItems}
+>
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="hero__kicker">
+          AI · Dev tools · SaaS — checked {checkedLabel}
+        </p>
+        <h1>
+          <span>Black</span>
+          <span>Friday</span>
+        </h1>
+        <p class="hero__lede">
+          <span class="i18n-en">
+            International deals, copied from official merchant pages. Prices and
+            discount text as printed — no invented numbers.
+          </span>
+          <span class="i18n-vi">
+            Deal quốc tế, copy từ trang merchant chính thức. Giá và chữ giảm giá
+            đúng như in — không bịa số.
+          </span>
+        </p>
+      </div>
+
+      <aside class="clock" aria-live="polite">
+        <p class="clock__label">Black Friday starts</p>
+        <div class="clock__digits" data-departure-clock>
+          <div>
+            <b data-cd="d">—</b>
+            <i>days</i>
+          </div>
+          <div>
+            <b data-cd="h">—</b>
+            <i>hours</i>
+          </div>
+          <div>
+            <b data-cd="m">—</b>
+            <i>min</i>
+          </div>
+          <div>
+            <b data-cd="s">—</b>
+            <i>sec</i>
+          </div>
+        </div>
+        <p class="clock__sub">
+          Fri 27 Nov, midnight Asia/Saigon · Cyber Monday Mon 30 Nov
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  {
+    featured.length > 0 && (
+      <section class="featured wrap" aria-label="Featured deals" id="deals">
+        <p class="featured__label">
+          <span class="i18n-en">Featured</span>
+          <span class="i18n-vi">Nổi bật</span>
+        </p>
+        <div class="featured-bento">
+          {heroDeal && <FeaturedDeal deal={heroDeal} rank={1} hero />}
+          {sideDeals.map((deal, i) => (
+            <FeaturedDeal deal={deal} rank={i + 2} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <div class="wrap">
+    <TopLiked />
+  </div>
+
+  <div class="board wrap">
+    <Filters categories={categories} counts={counts} total={activeDeals.length} />
+
+    <div class="results-meta">
+      <p>
+        <span data-deal-count>{initialCount}</span> deals
+      </p>
+      <p>Last checked {lastVerified || '—'}</p>
+    </div>
+
+    <div class="deal-list" data-deal-list>
+      {listDeals.map((deal) => <DealRow deal={deal} />)}
+    </div>
+    <p class="empty-state" data-empty hidden>
+      <span class="i18n-en">No deals match these filters.</span>
+      <span class="i18n-vi">Không có deal khớp bộ lọc này.</span>
+    </p>
+  </div>
+  <LikesInit />
+
+  <script>
+    function pad(n: number) {
+      return String(n).padStart(2, '0');
+    }
+
+    function tickClock() {
+      const root = document.querySelector('[data-departure-clock]');
+      if (!root) return;
+      // Black Friday 27 Nov 2026 00:00 Asia/Saigon (+07)
+      const target = new Date('2026-11-27T00:00:00+07:00').getTime();
+      let diff = Math.max(0, target - Date.now());
+      const days = Math.floor(diff / 86400000);
+      diff -= days * 86400000;
+      const h = Math.floor(diff / 3600000);
+      diff -= h * 3600000;
+      const m = Math.floor(diff / 60000);
+      diff -= m * 60000;
+      const s = Math.floor(diff / 1000);
+      const map: Record<string, string> = {
+        d: String(days),
+        h: pad(h),
+        m: pad(m),
+        s: pad(s),
+      };
+      root.querySelectorAll<HTMLElement>('[data-cd]').forEach((el) => {
+        const key = el.getAttribute('data-cd') || '';
+        el.textContent = map[key] ?? '—';
+      });
+    }
+
+    tickClock();
+    window.setInterval(tickClock, 1000);
+  </script>
+</BaseLayout>

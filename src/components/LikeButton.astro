@@ -1,0 +1,20 @@
+---
+interface Props {
+  dealId: string;
+  compact?: boolean;
+}
+
+const { dealId, compact = false } = Astro.props;
+---
+
+<button
+  type="button"
+  class:list={['like-btn', compact && 'like-btn--compact']}
+  data-like-btn
+  data-deal-id={dealId}
+  aria-pressed="false"
+  aria-label="Like this deal"
+>
+  <span class="like-btn__icon" aria-hidden="true">♥</span>
+  <span class="like-btn__count" data-like-count>0</span>
+</button>

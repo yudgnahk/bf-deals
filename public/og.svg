@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#070707"/>
+  <rect x="80" y="80" width="56" height="56" fill="#D2FF3A"/>
+  <text x="108" y="116" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#111">bf</text>
+  <text x="160" y="118" font-family="system-ui,sans-serif" font-size="28" font-weight="800" fill="#F4F4EE" letter-spacing="2">DEALS 2026</text>
+  <text x="80" y="320" font-family="system-ui,sans-serif" font-size="110" font-weight="800" fill="#F4F4EE" letter-spacing="-6">BLACK</text>
+  <text x="80" y="430" font-family="system-ui,sans-serif" font-size="110" font-weight="800" fill="#F4F4EE" letter-spacing="-6">FRIDAY</text>
+  <text x="80" y="520" font-family="ui-monospace,monospace" font-size="22" fill="#D2FF3A">AI · DEV TOOLS · SAAS</text>
+</svg>

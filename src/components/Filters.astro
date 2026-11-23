@@ -1,0 +1,259 @@
+---
+import { categoryLabel } from '../lib/deals';
+import { DEFAULT_SORT } from '../lib/constants';
+
+interface Props {
+  categories: string[];
+  counts: Record<string, number>;
+  total: number;
+}
+
+const { categories, counts, total } = Astro.props;
+const defaultSort = DEFAULT_SORT;
+---
+
+<section class="filters" aria-label="Deal filters" data-filters>
+  <div class="search-row">
+    <label class="visually-hidden" for="deal-search">Search deals</label>
+    <input
+      id="deal-search"
+      class="search-input"
+      type="search"
+      placeholder="Search deals… (e.g. NordVPN, hosting, AI)"
+      data-search
+      autocomplete="off"
+    />
+    <div class="select-wrap">
+      <label class="visually-hidden" for="sort-select">Sort</label>
+      <select id="sort-select" data-sort>
+        <option value="ending-soon" selected={defaultSort === 'ending-soon'}>
+          Ending soon
+        </option>
+        <option value="biggest-discount">Biggest discount</option>
+        <option value="most-liked">Most liked</option>
+        <option value="default" selected={defaultSort === 'default'}>
+          Default
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="chip-row" role="group" aria-label="Category">
+    <button type="button" class="chip" data-filter-category="all" aria-pressed="true">
+      All <span class="chip__count">{total}</span>
+    </button>
+    {
+      categories.map((cat) => (
+        <button
+          type="button"
+          class="chip"
+          data-filter-category={cat}
+          aria-pressed="false"
+        >
+          <span class="i18n-en">{categoryLabel(cat, 'en')}</span>
+          <span class="i18n-vi">{categoryLabel(cat, 'vi')}</span>
+          <span class="chip__count">{counts[cat] ?? 0}</span>
+        </button>
+      ))
+    }
+  </div>
+
+  {/* Region filter hidden for v1: VN deals are hidden:true; site is international-only. */}
+</section>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+<script>
+  import { DEFAULT_REGION_FILTER, DEFAULT_SORT } from '../lib/constants';
+
+  function todayLocal(): Date {
+    return new Date();
+  }
+
+  function isExpired(endDate: string | null | undefined, today: Date): boolean {
+    if (!endDate) return false;
+    const parts = endDate.split('-').map(Number);
+    const y = parts[0];
+    const m = parts[1];
+    const d = parts[2];
+    if (!y || !m || !d) return false;
+    const end = new Date(y, m - 1, d, 23, 59, 59, 999);
+    return today > end;
+  }
+
+  function matchesRegion(region: string, filter: string): boolean {
+    if (filter === 'all') return true;
+    if (region === 'both') return true;
+    return region === filter;
+  }
+
+  function initFilters() {
+    const root = document.querySelector('[data-filters]');
+    const list = document.querySelector('[data-deal-list]');
+    const countEl = document.querySelector('[data-deal-count]');
+    const emptyEl = document.querySelector('[data-empty]');
+    const sortSelect = document.querySelector('[data-sort]') as HTMLSelectElement | null;
+    const searchInput = document.querySelector('[data-search]') as HTMLInputElement | null;
+    if (!root || !list) return;
+
+    let region = DEFAULT_REGION_FILTER;
+    let category = 'all';
+    let sort = DEFAULT_SORT;
+    let query = '';
+
+    if (sortSelect) sortSelect.value = sort;
+
+    const rows = Array.from(list.querySelectorAll<HTMLElement>('.deal-row'));
+    const defaultOrder = rows.map((r) => r);
+
+    function apply() {
+      const today = todayLocal();
+      let visible = 0;
+
+      let ordered = [...rows];
+      if (sort === 'ending-soon') {
+        ordered.sort((a, b) => {
+          const ar = Number(a.dataset.catRank || 200);
+          const br = Number(b.dataset.catRank || 200);
+          if (ar !== br) return ar - br;
+          const ae = a.dataset.endDate || '';
+          const be = b.dataset.endDate || '';
+          if (!ae && !be) return 0;
+          if (!ae) return 1;
+          if (!be) return -1;
+          return ae.localeCompare(be);
+        });
+      } else if (sort === 'biggest-discount') {
+        ordered.sort((a, b) => {
+          const ar = Number(a.dataset.catRank || 200);
+          const br = Number(b.dataset.catRank || 200);
+          if (ar !== br) return ar - br;
+          const ad = Number(a.dataset.discount || -1);
+          const bd = Number(b.dataset.discount || -1);
+          if (bd !== ad) return bd - ad;
+          return (a.dataset.endDate || '9999').localeCompare(b.dataset.endDate || '9999');
+        });
+      } else if (sort === 'most-liked') {
+        ordered.sort((a, b) => {
+          const al = Number(a.dataset.likes || 0);
+          const bl = Number(b.dataset.likes || 0);
+          if (bl !== al) return bl - al;
+          const ar = Number(a.dataset.catRank || 200);
+          const br = Number(b.dataset.catRank || 200);
+          if (ar !== br) return ar - br;
+          return (a.dataset.endDate || '9999').localeCompare(b.dataset.endDate || '9999');
+        });
+      } else {
+        ordered = [...defaultOrder];
+      }
+      ordered.forEach((r) => list.appendChild(r));
+
+      for (const row of rows) {
+        const expired = isExpired(row.dataset.endDate, today);
+        const regionOk = matchesRegion(row.dataset.region || '', region);
+        const categoryOk =
+          category === 'all' || row.dataset.category === category;
+        const searchOk =
+          !query || (row.dataset.search || '').includes(query);
+        const show = !expired && regionOk && categoryOk && searchOk;
+        row.hidden = !show;
+        if (show) visible += 1;
+      }
+
+      if (countEl) countEl.textContent = String(visible);
+      if (emptyEl) (emptyEl as HTMLElement).hidden = visible > 0;
+    }
+
+    root.querySelectorAll('[data-filter-region]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        region = btn.getAttribute('data-filter-region') || 'all';
+        root.querySelectorAll('[data-filter-region]').forEach((b) => {
+          b.setAttribute(
+            'aria-pressed',
+            b.getAttribute('data-filter-region') === region ? 'true' : 'false'
+          );
+        });
+        apply();
+      });
+    });
+
+    root.querySelectorAll('[data-filter-category]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        category = btn.getAttribute('data-filter-category') || 'all';
+        root.querySelectorAll('[data-filter-category]').forEach((b) => {
+          b.setAttribute(
+            'aria-pressed',
+            b.getAttribute('data-filter-category') === category ? 'true' : 'false'
+          );
+        });
+        apply();
+      });
+    });
+
+    sortSelect?.addEventListener('change', () => {
+      sort = sortSelect.value;
+      apply();
+    });
+
+    searchInput?.addEventListener('input', () => {
+      query = (searchInput.value || '').trim().toLowerCase();
+      apply();
+    });
+
+    document.addEventListener('bf:likes-updated', () => {
+      if (sort === 'most-liked') apply();
+    });
+    document.addEventListener('bf:likes-ready', () => {
+      if (sort === 'most-liked') apply();
+    });
+
+    apply();
+  }
+
+  async function copyCode(btn: HTMLButtonElement) {
+    const code = btn.getAttribute('data-copy-code') || '';
+    if (!code) return;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch {
+      const input = document.createElement('input');
+      input.value = code;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      input.remove();
+    }
+    btn.classList.add('is-copied');
+    const hint = btn.querySelector('.coupon-code__hint');
+    if (hint) hint.textContent = 'copied';
+    window.setTimeout(() => {
+      btn.classList.remove('is-copied');
+      if (hint) hint.textContent = 'copy';
+    }, 1400);
+  }
+
+  function initCopyCodes() {
+    document.querySelectorAll<HTMLButtonElement>('[data-copy-code]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        void copyCode(btn);
+      });
+    });
+  }
+
+  initFilters();
+  initCopyCodes();
+</script>
