@@ -2,8 +2,10 @@
 import MerchantIcon from './MerchantIcon.astro';
 import {
   buildDealLink,
+  categoryRank,
   daysUntilEnd,
   extractPromoCodes,
+  formatDiscountBadge,
   parseDiscountPercent,
   parsePriceParts,
   type Deal,
@@ -17,10 +19,9 @@ const { deal } = Astro.props;
 const link = buildDealLink(deal);
 const codes = extractPromoCodes(deal);
 const pct = parseDiscountPercent(deal.discount_text);
+const badge = formatDiscountBadge(deal.discount_text);
 const prices = parsePriceParts(deal.price);
 const days = daysUntilEnd(deal.end_date);
-const badgeText =
-  pct !== null ? `${pct}% OFF` : deal.discount_text ? deal.discount_text : null;
 
 let endsLabel: string | null = null;
 if (days !== null) {
@@ -52,6 +53,7 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
   data-deal-id={deal.id}
   data-region={deal.region}
   data-category={deal.category}
+  data-cat-rank={categoryRank(deal.category)}
   data-end-date={deal.end_date ?? ''}
   data-discount={pct ?? ''}
   data-search={searchBlob}
@@ -64,12 +66,9 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
     aria-label={`View ${deal.merchant} deal`}
   ></a>
 
-  <div class="deal-row__icon">
-    <MerchantIcon deal={deal} />
-  </div>
-
   <div class="deal-row__main">
     <div class="deal-row__title-line">
+      <MerchantIcon deal={deal} />
       <span class="deal-row__merchant">{deal.merchant}</span>
       {
         deal.aff_status === 'hook' && (
@@ -84,7 +83,12 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
   </div>
 
   <div class="deal-row__aside deal-row__meta">
-    {badgeText && <span class="pct-badge">{badgeText}</span>}
+    {badge && <span class="pct-badge">{badge}</span>}
+    {
+      !badge && deal.discount_text && (
+        <span class="deal-row__discount-text">{deal.discount_text}</span>
+      )
+    }
     {
       prices.original && prices.current ? (
         <span class="price-pair">
@@ -107,8 +111,8 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
     {endsLabel && <span class="ends-meta">{endsLabel}</span>}
   </div>
 
-  <span class="deal-row__cta">
-    <span class="i18n-en">View deal ↗</span>
-    <span class="i18n-vi">Xem deal ↗</span>
+  <span class="deal-row__cta" aria-hidden="true">
+    <span class="deal-row__cta-label">View</span>
+    →
   </span>
 </article>

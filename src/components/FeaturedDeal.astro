@@ -3,7 +3,7 @@ import MerchantIcon from './MerchantIcon.astro';
 import {
   buildDealLink,
   extractPromoCodes,
-  parseDiscountPercent,
+  formatDiscountBadge,
   parsePriceParts,
   type Deal,
 } from '../lib/deals';
@@ -16,10 +16,8 @@ interface Props {
 const { deal, rank } = Astro.props;
 const link = buildDealLink(deal);
 const codes = extractPromoCodes(deal);
-const pct = parseDiscountPercent(deal.discount_text);
+const badge = formatDiscountBadge(deal.discount_text);
 const prices = parsePriceParts(deal.price);
-const badgeText =
-  pct !== null ? `${pct}% OFF` : deal.discount_text ? deal.discount_text : null;
 const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
 ---
 
@@ -45,7 +43,12 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
   <h2>{deal.title}</h2>
 
   <div class="featured-card__offer">
-    {badgeText && <span class="pct-badge">{badgeText}</span>}
+    {badge && <span class="pct-badge">{badge}</span>}
+    {
+      !badge && deal.discount_text && (
+        <span class="deal-row__discount-text">{deal.discount_text}</span>
+      )
+    }
     {
       prices.original && prices.current ? (
         <span class="price-pair">

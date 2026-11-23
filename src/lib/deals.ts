@@ -72,7 +72,7 @@ export function getAllDeals(): Deal[] {
   return deals;
 }
 
-/** Preferred filter order: AI / dev / SaaS first, then the rest A–Z. */
+/** Builder-first categories (AI / SaaS focus). */
 export const CATEGORY_PRIORITY = [
   'ai',
   'dev-tools',
@@ -82,14 +82,41 @@ export const CATEGORY_PRIORITY = [
   'marketing',
 ] as const;
 
+/** Secondary groups after builder cats; travel last. */
+export const CATEGORY_SECONDARY = [
+  'hosting',
+  'vpn',
+  'courses',
+  'electronics',
+  'home',
+  'travel',
+] as const;
+
+const PRIMARY_SET = new Set<string>(CATEGORY_PRIORITY);
+
+/** Sort rank: builder cats first, then secondary, then unknown A–Z, travel last. */
+export function categoryRank(category: string): number {
+  const primary = CATEGORY_PRIORITY.indexOf(
+    category as (typeof CATEGORY_PRIORITY)[number]
+  );
+  if (primary !== -1) return primary;
+  const secondary = CATEGORY_SECONDARY.indexOf(
+    category as (typeof CATEGORY_SECONDARY)[number]
+  );
+  if (secondary !== -1) return 100 + secondary;
+  return 200;
+}
+
+export function isPrimaryCategory(category: string): boolean {
+  return PRIMARY_SET.has(category);
+}
+
 /** Categories derived from currently visible (non-hidden) deals. */
 export function getCategories(list: Deal[] = getVisibleDeals()): string[] {
   const cats = [...new Set(list.map((d) => d.category))];
   return cats.sort((a, b) => {
-    const ai = CATEGORY_PRIORITY.indexOf(a as (typeof CATEGORY_PRIORITY)[number]);
-    const bi = CATEGORY_PRIORITY.indexOf(b as (typeof CATEGORY_PRIORITY)[number]);
-    const ap = ai === -1 ? 1000 : ai;
-    const bp = bi === -1 ? 1000 : bi;
+    const ap = categoryRank(a);
+    const bp = categoryRank(b);
     if (ap !== bp) return ap - bp;
     return a.localeCompare(b);
   });
@@ -195,9 +222,14 @@ export function formatEndDate(endDate: string | null): string {
   return endDate;
 }
 
-/** Sort active deals by soonest end_date; unknown end dates last. */
+/**
+ * Default list order: builder categories first, then ending soon within group.
+ * Travel / electronics / etc. sink below AI · SaaS · tools.
+ */
 export function sortEndingSoon(list: Deal[]): Deal[] {
   return [...list].sort((a, b) => {
+    const cr = categoryRank(a.category) - categoryRank(b.category);
+    if (cr !== 0) return cr;
     const ae = a.end_date || '';
     const be = b.end_date || '';
     if (!ae && !be) return 0;
@@ -275,6 +307,18 @@ export function parseDiscountPercent(discountText: string | null): number | null
 }
 
 /**
+ * Short badge label only when a % is present in discount_text.
+ * e.g. "-20%", "up to 78%". Long slogans stay as secondary text, never a pill.
+ */
+export function formatDiscountBadge(discountText: string | null): string | null {
+  if (!discountText) return null;
+  const pct = parseDiscountPercent(discountText);
+  if (pct === null) return null;
+  const upTo = /\bup\s+to\b/i.test(discountText) || /\bđến\b/i.test(discountText);
+  return upTo ? `up to ${pct}%` : `-${pct}%`;
+}
+
+/**
  * Split a price string into original + current only when both are clearly present.
  * Never invents or computes a missing side.
  */
@@ -338,24 +382,43 @@ export function daysUntilEnd(endDate: string | null, today = new Date()): number
 }
 
 /**
- * Featured: prefer affiliate deals with a clear % or soon end date.
- * Returns up to `limit` deals, largest discount first, then ending soon.
+ * Featured: prefer aff-possible deals in builder categories (AI/dev/SaaS/…).
+ * Falls back to other aff deals only if needed. Largest % + ending soon.
  */
 export function getFeaturedDeals(list: Deal[], limit = 2): Deal[] {
-  const pool = list.filter((d) => d.aff_status === 'aff-possible');
+  const aff = list.filter((d) => d.aff_status === 'aff-possible');
+  const primary = aff.filter((d) => isPrimaryCategory(d.category));
+  const pool = primary.length >= limit ? primary : [...primary, ...aff.filter((d) => !isPrimaryCategory(d.category))];
+
   const scored = pool
     .map((d) => {
       const pct = parseDiscountPercent(d.discount_text) ?? -1;
       const days = daysUntilEnd(d.end_date);
       const soonBoost = days !== null && days >= 0 && days <= 7 ? 20 - days : 0;
-      return { d, score: pct + soonBoost };
+      const catBoost = isPrimaryCategory(d.category) ? 50 : 0;
+      return { d, score: pct + soonBoost + catBoost };
     })
-    .sort((a, b) => b.score - a.score || (a.d.end_date || '9999').localeCompare(b.d.end_date || '9999'));
-  return scored.slice(0, limit).map((x) => x.d);
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        (a.d.end_date || '9999').localeCompare(b.d.end_date || '9999')
+    );
+
+  const seen = new Set<string>();
+  const out: Deal[] = [];
+  for (const { d } of scored) {
+    if (seen.has(d.id)) continue;
+    seen.add(d.id);
+    out.push(d);
+    if (out.length >= limit) break;
+  }
+  return out;
 }
 
 export function sortByBiggestDiscount(list: Deal[]): Deal[] {
   return [...list].sort((a, b) => {
+    const cr = categoryRank(a.category) - categoryRank(b.category);
+    if (cr !== 0) return cr;
     const ap = parseDiscountPercent(a.discount_text) ?? -1;
     const bp = parseDiscountPercent(b.discount_text) ?? -1;
     if (bp !== ap) return bp - ap;

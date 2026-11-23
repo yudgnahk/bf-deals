@@ -155,6 +155,9 @@ const defaultSort = DEFAULT_SORT;
       let ordered = [...rows];
       if (sort === 'ending-soon') {
         ordered.sort((a, b) => {
+          const ar = Number(a.dataset.catRank || 200);
+          const br = Number(b.dataset.catRank || 200);
+          if (ar !== br) return ar - br;
           const ae = a.dataset.endDate || '';
           const be = b.dataset.endDate || '';
           if (!ae && !be) return 0;
@@ -164,6 +167,9 @@ const defaultSort = DEFAULT_SORT;
         });
       } else if (sort === 'biggest-discount') {
         ordered.sort((a, b) => {
+          const ar = Number(a.dataset.catRank || 200);
+          const br = Number(b.dataset.catRank || 200);
+          if (ar !== br) return ar - br;
           const ad = Number(a.dataset.discount || -1);
           const bd = Number(b.dataset.discount || -1);
           if (bd !== ad) return bd - ad;
@@ -273,19 +279,28 @@ const defaultSort = DEFAULT_SORT;
 
     const toBf = daysTo(bf);
     const toCm = daysTo(cm);
-    const bfText =
+
+    const shortBf =
+      toBf > 0 ? `BF in ${toBf}d` : toBf === 0 ? 'BF today' : `BF ${Math.abs(toBf)}d ago`;
+    const shortCm =
+      toCm > 0 ? `CM in ${toCm}d` : toCm === 0 ? 'CM today' : `CM ${Math.abs(toCm)}d ago`;
+
+    const fullBf =
       toBf > 0
         ? `T−${toBf} days to Black Friday`
         : toBf === 0
           ? 'Black Friday is today'
           : `Black Friday was ${Math.abs(toBf)} days ago`;
-    const cmText =
+    const fullCm =
       toCm > 0
         ? `T−${toCm} days to Cyber Monday`
         : toCm === 0
           ? 'Cyber Monday is today'
           : `Cyber Monday was ${Math.abs(toCm)} days ago`;
-    el.innerHTML = `<strong>${bfText}</strong> · ${cmText} · Fri 27 Nov / Mon 30 Nov 2026`;
+
+    el.innerHTML =
+      `<span class="countdown-bar__short"><strong>${shortBf}</strong> · ${shortCm}</span>` +
+      `<span class="countdown-bar__full"><strong>${fullBf}</strong> · ${fullCm} · Fri 27 Nov / Mon 30 Nov 2026</span>`;
   }
 
   initFilters();
