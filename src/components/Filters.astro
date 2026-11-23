@@ -254,43 +254,6 @@ const defaultSort = DEFAULT_SORT;
     });
   }
 
-  function initCountdown() {
-    const el = document.querySelector('[data-countdown]');
-    if (!el) return;
-    const bf = new Date(2026, 10, 27);
-    const cm = new Date(2026, 10, 30);
-    const today = new Date();
-    const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    const daysTo = (target: Date) =>
-      Math.round((target.getTime() - start.getTime()) / 86400000);
-
-    const toBf = daysTo(bf);
-    const toCm = daysTo(cm);
-
-    const shortBf =
-      toBf > 0 ? `BF in ${toBf}d` : toBf === 0 ? 'BF today' : `BF ${Math.abs(toBf)}d ago`;
-    const shortCm =
-      toCm > 0 ? `CM in ${toCm}d` : toCm === 0 ? 'CM today' : `CM ${Math.abs(toCm)}d ago`;
-
-    const fullBf =
-      toBf > 0
-        ? `T−${toBf} days to Black Friday`
-        : toBf === 0
-          ? 'Black Friday is today'
-          : `Black Friday was ${Math.abs(toBf)} days ago`;
-    const fullCm =
-      toCm > 0
-        ? `T−${toCm} days to Cyber Monday`
-        : toCm === 0
-          ? 'Cyber Monday is today'
-          : `Cyber Monday was ${Math.abs(toCm)} days ago`;
-
-    el.innerHTML =
-      `<span class="countdown-bar__short"><strong>${shortBf}</strong> · ${shortCm}</span>` +
-      `<span class="countdown-bar__full"><strong>${fullBf}</strong> · ${fullCm} · Fri 27 Nov / Mon 30 Nov 2026</span>`;
-  }
-
   initFilters();
   initCopyCodes();
-  initCountdown();
 </script>

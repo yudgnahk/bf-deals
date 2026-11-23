@@ -3,8 +3,10 @@ import LikeButton from './LikeButton.astro';
 import MerchantIcon from './MerchantIcon.astro';
 import {
   buildDealLink,
+  daysUntilEnd,
   extractPromoCodes,
   formatDiscountBadge,
+  parseDiscountPercent,
   parsePriceParts,
   type Deal,
 } from '../lib/deals';
@@ -12,65 +14,72 @@ import {
 interface Props {
   deal: Deal;
   rank: number;
+  hero?: boolean;
 }
 
-const { deal, rank } = Astro.props;
+const { deal, rank, hero = false } = Astro.props;
 const link = buildDealLink(deal);
 const codes = extractPromoCodes(deal);
 const badge = formatDiscountBadge(deal.discount_text);
+const pct = parseDiscountPercent(deal.discount_text);
 const prices = parsePriceParts(deal.price);
+const days = daysUntilEnd(deal.end_date);
 const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
+
+const pctShort = pct !== null ? `${pct}%` : null;
+
+let endsLabel: string | null = null;
+if (days !== null && days >= 0) {
+  if (days === 0) endsLabel = 'Ends today';
+  else if (deal.end_date) {
+    const [, m, d] = deal.end_date.split('-');
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    endsLabel = `Ends ${Number(d)} ${months[Number(m) - 1]}`;
+  }
+} else if (!deal.end_date) {
+  endsLabel = 'End date unknown';
+}
+
+const priceLine =
+  prices.original && prices.current
+    ? `${prices.original} → ${prices.current}`
+    : prices.raw || null;
 ---
 
-<article class="featured-card" data-deal-id={deal.id} data-likes="0">
+<article
+  class:list={['featured-card', hero && 'featured-card--hero', hero && 'shine']}
+  data-deal-id={deal.id}
+  data-likes="0"
+>
   <a
     class="deal-row__hit"
     href={link.href}
     rel={rel}
     target="_blank"
-    aria-label={`Grab ${deal.merchant} deal`}
+    aria-label={`View ${deal.merchant} deal`}
   ></a>
 
   <div class="featured-card__top">
-    <span class="featured-card__rank">#{rank}</span>
-    <span class="chip-lime">Featured deal</span>
-    <LikeButton dealId={deal.id} />
+    <div class="featured-card__merchant">
+      <MerchantIcon deal={deal} large={hero} />
+      <strong>{deal.merchant}</strong>
+    </div>
+    {pctShort && <span class="pct-badge">{pctShort}</span>}
+    {!pctShort && badge && <span class="pct-badge">{badge}</span>}
   </div>
 
-  <div class="featured-card__merchant">
-    <MerchantIcon deal={deal} large />
-    <strong>{deal.merchant}</strong>
-  </div>
+  <h2>{deal.discount_text || deal.title}</h2>
 
-  <h2>{deal.title}</h2>
-
-  <div class="featured-card__offer">
-    {badge && <span class="pct-badge">{badge}</span>}
-    {
-      !badge && deal.discount_text && (
-        <span class="deal-row__discount-text">{deal.discount_text}</span>
-      )
-    }
-    {
-      prices.original && prices.current ? (
-        <span class="price-pair">
-          <span class="price-pair__was">{prices.original}</span>
-          <span class="price-pair__now">{prices.current}</span>
-        </span>
-      ) : prices.raw ? (
-        <span class="price-pair__now">{prices.raw}</span>
-      ) : null
-    }
-  </div>
+  {
+    priceLine && (
+      <p class="featured-card__price">{priceLine}</p>
+    )
+  }
 
   {
     codes.length > 0 && (
       <div class="coupon-field">
-        <span class="coupon-field__label">
-          <span class="i18n-en">Use this coupon code at checkout</span>
-          <span class="i18n-vi">Dùng mã này khi thanh toán</span>
-        </span>
-        {codes.map((code) => (
+        {codes.slice(0, hero ? 2 : 1).map((code) => (
           <button type="button" class="coupon-code" data-copy-code={code}>
             <code>{code}</code>
             <span class="coupon-code__hint">copy</span>
@@ -80,9 +89,22 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
     )
   }
 
-  <span class="featured-card__cta">
-    <span class="i18n-en">View deal</span>
-    <span class="i18n-vi">Xem deal</span>
-    <span aria-hidden="true">↗</span>
-  </span>
+  <div class="featured-card__meta">
+    <div style="display:flex;gap:0.4rem;flex-wrap:wrap;align-items:center;">
+      {
+        deal.aff_status === 'hook' && (
+          <span class="hook-tag">
+            <span class="i18n-en">Hook</span>
+            <span class="i18n-vi">Hook</span>
+          </span>
+        )
+      }
+      {endsLabel && <span class="ends-meta">{endsLabel}</span>}
+      <LikeButton dealId={deal.id} compact />
+    </div>
+    <span class="featured-card__cta">
+      <span class="i18n-en">{hero ? 'Read on the merchant ↗' : 'View ↗'}</span>
+      <span class="i18n-vi">{hero ? 'Xem trên merchant ↗' : 'Xem ↗'}</span>
+    </span>
+  </div>
 </article>

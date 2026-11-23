@@ -1,10 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
-  <rect width="1200" height="630" fill="#060813"/>
-  <circle cx="980" cy="80" r="260" fill="#725CFF" fill-opacity="0.28"/>
-  <circle cx="120" cy="560" r="200" fill="#CAFB43" fill-opacity="0.12"/>
-  <rect x="80" y="120" width="420" height="36" rx="18" fill="#CAFB43"/>
-  <text x="100" y="144" font-family="system-ui,sans-serif" font-size="16" font-weight="800" fill="#111" letter-spacing="2">EXCLUSIVE LIMITED-TIME OFFERS FOR</text>
-  <text x="80" y="280" font-family="system-ui,sans-serif" font-size="96" font-weight="800" fill="#fff">Black Friday</text>
-  <text x="80" y="360" font-family="system-ui,sans-serif" font-size="42" fill="rgba(255,255,255,0.72)">AI · Dev tools · SaaS</text>
-  <text x="80" y="540" font-family="system-ui,sans-serif" font-size="28" fill="rgba(255,255,255,0.55)">bf-deals.haleduykhang.workers.dev</text>
+  <rect width="1200" height="630" fill="#070707"/>
+  <rect x="80" y="80" width="56" height="56" fill="#D2FF3A"/>
+  <text x="108" y="116" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#111">bf</text>
+  <text x="160" y="118" font-family="system-ui,sans-serif" font-size="28" font-weight="800" fill="#F4F4EE" letter-spacing="2">DEALS 2026</text>
+  <text x="80" y="320" font-family="system-ui,sans-serif" font-size="110" font-weight="800" fill="#F4F4EE" letter-spacing="-6">BLACK</text>
+  <text x="80" y="430" font-family="system-ui,sans-serif" font-size="110" font-weight="800" fill="#F4F4EE" letter-spacing="-6">FRIDAY</text>
+  <text x="80" y="520" font-family="ui-monospace,monospace" font-size="22" fill="#D2FF3A">AI · DEV TOOLS · SAAS</text>
 </svg>
