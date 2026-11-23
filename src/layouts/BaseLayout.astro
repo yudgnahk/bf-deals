@@ -1,0 +1,124 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  path?: string;
+}
+
+const {
+  title,
+  description = 'Black Friday & Cyber Monday 2026 deals for AI tools, developer tools, SaaS, hosting, and more. Prices verified from official merchant pages.',
+  path = '/',
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://bf-deals.pages.dev';
+const canonical = `${site}${path}`;
+const ogImage = `${site}/og.svg`;
+---
+
+<!doctype html>
+<html lang="en" data-lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index,follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BF Deals 2026" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to deals</a>
+    <header class="site-header">
+      <div class="wrap site-header__inner">
+        <a class="brand" href="/">
+          <span class="brand__mark">BF<span>Deals</span> 2026</span>
+          <span class="brand__sub">Black Friday · Cyber Monday</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="/">Deals</a>
+          <a href="/about/">About</a>
+          <div class="lang-toggle" role="group" aria-label="Language">
+            <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-set-lang="vi" aria-pressed="false">VI</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <p>
+            <strong>Affiliate disclosure:</strong>
+            {' '}Some links are affiliate links; we may earn a commission at no extra cost to you.
+          </p>
+          <p>
+            Một số link là link affiliate, mình có thể nhận hoa hồng mà bạn không tốn thêm tiền.
+          </p>
+          <p>
+            Prices are shown as on the merchant page on the verified date and may change.
+            Giá lấy đúng như trang merchant vào ngày xác minh; có thể thay đổi.
+          </p>
+        </div>
+        <div>
+          <p>
+            <a href="/about/">About &amp; disclosure</a>
+            · Site: <a href="https://bf-deals.pages.dev">bf-deals.pages.dev</a>
+          </p>
+          <p>Black Friday Fri 27 Nov 2026 · Cyber Monday Mon 30 Nov 2026</p>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        const root = document.documentElement;
+        const saved = localStorage.getItem('bf-lang');
+        const lang = saved === 'vi' || saved === 'en' ? saved : 'en';
+        root.setAttribute('data-lang', lang);
+        document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+          const value = btn.getAttribute('data-set-lang');
+          btn.setAttribute('aria-pressed', value === lang ? 'true' : 'false');
+          btn.addEventListener('click', function () {
+            root.setAttribute('data-lang', value);
+            localStorage.setItem('bf-lang', value);
+            document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+              b.setAttribute(
+                'aria-pressed',
+                b.getAttribute('data-set-lang') === value ? 'true' : 'false'
+              );
+            });
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

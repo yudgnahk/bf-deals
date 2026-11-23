@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10141b"/>
+      <stop offset="100%" stop-color="#0b0d10"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="180" cy="80" r="220" fill="#ff8a3d" fill-opacity="0.16"/>
+  <circle cx="1080" cy="120" r="260" fill="#3d8cff" fill-opacity="0.12"/>
+  <text x="80" y="220" font-family="system-ui,sans-serif" font-size="42" font-weight="700" fill="#ff8a3d" letter-spacing="6">BLACK FRIDAY · CYBER MONDAY 2026</text>
+  <text x="80" y="340" font-family="system-ui,sans-serif" font-size="96" font-weight="800" fill="#f4efe6">BF Deals</text>
+  <text x="80" y="420" font-family="system-ui,sans-serif" font-size="36" fill="#a8b0bc">AI · Dev tools · SaaS · Hosting</text>
+  <text x="80" y="540" font-family="system-ui,sans-serif" font-size="28" fill="#a8b0bc">bf-deals.pages.dev</text>
+</svg>

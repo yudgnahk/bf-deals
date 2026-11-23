@@ -1,0 +1,193 @@
+---
+import { DEFAULT_REGION_FILTER, categoryLabel } from '../lib/deals';
+
+interface Props {
+  categories: string[];
+}
+
+const { categories } = Astro.props;
+const defaultRegion = DEFAULT_REGION_FILTER;
+---
+
+<section class="filters" aria-label="Deal filters" data-filters>
+  <div class="filters__row" role="group" aria-label="Region">
+    <label id="region-label">
+      <span class="i18n-en">Region</span>
+      <span class="i18n-vi">Khu vực</span>
+    </label>
+    <!-- VN / all chips kept for later; v1 defaults to International -->
+    <button
+      type="button"
+      class="chip"
+      data-filter-region="all"
+      aria-pressed={defaultRegion === 'all' ? 'true' : 'false'}
+    >
+      All
+    </button>
+    <button
+      type="button"
+      class="chip"
+      data-filter-region="intl"
+      aria-pressed={defaultRegion === 'intl' ? 'true' : 'false'}
+    >
+      International
+    </button>
+    <button
+      type="button"
+      class="chip"
+      data-filter-region="vn"
+      aria-pressed={defaultRegion === 'vn' ? 'true' : 'false'}
+      title="Vietnam deals are currently hidden in data (hidden: true)"
+    >
+      VN
+    </button>
+  </div>
+
+  <div class="filters__row" role="group" aria-label="Category">
+    <label>
+      <span class="i18n-en">Category</span>
+      <span class="i18n-vi">Danh mục</span>
+    </label>
+    <button type="button" class="chip" data-filter-category="all" aria-pressed="true">
+      All
+    </button>
+    {
+      categories.map((cat) => (
+        <button
+          type="button"
+          class="chip"
+          data-filter-category={cat}
+          aria-pressed="false"
+        >
+          <span class="i18n-en">{categoryLabel(cat, 'en')}</span>
+          <span class="i18n-vi">{categoryLabel(cat, 'vi')}</span>
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="filters__row">
+    <label for="sort-select">
+      <span class="i18n-en">Sort</span>
+      <span class="i18n-vi">Sắp xếp</span>
+    </label>
+    <div class="select-wrap">
+      <select id="sort-select" data-sort>
+        <option value="default">Default</option>
+        <option value="ending-soon">Ending soon</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { DEFAULT_REGION_FILTER } from '../lib/constants';
+
+  function todayLocal(): Date {
+    return new Date();
+  }
+
+  function isExpired(endDate: string | null | undefined, today: Date): boolean {
+    if (!endDate) return false;
+    const parts = endDate.split('-').map(Number);
+    const y = parts[0];
+    const m = parts[1];
+    const d = parts[2];
+    if (!y || !m || !d) return false;
+    const end = new Date(y, m - 1, d, 23, 59, 59, 999);
+    return today > end;
+  }
+
+  function matchesRegion(region: string, filter: string): boolean {
+    if (filter === 'all') return true;
+    if (region === 'both') return true;
+    return region === filter;
+  }
+
+  function initFilters() {
+    const root = document.querySelector('[data-filters]');
+    const grid = document.querySelector('[data-deal-grid]');
+    const countEl = document.querySelector('[data-deal-count]');
+    const emptyEl = document.querySelector('[data-empty]');
+    const sortSelect = document.querySelector('[data-sort]') as HTMLSelectElement | null;
+    if (!root || !grid) return;
+
+    let region = DEFAULT_REGION_FILTER;
+    let category = 'all';
+    let sort = 'default';
+
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('.deal-card'));
+    const defaultOrder = cards.map((c) => c);
+
+    function apply() {
+      const today = todayLocal();
+      let visible = 0;
+
+      if (sort === 'ending-soon') {
+        const sorted = [...cards].sort((a, b) => {
+          const ae = a.dataset.endDate || '';
+          const be = b.dataset.endDate || '';
+          if (!ae && !be) return 0;
+          if (!ae) return 1;
+          if (!be) return -1;
+          return ae.localeCompare(be);
+        });
+        sorted.forEach((c) => grid.appendChild(c));
+      } else {
+        defaultOrder.forEach((c) => grid.appendChild(c));
+      }
+
+      for (const card of cards) {
+        const expired = isExpired(card.dataset.endDate, today);
+        const regionOk = matchesRegion(card.dataset.region || '', region);
+        const categoryOk =
+          category === 'all' || card.dataset.category === category;
+        const show = !expired && regionOk && categoryOk;
+        card.hidden = !show;
+        if (show) visible += 1;
+      }
+
+      if (countEl) {
+        countEl.textContent = String(visible);
+      }
+      if (emptyEl) {
+        (emptyEl as HTMLElement).hidden = visible > 0;
+      }
+    }
+
+    root.querySelectorAll('[data-filter-region]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        region = btn.getAttribute('data-filter-region') || 'all';
+        root.querySelectorAll('[data-filter-region]').forEach((b) => {
+          b.setAttribute(
+            'aria-pressed',
+            b.getAttribute('data-filter-region') === region ? 'true' : 'false'
+          );
+        });
+        apply();
+      });
+    });
+
+    root.querySelectorAll('[data-filter-category]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        category = btn.getAttribute('data-filter-category') || 'all';
+        root.querySelectorAll('[data-filter-category]').forEach((b) => {
+          b.setAttribute(
+            'aria-pressed',
+            b.getAttribute('data-filter-category') === category ? 'true' : 'false'
+          );
+        });
+        apply();
+      });
+    });
+
+    sortSelect?.addEventListener('change', () => {
+      sort = sortSelect.value;
+      apply();
+    });
+
+    apply();
+  }
+
+  initFilters();
+</script>

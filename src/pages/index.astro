@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DealCard from '../components/DealCard.astro';
+import Filters from '../components/Filters.astro';
+import {
+  getActiveDeals,
+  getCategories,
+  getLastVerifiedDate,
+  matchesRegion,
+  DEFAULT_REGION_FILTER,
+} from '../lib/deals';
+
+const activeDeals = getActiveDeals();
+const categories = getCategories(activeDeals);
+const lastVerified = getLastVerifiedDate(activeDeals);
+
+// Server-side: apply default intl filter so first paint matches client
+const initialVisible = activeDeals.filter((d) =>
+  matchesRegion(d, DEFAULT_REGION_FILTER)
+);
+const initialCount = initialVisible.length;
+---
+
+<BaseLayout
+  title="BF Deals 2026 — Black Friday & Cyber Monday AI, SaaS & Dev Tools"
+  description="International Black Friday and Cyber Monday 2026 deals for AI tools, developer tools, SaaS, hosting, and more. Prices verified from official merchant pages."
+  path="/"
+>
+  <section class="hero wrap">
+    <p class="hero__eyebrow">Black Friday · Cyber Monday 2026</p>
+    <h1>
+      <span class="i18n-en">International deals for builders</span>
+      <span class="i18n-vi">Deal quốc tế cho dân làm sản phẩm</span>
+    </h1>
+    <p class="hero__lede">
+      <span class="i18n-en">
+        Curated BF/CM offers focused on AI tools, developer tools, and SaaS —
+        plus hosting, VPN, and more. Prices and discount text are copied exactly
+        from official merchant pages.
+      </span>
+      <span class="i18n-vi">
+        Tuyển chọn deal BF/CM tập trung vào AI, công cụ lập trình và SaaS —
+        kèm hosting, VPN và hơn thế. Giá và chữ giảm giá copy đúng từ trang merchant chính thức.
+      </span>
+    </p>
+    <div class="meta-row">
+      <span>
+        <span class="i18n-en">Last verified:</span>
+        <span class="i18n-vi">Cập nhật xác minh:</span>
+        {' '}{lastVerified || '—'}
+      </span>
+      <span>BF Fri 27 Nov · CM Mon 30 Nov 2026</span>
+    </div>
+
+    <aside class="disclosure" role="note">
+      <p>
+        <strong>Affiliate disclosure:</strong>
+        {' '}Some links are affiliate links; we may earn a commission at no extra cost to you.
+      </p>
+      <p>
+        Một số link là link affiliate, mình có thể nhận hoa hồng mà bạn không tốn thêm tiền.
+      </p>
+      <p>
+        Prices are as shown on the merchant page on the verified date and may change.
+      </p>
+    </aside>
+  </section>
+
+  <div class="wrap">
+    <Filters categories={categories} />
+
+    <div class="results-meta">
+      <p>
+        <span data-deal-count>{initialCount}</span>
+        <span class="i18n-en"> deals</span>
+        <span class="i18n-vi"> deals</span>
+      </p>
+    </div>
+
+    <div class="deal-grid" data-deal-grid>
+      {activeDeals.map((deal) => <DealCard deal={deal} />)}
+      <p class="empty-state" data-empty hidden>
+        <span class="i18n-en">No deals match these filters.</span>
+        <span class="i18n-vi">Không có deal khớp bộ lọc này.</span>
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Hide non-matching regions before client JS runs (default: intl) */
+  .deal-card[data-region='vn'] {
+    display: none;
+  }
+</style>
+
+<script>
+  // Ensure cards with region=vn stay hidden even if CSS is overridden;
+  // Filters script applies full logic including expiry on the client.
+</script>

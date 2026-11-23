@@ -1,0 +1,82 @@
+---
+import {
+  buildDealLink,
+  categoryLabel,
+  formatEndDate,
+  type Deal,
+} from '../lib/deals';
+
+interface Props {
+  deal: Deal;
+}
+
+const { deal } = Astro.props;
+const link = buildDealLink(deal);
+const isAff = deal.aff_status === 'aff-possible';
+const endLabel = formatEndDate(deal.end_date);
+const catEn = categoryLabel(deal.category, 'en');
+const catVi = categoryLabel(deal.category, 'vi');
+---
+
+<article
+  class="deal-card"
+  data-deal-id={deal.id}
+  data-region={deal.region}
+  data-category={deal.category}
+  data-end-date={deal.end_date ?? ''}
+  data-todo-aff={link.todoAff ? '1' : '0'}
+>
+  <div class="deal-card__top">
+    <span class="deal-card__merchant">{deal.merchant}</span>
+    {
+      isAff ? (
+        <span class="badge badge--aff">
+          <span class="i18n-en">Affiliate deal</span>
+          <span class="i18n-vi">Deal affiliate</span>
+        </span>
+      ) : (
+        <span class="badge badge--hook">
+          <span class="i18n-en">Hook deal, no affiliate</span>
+          <span class="i18n-vi">Hook deal, chưa có affiliate</span>
+        </span>
+      )
+    }
+  </div>
+
+  <h2>{deal.title}</h2>
+
+  {
+    deal.discount_text && (
+      <p class="deal-card__discount">{deal.discount_text}</p>
+    )
+  }
+
+  {
+    deal.price ? (
+      <p class="deal-card__price">{deal.price}</p>
+    ) : (
+      <p class="deal-card__meta">
+        <span class="i18n-en">Price: see merchant page</span>
+        <span class="i18n-vi">Giá: xem trang merchant</span>
+      </p>
+    )
+  }
+
+  <p class="deal-card__meta">
+    <span class="i18n-en">Ends: {endLabel}</span>
+    <span class="i18n-vi">Hết hạn: {endLabel}</span>
+    · <span class="i18n-en">{catEn}</span><span class="i18n-vi">{catVi}</span>
+    · verified {deal.verified_at}
+  </p>
+
+  <a
+    class="deal-card__cta"
+    href={link.href}
+    rel={link.rel}
+    target="_blank"
+  >
+    <span class="i18n-en">View deal</span>
+    <span class="i18n-vi">Xem deal</span>
+    <span aria-hidden="true">→</span>
+  </a>
+</article>

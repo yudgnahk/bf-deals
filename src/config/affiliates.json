@@ -1,0 +1,136 @@
+{
+  "_comment": "Fill id_or_tag and/or link_template when you get approved. Empty values fall back to the deal's source_url (TODO aff).",
+  "_link_template_help": "Use {url} for the destination URL and {id} for id_or_tag. Example Hostinger: https://www.tkqlhce.com/click-XXXXX-YYYYY?url={url}",
+  "programs": {
+    "Hostinger Affiliates": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — https://affiliates.hostinger.com/"
+    },
+    "NordVPN Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — https://nordvpn.com/affiliate-signup/"
+    },
+    "ExpressVPN Affiliates": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — affiliate-support@expressvpn.com"
+    },
+    "Surfshark Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — https://surfshark.com/affiliate"
+    },
+    "Proton Affiliates": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "PureVPN Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "CyberGhost Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Impact": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — Namecheap and others via Impact"
+    },
+    "SiteGround Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "InMotion Hosting Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "HostPapa Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Hosting.com Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "IONOS Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Bluehost Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Cloudways Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — https://www.cloudways.com/en/web-hosting-affiliate-program.php"
+    },
+    "DataCamp Affiliates": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Coursera Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Udemy Affiliates": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Adobe Affiliate Marketing": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "1Password Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Amazon Associates": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — do not apply until site has substantial content"
+    },
+    "Best Buy Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Microsoft Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Booking.com Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO"
+    },
+    "Traveloka Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — AccessTrade / Traveloka"
+    },
+    "AccessTrade VN": {
+      "id_or_tag": "",
+      "link_template": "",
+      "notes": "TODO — https://pub2.accesstrade.vn/ ; FPT Shop, CellphoneS, ĐMX, Samsung VN"
+    }
+  }
+}
