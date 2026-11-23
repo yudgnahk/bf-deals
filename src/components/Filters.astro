@@ -1,5 +1,5 @@
 ---
-import { DEFAULT_REGION_FILTER, categoryLabel } from '../lib/deals';
+import { categoryLabel } from '../lib/deals';
 import { DEFAULT_SORT } from '../lib/constants';
 
 interface Props {
@@ -9,7 +9,6 @@ interface Props {
 }
 
 const { categories, counts, total } = Astro.props;
-const defaultRegion = DEFAULT_REGION_FILTER;
 const defaultSort = DEFAULT_SORT;
 ---
 
@@ -31,6 +30,7 @@ const defaultSort = DEFAULT_SORT;
           Ending soon
         </option>
         <option value="biggest-discount">Biggest discount</option>
+        <option value="most-liked">Most liked</option>
         <option value="default" selected={defaultSort === 'default'}>
           Default
         </option>
@@ -145,6 +145,16 @@ const defaultSort = DEFAULT_SORT;
           if (bd !== ad) return bd - ad;
           return (a.dataset.endDate || '9999').localeCompare(b.dataset.endDate || '9999');
         });
+      } else if (sort === 'most-liked') {
+        ordered.sort((a, b) => {
+          const al = Number(a.dataset.likes || 0);
+          const bl = Number(b.dataset.likes || 0);
+          if (bl !== al) return bl - al;
+          const ar = Number(a.dataset.catRank || 200);
+          const br = Number(b.dataset.catRank || 200);
+          if (ar !== br) return ar - br;
+          return (a.dataset.endDate || '9999').localeCompare(b.dataset.endDate || '9999');
+        });
       } else {
         ordered = [...defaultOrder];
       }
@@ -200,6 +210,13 @@ const defaultSort = DEFAULT_SORT;
     searchInput?.addEventListener('input', () => {
       query = (searchInput.value || '').trim().toLowerCase();
       apply();
+    });
+
+    document.addEventListener('bf:likes-updated', () => {
+      if (sort === 'most-liked') apply();
+    });
+    document.addEventListener('bf:likes-ready', () => {
+      if (sort === 'most-liked') apply();
     });
 
     apply();

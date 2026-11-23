@@ -18,13 +18,15 @@ npm run check-links  # HEAD/GET every source_url (non-blocking)
 
 ### Cloudflare Worker deploy
 
-Build locally, then deploy static assets from `dist/` with Wrangler (`wrangler.jsonc`):
+Build locally, then deploy with Wrangler (`wrangler.jsonc`): static assets from `dist/` plus a small Worker for `/api/likes` (D1).
 
 | Setting | Value |
 | --- | --- |
 | Build command | `npm run build` |
 | Assets directory | `./dist` |
+| Worker entry | `worker/index.ts` |
 | Worker name | `bf-deals` |
+| D1 database | `bf-deals-likes` |
 | Live URL | https://bf-deals.haleduykhang.workers.dev |
 | `not_found_handling` | `404-page` |
 | `html_handling` | `auto-trailing-slash` |
@@ -34,12 +36,20 @@ npm run build
 npx wrangler deploy
 ```
 
+Local Worker + D1 (likes API):
+
+```bash
+npm run dev:worker   # build, apply local migrations, wrangler dev on :8787
+```
+
+Full D1 / secret / migration steps: [`docs/DEPLOY_NOTES.md`](docs/DEPLOY_NOTES.md).
+
 Or use GitHub Actions (`.github/workflows/deploy.yml`) with secrets:
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
 
-If those secrets are missing, the workflow **skips deploy gracefully** after a successful build (`wrangler deploy`).
+If those secrets are missing, the workflow **skips deploy gracefully** after a successful build. When present, it applies D1 migrations then `wrangler deploy`.
 
 ## Data: add / expire a deal
 
@@ -72,7 +82,11 @@ Filter chips are **derived from the data**. Priority order puts AI / developer /
 | `marketing` | Marketing |
 | `hosting` / `vpn` / `courses` / … | Hosting, VPN, Courses, Electronics, Travel, Home, … |
 
-Default sort is **Ending soon** (unknown end dates last). Clearly labeled promo codes in notes (`code XYZ`) show as copyable chips on the card.
+Default sort is **Ending soon** (unknown end dates last). Also available: **Biggest discount**, **Most liked**. Clearly labeled promo codes in notes (`code XYZ`) show as copyable chips on the card.
+
+### Likes & ranking
+
+Heart buttons on each deal call `POST /api/likes/:dealId` (optional `DELETE` to unlike). One like per anonymized IP hash per deal (SHA-256 + `LIKE_SALT`). Counts power the **Most liked** sort and a **Top 10 this week** section (hidden until the first like). See `/about` for the privacy note.
 
 ## Affiliate IDs
 

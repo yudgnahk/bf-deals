@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import DealRow from '../components/DealRow.astro';
 import FeaturedDeal from '../components/FeaturedDeal.astro';
 import Filters from '../components/Filters.astro';
+import LikesInit from '../components/LikesInit.astro';
+import TopLiked from '../components/TopLiked.astro';
 import {
   getActiveDeals,
   getCategories,
@@ -73,6 +75,10 @@ const initialCount = initialVisible.length;
     )
   }
 
+  <div class="wrap">
+    <TopLiked />
+  </div>
+
   <div class="board wrap">
     <Filters categories={categories} counts={counts} total={activeDeals.length} />
 
@@ -91,4 +97,5 @@ const initialCount = initialVisible.length;
       <span class="i18n-vi">Không có deal khớp bộ lọc này.</span>
     </p>
   </div>
+  <LikesInit />
 </BaseLayout>

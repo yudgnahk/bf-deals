@@ -720,9 +720,145 @@ select {
 }
 
 .coupon-code,
-.coupon-field {
+.coupon-field,
+.like-btn {
   position: relative;
   z-index: 2;
+}
+
+/* ——— Likes ——— */
+.like-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  color: var(--slate);
+  border-radius: 999px;
+  padding: 0.22rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  line-height: 1;
+  transition: border-color 0.12s ease, color 0.12s ease, background 0.12s ease;
+}
+
+.like-btn:hover {
+  border-color: #f0a8b8;
+  color: #b91c4a;
+}
+
+.like-btn.is-liked {
+  border-color: #f0a8b8;
+  background: #fff1f4;
+  color: #be123c;
+}
+
+.like-btn__icon {
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+.like-btn--compact {
+  padding: 0.18rem 0.42rem;
+  font-size: 0.72rem;
+}
+
+.featured-card__top .like-btn {
+  margin-left: auto;
+}
+
+.top-liked {
+  margin: 1.25rem 0 0.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper-2);
+}
+
+.top-liked[hidden] {
+  display: none !important;
+}
+
+.top-liked__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  margin-bottom: 0.55rem;
+}
+
+.top-liked__hint {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.top-liked__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.top-liked__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.55rem;
+  align-items: baseline;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.88rem;
+}
+
+.top-liked__item:last-child {
+  border-bottom: 0;
+}
+
+.top-liked__rank {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--violet);
+  font-size: 0.78rem;
+}
+
+.top-liked__link {
+  color: inherit;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.top-liked__link:hover strong {
+  color: var(--violet);
+}
+
+.top-liked__title {
+  color: var(--muted);
+  font-size: 0.8rem;
+  display: none;
+}
+
+@media (min-width: 720px) {
+  .top-liked__title {
+    display: inline;
+  }
+}
+
+.top-liked__count {
+  font-variant-numeric: tabular-nums;
+  color: var(--slate);
+  font-size: 0.78rem;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.deal-row--flash {
+  background: #fff8e8 !important;
+  transition: background 0.8s ease;
 }
 
 .deal-row__main {

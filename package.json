@@ -8,13 +8,20 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/sync-deal-ids.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check-links": "node scripts/check-links.mjs"
+    "check-links": "node scripts/check-links.mjs",
+    "sync-deal-ids": "node scripts/sync-deal-ids.mjs",
+    "dev:worker": "npm run build && wrangler d1 migrations apply bf-deals-likes --local && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^7.4.13"
+  },
+  "devDependencies": {
+    "wrangler": "^4.166.0"
   }
 }

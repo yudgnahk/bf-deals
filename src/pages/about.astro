@@ -65,6 +65,21 @@ const lastVerified = getLastVerifiedDate();
       live price, stock, and terms on the merchant page before buying.
     </p>
 
+    <h2>Likes &amp; ranking</h2>
+    <p>
+      Anyone can like a deal without logging in. To keep “one like per person per
+      deal,” we store only an anonymized hash of your IP address (SHA-256 with a
+      server-side salt) — never the raw IP. Liked state is also remembered in your
+      browser via <code>localStorage</code> for the button UI. Rankings (“Most liked”,
+      “Top 10 this week”) use these aggregates.
+    </p>
+    <p>
+      Ai cũng có thể thích một deal mà không cần đăng nhập. Để giới hạn một like /
+      người / deal, chúng tôi chỉ lưu bản hash ẩn danh của địa chỉ IP (SHA-256 +
+      salt phía server) — không lưu IP thô. Trạng thái nút like còn được nhớ trên
+      trình duyệt qua <code>localStorage</code>.
+    </p>
+
     <h2>Contact / owner</h2>
     <p>
       Editorial ownership: Duy Khang Hà Lê. Affiliate signup steps for the owner are

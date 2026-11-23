@@ -1,4 +1,5 @@
 ---
+import LikeButton from './LikeButton.astro';
 import MerchantIcon from './MerchantIcon.astro';
 import {
   buildDealLink,
@@ -50,12 +51,14 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
 
 <article
   class="deal-row"
+  id={`deal-${deal.id}`}
   data-deal-id={deal.id}
   data-region={deal.region}
   data-category={deal.category}
   data-cat-rank={categoryRank(deal.category)}
   data-end-date={deal.end_date ?? ''}
   data-discount={pct ?? ''}
+  data-likes="0"
   data-search={searchBlob}
 >
   <a
@@ -109,6 +112,7 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
         ))
     }
     {endsLabel && <span class="ends-meta">{endsLabel}</span>}
+    <LikeButton dealId={deal.id} compact />
   </div>
 
   <span class="deal-row__cta" aria-hidden="true">

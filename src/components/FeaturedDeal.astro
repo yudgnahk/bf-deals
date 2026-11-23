@@ -1,4 +1,5 @@
 ---
+import LikeButton from './LikeButton.astro';
 import MerchantIcon from './MerchantIcon.astro';
 import {
   buildDealLink,
@@ -21,7 +22,7 @@ const prices = parsePriceParts(deal.price);
 const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
 ---
 
-<article class="featured-card" data-deal-id={deal.id}>
+<article class="featured-card" data-deal-id={deal.id} data-likes="0">
   <a
     class="deal-row__hit"
     href={link.href}
@@ -33,6 +34,7 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
   <div class="featured-card__top">
     <span class="featured-card__rank">#{rank}</span>
     <span class="chip-lime">Featured deal</span>
+    <LikeButton dealId={deal.id} />
   </div>
 
   <div class="featured-card__merchant">
