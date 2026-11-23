@@ -58,37 +58,7 @@ const defaultSort = DEFAULT_SORT;
     }
   </div>
 
-  <div class="region-row" role="group" aria-label="Region">
-    <span>
-      <span class="i18n-en">Region</span>
-      <span class="i18n-vi">Khu vực</span>
-    </span>
-    <button
-      type="button"
-      class="chip"
-      data-filter-region="all"
-      aria-pressed={defaultRegion === 'all' ? 'true' : 'false'}
-    >
-      All
-    </button>
-    <button
-      type="button"
-      class="chip"
-      data-filter-region="intl"
-      aria-pressed={defaultRegion === 'intl' ? 'true' : 'false'}
-    >
-      International
-    </button>
-    <button
-      type="button"
-      class="chip"
-      data-filter-region="vn"
-      aria-pressed={defaultRegion === 'vn' ? 'true' : 'false'}
-      title="Vietnam deals are currently hidden in data (hidden: true)"
-    >
-      VN
-    </button>
-  </div>
+  {/* Region filter hidden for v1: VN deals are hidden:true; site is international-only. */}
 </section>
 
 <style>

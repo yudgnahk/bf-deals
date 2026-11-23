@@ -53,18 +53,6 @@ const ogImage = `${site}/og.svg`;
   <body>
     <a class="skip-link" href="#main">Skip to deals</a>
 
-    <div class="disclosure-bar">
-      <div class="wrap">
-        <p>
-          <strong>Affiliate disclosure:</strong>
-          {' '}Some links are affiliate links; we may earn a commission at no extra cost to you.
-        </p>
-        <p>
-          Một số link là link affiliate, mình có thể nhận hoa hồng mà bạn không tốn thêm tiền.
-        </p>
-      </div>
-    </div>
-
     <header class="site-header">
       <div class="wrap site-header__inner">
         <a class="brand" href="/">
@@ -81,6 +69,18 @@ const ogImage = `${site}/og.svg`;
         </nav>
       </div>
     </header>
+
+    <div class="disclosure-bar">
+      <div class="wrap">
+        <p>
+          <strong>Affiliate disclosure:</strong>
+          {' '}Some links are affiliate links; we may earn a commission at no extra cost to you.
+        </p>
+        <p>
+          Một số link là link affiliate, mình có thể nhận hoa hồng mà bạn không tốn thêm tiền.
+        </p>
+      </div>
+    </div>
 
     <main id="main">
       <slot />

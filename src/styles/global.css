@@ -107,6 +107,7 @@ select {
   top: 0;
   z-index: 40;
   isolation: isolate;
+  margin: 0;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
 }

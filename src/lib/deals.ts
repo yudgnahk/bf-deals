@@ -318,9 +318,34 @@ export function formatDiscountBadge(discountText: string | null): string | null 
   return upTo ? `up to ${pct}%` : `-${pct}%`;
 }
 
+/** Extract a comparable numeric amount from a money-like token. */
+function moneyValue(token: string): number | null {
+  const m = token.replace(/,/g, '').match(/(\d+(?:\.\d+)?)/);
+  if (!m) return null;
+  const n = Number(m[1]);
+  return Number.isFinite(n) ? n : null;
+}
+
 /**
- * Split a price string into original + current only when both are clearly present.
- * Never invents or computes a missing side.
+ * Only pair original + current for strikethrough when both parse and original > current.
+ * Otherwise return raw (no strikethrough). Never invents prices.
+ */
+function asStrikePair(
+  original: string,
+  current: string,
+  raw: string
+): PriceParts {
+  const ov = moneyValue(original);
+  const cv = moneyValue(current);
+  if (ov !== null && cv !== null && ov > cv) {
+    return { original, current, raw };
+  }
+  return { original: null, current: null, raw };
+}
+
+/**
+ * Split a price string into original + current only when both are clearly present
+ * and original is higher than the sale price. Never invents or computes a missing side.
  */
 export function parsePriceParts(price: string | null): PriceParts {
   if (!price) return { original: null, current: null, raw: null };
@@ -331,26 +356,50 @@ export function parsePriceParts(price: string | null): PriceParts {
     /Original\s+price:\s*([^\n]+?)\s+Current\s+price:\s*([^\n]+)/i
   );
   if (labeled) {
-    return { original: labeled[1].trim(), current: labeled[2].trim(), raw: trimmed };
+    return asStrikePair(labeled[1].trim(), labeled[2].trim(), trimmed);
+  }
+
+  // "$79.20 instead of $198" / "$29 instead of $99" (sale first, list second)
+  const instead = trimmed.match(
+    /^(.+?)\s+instead\s+of\s+(.+)$/i
+  );
+  if (instead) {
+    return asStrikePair(instead[2].trim(), instead[1].trim(), trimmed);
+  }
+
+  // "$79.20 vs $198" when notes/order imply sale vs list — prefer larger as original
+  const vs = trimmed.match(/^(.+?)\s+vs\.?\s+(.+)$/i);
+  if (vs) {
+    const a = vs[1].trim();
+    const b = vs[2].trim();
+    const av = moneyValue(a);
+    const bv = moneyValue(b);
+    if (av !== null && bv !== null) {
+      return av > bv ? asStrikePair(a, b, trimmed) : asStrikePair(b, a, trimmed);
+    }
   }
 
   // "$69 → $29" / "$330 → $132"
   const arrow = trimmed.match(/^(.+?)\s*(?:→|->|—|–)\s*(.+)$/);
   if (arrow) {
-    return { original: arrow[1].trim(), current: arrow[2].trim(), raw: trimmed };
+    return asStrikePair(arrow[1].trim(), arrow[2].trim(), trimmed);
   }
 
-  // Two money-like tokens: "$12.99 $1.99/mo" or "$9.99 $2.99/month"
+  // Two money-like tokens: "$12.99 $1.99/mo" — first list, second sale when first > second
   const money =
     /(?:\$|€|£|₫)?\s?\d[\d,]*(?:\.\d+)?(?:\s*\/\s*(?:mo(?:nth)?|yr|year|1st\s*yr))?/gi;
   const matches = trimmed.match(money);
   if (matches && matches.length >= 2) {
     const first = matches[0].trim();
     const second = matches[1].trim();
-    // Prefer showing full remaining text as current when second is clearly the sale
-    const secondIdx = trimmed.indexOf(second, trimmed.indexOf(first) + first.length);
-    const current = trimmed.slice(secondIdx).trim();
-    return { original: first, current, raw: trimmed };
+    const fv = moneyValue(first);
+    const sv = moneyValue(second);
+    if (fv !== null && sv !== null && fv > sv) {
+      const secondIdx = trimmed.indexOf(second, trimmed.indexOf(first) + first.length);
+      const current = trimmed.slice(secondIdx).trim();
+      return asStrikePair(first, current, trimmed);
+    }
+    // Sale-first phrasing already handled above; don't invent a strike pair
   }
 
   return { original: null, current: null, raw: trimmed };
