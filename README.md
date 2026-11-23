@@ -1,8 +1,8 @@
 # BF Deals 2026
 
-Static Black Friday / Cyber Monday 2026 deals site (Astro → Cloudflare Pages).
+Static Black Friday / Cyber Monday 2026 deals site (Astro → Cloudflare Worker static assets).
 
-- **Live (planned):** https://bf-deals.pages.dev  
+- **Live:** https://bf-deals.haleduykhang.workers.dev  
 - **Focus (v1):** International deals — especially AI tools, developer tools, and SaaS  
 - **Calendar:** Black Friday Fri 27 Nov 2026 · Cyber Monday Mon 30 Nov 2026  
 
@@ -16,21 +16,30 @@ npm run preview  # preview production build
 npm run check-links  # HEAD/GET every source_url (non-blocking)
 ```
 
-### Cloudflare Pages (Git integration)
+### Cloudflare Worker deploy
+
+Build locally, then deploy static assets from `dist/` with Wrangler (`wrangler.jsonc`):
 
 | Setting | Value |
 | --- | --- |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
-| Node version | `22` (or current LTS) |
-| Project name | `bf-deals` |
+| Assets directory | `./dist` |
+| Worker name | `bf-deals` |
+| Live URL | https://bf-deals.haleduykhang.workers.dev |
+| `not_found_handling` | `404-page` |
+| `html_handling` | `auto-trailing-slash` |
 
-Or deploy via GitHub Actions (`.github/workflows/deploy.yml`) with secrets:
+```bash
+npm run build
+npx wrangler deploy
+```
+
+Or use GitHub Actions (`.github/workflows/deploy.yml`) with secrets:
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
 
-If those secrets are missing, the workflow **skips deploy gracefully** after a successful build.
+If those secrets are missing, the workflow **skips deploy gracefully** after a successful build (`wrangler deploy`).
 
 ## Data: add / expire a deal
 
@@ -82,4 +91,4 @@ Default sort is **Ending soon** (unknown end dates last). Clearly labeled promo 
 
 ## Disclosure
 
-English (FTC-style) and Vietnamese disclosure appear near the top of the home page and in the footer. Details: [/about](https://bf-deals.pages.dev/about/).
+English (FTC-style) and Vietnamese disclosure appear near the top of the home page and in the footer. Details: [/about](https://bf-deals.haleduykhang.workers.dev/about/).

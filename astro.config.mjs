@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://bf-deals.pages.dev',
+  site: 'https://bf-deals.haleduykhang.workers.dev',
   integrations: [sitemap()],
   build: {
     format: 'directory',

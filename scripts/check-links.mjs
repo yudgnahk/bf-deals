@@ -25,7 +25,7 @@ async function checkOne(url) {
       redirect: 'follow',
       signal: controller.signal,
       headers: {
-        'user-agent': 'bf-deals-check-links/1.0 (+https://bf-deals.pages.dev)',
+        'user-agent': 'bf-deals-check-links/1.0 (+https://bf-deals.haleduykhang.workers.dev)',
       },
     });
     // Some CDNs reject HEAD — retry GET
@@ -35,7 +35,7 @@ async function checkOne(url) {
         redirect: 'follow',
         signal: controller.signal,
         headers: {
-          'user-agent': 'bf-deals-check-links/1.0 (+https://bf-deals.pages.dev)',
+          'user-agent': 'bf-deals-check-links/1.0 (+https://bf-deals.haleduykhang.workers.dev)',
         },
       });
     }
