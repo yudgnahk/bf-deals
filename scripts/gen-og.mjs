@@ -16,7 +16,7 @@ const SESSION = 'bf-og';
 const LABELS = {
   ai: 'AI tools', 'dev-tools': 'Dev tools', saas: 'SaaS', productivity: 'Productivity',
   design: 'Design', marketing: 'Marketing', hosting: 'Hosting', vpn: 'VPN',
-  courses: 'Courses', electronics: 'Electronics', travel: 'Travel', home: 'Home',
+  courses: 'Courses', electronics: 'Electronics', streaming: 'Streaming', travel: 'Travel', home: 'Home',
 };
 
 const siteCards = [

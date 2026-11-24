@@ -14,6 +14,7 @@ export const OG_CATEGORY_SLUGS = [
   'vpn',
   'courses',
   'electronics',
+  'streaming',
   'travel',
   'home',
 ] as const;
