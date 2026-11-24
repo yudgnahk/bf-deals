@@ -2,7 +2,24 @@
 
 Black Friday 2026 is Friday 27 Nov; Cyber Monday is Monday 30 Nov. Many Vietnam marketplace pages and some international BF price tables go live only on/around 23–27 Nov. Recheck the official merchant page (not a coupon blog) before publishing a price, percent, or deadline.
 
-Last research pass: 23 Nov 2026. Live, source-verified deals are in `deals.json`.
+Last research pass: **25 Nov 2026** (second pass; every new row re-read by an independent checker). Live, source-verified deals are in `deals.json`.
+
+## Open after the 25 Nov pass — check in a normal browser
+
+| What | Why it is not on the site |
+| --- | --- |
+| **Canva** 50% off Pro/Business first 3 months | Researcher saw it; checker could not render canva.com/pricing. High traffic — add if a browser shows it. |
+| **Scrimba**, **Proxyman** | Claimed BF coupons not visible to the checker (JS banners). |
+| **Phong Vũ**, **Thế Giới Di Động**, **CGV** (VN) | Dates/combos confirmed only via official-domain search snippets; pages blocked the fetch. |
+| **Framer** | Official page: Black Friday starts **27 Nov 9:00 CET**; no terms yet. |
+| **Setapp**, **Skillshare**, **Duolingo**, **Shutterstock**, **Creative Market**, **Walmart**, **Garmin**, **Vultr**, **GoDaddy**, **DJI**, **Samsung US** | Bot-blocked or login/JS-only to the fetch tool — not "no deal". |
+| **NordPass** (`nordpass-bf-50`) | Prices load by JS; no price captured. |
+| **CorelDRAW** | Page titled "Black Friday deals", prices did not render. |
+| **Adobe** (`adobe-bfcm-55`) | Title says up to 55%, meta says 57% CC Pro / 60% Firefly; kept 55% until the body renders. |
+| **Surfshark / Proton VPN** | Not re-read on 25 Nov (`verified_at` stays 23 Nov). |
+| No 2026 BF offer on 25 Nov | Claude, Cursor, Midjourney, GitHub Copilot, Gemini, Notion, Figma, Linear, Vercel, Raycast, Slack, Zoom, Dropbox, Semrush, Ahrefs, Buffer, Hootsuite, Codecademy (no BF2026 code on codecademy.com), DigitalOcean, Hetzner, Squarespace, Wix, Webflow, Lazada VN, Tiki, UNIQLO VN, IKEA VN, Agoda. Recheck 27 Nov. |
+
+Affiliate programs whose terms ban coupon/deal sites are listed in [`AFFILIATE_QUICKLIST.md`](AFFILIATE_QUICKLIST.md); their deals stay as plain hook links.
 
 ## Vietnam marketplaces (high priority)
 
