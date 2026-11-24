@@ -318,3 +318,7 @@
   color: var(--muted);
   font-size: 0.75rem;
 }
+
+.toast {
+  overflow-wrap: anywhere;
+}

@@ -67,7 +67,7 @@
     if (await writeClipboard(url)) {
       showToast('Link copied', 'Đã copy link');
     } else {
-      showToast('Copy failed — copy the address bar instead', 'Không copy được — copy thanh địa chỉ nhé');
+      showToast(`Copy failed — link: ${url}`, `Không copy được — link: ${url}`);
     }
   }
 

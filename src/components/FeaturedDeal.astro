@@ -1,6 +1,7 @@
 ---
 import LikeButton from './LikeButton.astro';
 import MerchantIcon from './MerchantIcon.astro';
+import ShareButton from './ShareButton.astro';
 import {
   buildDealLink,
   daysUntilEnd,
@@ -109,6 +110,7 @@ const priceLine =
         )
       }
       <LikeButton dealId={deal.id} compact />
+      <ShareButton deal={deal} />
     </div>
     <span class="featured-card__cta">
       <span class="i18n-en">{hero ? 'Read on the merchant ↗' : 'View ↗'}</span>
