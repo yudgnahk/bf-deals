@@ -8,6 +8,8 @@ Last research pass: **25 Nov 2026** (second pass; every new row re-read by an in
 
 Added (each re-read by an independent checker): Snov.io, Elementor, Walmart, Target, Apple (gift card event), Samsung US, Epic Games Store, Amazon devices (Echo/Ring), Viettel Store. Cloudways code BFCM802 is printed again (ends 4 Dec).
 
+Round 2 (~07:00): added Hulu/Disney+ bundle, Peacock, Paramount+, HBO Max (new **Streaming** category), Norton, Xbox games sale — all re-read by an independent checker. Malwarebytes dropped (page shows "SALE ENDED" next to "ENDS DEC 6"). Still no official 2026 page for Spotify, Audible, Apple TV, Microsoft 365, Google One, Backblaze, Babbel, Speechify, Parallels, Bitdefender, ESET, MacPaw/Setapp (bot-blocked), Phong Vũ, Thế Giới Di Động (fetch blocked), Nguyễn Kim, Lazada, Tiki, Hasaki.
+
 Rejected this pass:
 
 | Merchant | Why |
