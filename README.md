@@ -68,6 +68,8 @@ Optional `added_at` (`YYYY-MM-DD` or ISO instant) shows a **New** badge for 48 h
 ### Pages & SEO
 
 - `/category/<slug>/` — one page per category with deals (title, description, canonical, OG card, `ItemList` + `BreadcrumbList` JSON-LD).
+- `/deal/<id>/` — one page per active deal (own title/description, `Offer` JSON-LD, notes, copy-code, share links). Rows link to it via **Details** and a share button (native share sheet, else copy link).
+- `/vn/` — Vietnamese view with a day-by-day sale schedule 25–30/11 from `src/data/vn-schedule.json` (rows whose deal is gone are dropped at build).
 - `/robots.txt` and `/sitemap-index.xml` are generated at build time.
 - Share cards live in `public/og/` (`site.png`, `about.png`, one per category). Add a new category to `OG_CATEGORY_SLUGS` in `src/lib/seo.ts` and rerun `npm run gen-og`.
 - Sorts: **Top picks** (default, builder categories first), **Ending soon** (pure end date), **Newest**, **Biggest discount**, **Most liked**. `?sort=ending-soon` preselects a sort.
