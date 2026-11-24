@@ -1,4 +1,10 @@
 {
   "_comment": "Deal ids pinned to the Featured block, in order. Missing or expired ids are skipped; remaining slots use the automatic score.",
-  "ids": []
+  "ids": [
+    "nordvpn-bf-299",
+    "hostinger-premium-199",
+    "coursera-plus-239",
+    "synthesia-bf-pro-59",
+    "udemy-bfcm-sale"
+  ]
 }

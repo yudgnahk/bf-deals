@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DealBoard from '../../components/DealBoard.astro';
+import EndingSoon from '../../components/EndingSoon.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import LikesInit from '../../components/LikesInit.astro';
+import {
+  formatDiscountBadge,
+  getCategories,
+  getCategoryCounts,
+  getLastVerifiedDate,
+  getVnDeals,
+  sortEndingSoon,
+} from '../../lib/deals';
+import { buildItemListJsonLd } from '../../lib/seo';
+
+const deals = sortEndingSoon(getVnDeals());
+const categories = getCategories(deals);
+const counts = getCategoryCounts(deals);
+const lastVerified = getLastVerifiedDate(deals);
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const pageUrl = `${site}/vn/`;
+const jsonLd = buildItemListJsonLd(deals, { name: 'Deal Black Friday 2026 Việt Nam', pageUrl });
+const marqueeItems = deals
+  .map((d) => {
+    const badge = formatDiscountBadge(d.discount_text);
+    return badge ? `${d.merchant} · ${badge}` : d.merchant;
+  })
+  .slice(0, 14);
+---
+
+<BaseLayout
+  title={`Black Friday 2026 Việt Nam — ${deals.length} deal từ trang chính thức | BF Deals 2026`}
+  description={`${deals.length} deal Black Friday 2026 tại Việt Nam (Shopee, CellphoneS, Hoàng Hà, Samsung VN…), chép đúng từ trang merchant chính thức. Giá hoặc hạn chưa rõ thì để trống.`}
+  path="/vn/"
+  marqueeItems={marqueeItems}
+  ogImage="/og/vn.png"
+  ogImageAlt="Deal Black Friday 2026 Việt Nam — BF Deals 2026"
+  forceLang="vi"
+>
+  <JsonLd slot="head" data={jsonLd} />
+
+  <section class="hero hero--category">
+    <div class="wrap">
+      <p class="hero__kicker">
+        <a href="/">Deals</a> / Việt Nam — kiểm tra {lastVerified || '—'}
+      </p>
+      <h1><span>Việt Nam</span></h1>
+      <p class="hero__lede">
+        {deals.length} deal Black Friday 27/11 – Cyber Monday 30/11 tại Việt Nam, chép từ trang
+        merchant chính thức. Giá flash sale đổi theo khung giờ — luôn xem lại trên trang
+        merchant trước khi mua.
+      </p>
+    </div>
+  </section>
+
+  <EndingSoon deals={deals} />
+
+  <div id="deals">
+    <DealBoard
+      deals={deals}
+      categories={categories}
+      counts={counts}
+      lastVerified={lastVerified}
+      region="vn"
+    />
+  </div>
+  <LikesInit />
+</BaseLayout>

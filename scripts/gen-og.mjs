@@ -20,6 +20,7 @@ const LABELS = {
 const cards = [
   { slug: 'site', kicker: 'AI · Dev tools · SaaS · VPN · Hosting', line1: 'Black', line2: 'Friday' },
   { slug: 'about', kicker: 'About & disclosure', line1: 'How we', line2: 'check deals' },
+  { slug: 'vn', kicker: 'Black Friday 27/11 · Cyber Monday 30/11', line1: 'Vietnam', line2: 'deals' },
   ...OG_CATEGORY_SLUGS.map((slug) => ({
     slug,
     kicker: 'Black Friday & Cyber Monday 2026',

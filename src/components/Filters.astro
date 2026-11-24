@@ -8,13 +8,14 @@ interface Props {
   total: number;
   /** Category pages already scope the list, so they hide the chips. */
   showChips?: boolean;
+  region?: string;
 }
 
-const { categories, counts, total, showChips = true } = Astro.props;
+const { categories, counts, total, showChips = true, region = DEFAULT_REGION_FILTER } = Astro.props;
 const defaultSort = DEFAULT_SORT;
 ---
 
-<section class="filters" aria-label="Deal filters" data-filters>
+<section class="filters" aria-label="Deal filters" data-filters data-region-filter={region}>
   <div class="search-row">
     <label class="visually-hidden" for="deal-search">Search deals</label>
     <input
@@ -111,7 +112,7 @@ const defaultSort = DEFAULT_SORT;
     const searchInput = document.querySelector('[data-search]') as HTMLInputElement | null;
     if (!root || !list) return;
 
-    let region = DEFAULT_REGION_FILTER;
+    let region = root.getAttribute('data-region-filter') || DEFAULT_REGION_FILTER;
     let category = 'all';
     let sort = DEFAULT_SORT;
     let query = '';

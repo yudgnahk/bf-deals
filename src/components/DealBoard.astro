@@ -9,14 +9,22 @@ interface Props {
   counts: Record<string, number>;
   lastVerified: string;
   showChips?: boolean;
+  region?: string;
 }
 
-const { deals, categories, counts, lastVerified, showChips = true } = Astro.props;
-const initialCount = deals.filter((d) => matchesRegion(d, DEFAULT_REGION_FILTER)).length;
+const {
+  deals,
+  categories,
+  counts,
+  lastVerified,
+  showChips = true,
+  region = DEFAULT_REGION_FILTER,
+} = Astro.props;
+const initialCount = deals.filter((d) => matchesRegion(d, region)).length;
 ---
 
 <div class="board wrap">
-  <Filters categories={categories} counts={counts} total={deals.length} showChips={showChips} />
+  <Filters categories={categories} counts={counts} total={deals.length} showChips={showChips} region={region} />
 
   <div class="results-meta">
     <p>

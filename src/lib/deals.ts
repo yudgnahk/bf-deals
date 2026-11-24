@@ -76,6 +76,11 @@ export function getActiveDeals(today = new Date()): Deal[] {
   return getVisibleDeals().filter((deal) => !isDealExpired(deal, today));
 }
 
+/** Vietnam-only deals for the /vn/ page; `hidden` only hides them from the international views. */
+export function getVnDeals(today = new Date()): Deal[] {
+  return deals.filter((deal) => deal.region === 'vn' && !isDealExpired(deal, today));
+}
+
 export function getAllDeals(): Deal[] {
   return deals;
 }

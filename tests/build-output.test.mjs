@@ -42,9 +42,18 @@ test('robots.txt and sitemap include category pages', () => {
 });
 
 test('every OG image referenced by a page exists', () => {
-  for (const page of ['index.html', 'about/index.html', 'category/ai/index.html']) {
+  for (const page of ['index.html', 'about/index.html', 'category/ai/index.html', 'vn/index.html']) {
     const m = read(page).match(/property="og:image" content="https?:\/\/[^/]+(\/[^"]+)"/);
     assert.ok(m, `${page} has og:image`);
     assert.ok(existsSync(join(dist, m[1])), `${m[1]} exists`);
   }
+});
+
+test('VN page is Vietnamese and lists only vn rows', () => {
+  const html = read('vn/index.html');
+  assert.match(html, /<html lang="vi" data-lang="vi"/);
+  assert.match(html, /data-region-filter="vn"/);
+  const regions = [...html.matchAll(/data-region="([^"]+)"/g)].map((m) => m[1]);
+  assert.ok(regions.length > 0);
+  assert.ok(regions.every((r) => r === 'vn'));
 });
