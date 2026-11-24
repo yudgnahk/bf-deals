@@ -1,206 +1,367 @@
 {
   "_comment": "Fill id_or_tag and/or link_template when you get approved. Empty values fall back to the deal's source_url (TODO aff).",
   "_link_template_help": "Use {url} for the destination URL and {id} for id_or_tag. Example Hostinger: https://www.tkqlhce.com/click-XXXXX-YYYYY?url={url}",
+  "_aff_speed_help": "Officially stated approval speed, checked 25 Nov 2026: instant | same-day | slow | unknown.",
   "programs": {
     "Hostinger Affiliates": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — https://affiliates.hostinger.com/"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://affiliates.hostinger.com/signup; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
     },
     "NordVPN Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — https://nordvpn.com/affiliate-signup/"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://nordvpn.com/affiliate/; network: in-house (affiliates.nordvpn.com). See docs/AFFILIATE_QUICKLIST.md"
     },
     "ExpressVPN Affiliates": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — affiliate-support@expressvpn.com"
+      "aff_speed": "slow",
+      "notes": "DO NOT USE on this site — terms ban coupon/deal sites. TODO — join: https://www.expressvpn.com/affiliates; network: Impact (app.impact.com ExpressVPN brand link on page). See docs/AFFILIATE_QUICKLIST.md"
     },
     "Surfshark Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — https://surfshark.com/affiliate"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://surfshark.com/affiliate-signup; network: Tune/HasOffers (main); also Impact, Avant, CJ, Awin, Appsflyer. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Proton Affiliates": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "DO NOT USE on this site — terms ban coupon/deal sites. TODO — join: https://proton.me/partners/affiliates/join; network: TUNE (HasOffers); also listed on CJ. See docs/AFFILIATE_QUICKLIST.md"
     },
     "PureVPN Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.purevpn.com/affiliates/signup; network: In-house portal (not named). See docs/AFFILIATE_QUICKLIST.md"
     },
     "CyberGhost Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://affiliates.kape.com/users/signup/; network: Kape HasOffers portal. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Impact": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — Namecheap and others via Impact"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://impact.com/partners/; network: Impact. See docs/AFFILIATE_QUICKLIST.md"
     },
     "SiteGround Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "same-day",
+      "notes": "TODO — join: https://www.siteground.com/affiliates; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
     },
     "InMotion Hosting Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://app.impact.com/campaign-mediapartner-signup/InMotion-Hosting.brand; network: Impact. See docs/AFFILIATE_QUICKLIST.md"
     },
     "HostPapa Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://affiliates.opiemarketing.com/affiliates/signup.php; network: Opie Network. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Hosting.com Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://hosting.com/about/affiliate-program; network: FirstPromoter (hosting.firstpromoter.com). See docs/AFFILIATE_QUICKLIST.md"
     },
     "IONOS Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.ionos.com/agency-partner/affiliate; network: In-house (affiliate.ionos.com). See docs/AFFILIATE_QUICKLIST.md"
     },
     "Bluehost Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://www.bluehost.com/affiliates; network: Impact. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Cloudways Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — https://www.cloudways.com/en/web-hosting-affiliate-program.php"
+      "aff_speed": "same-day",
+      "notes": "TODO — join: https://www.cloudways.com/en/web-hosting-affiliate-program.php; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
     },
     "DataCamp Affiliates": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://app.impact.com/campaign-promo-signup/DataCamp.brand; network: Impact. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Coursera Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.coursera.org/about/affiliates; network: Impact. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Udemy Affiliates": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://www.udemy.com/affiliate/; network: Impact. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Adobe Affiliate Marketing": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://signup.partnerize.com/signup/en/adobe; network: Partnerize. See docs/AFFILIATE_QUICKLIST.md"
     },
     "1Password Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://signup.cj.com/member/signup/publisher/?cid=5140517; network: CJ. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Amazon Associates": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — do not apply until site has substantial content"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://affiliate-program.amazon.com/; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Best Buy Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.bestbuy.com/site/misc/best-buy-affiliate-program/pcmcat198500050002.c?id=pcmcat198500050002; network: Impact. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Microsoft Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://microsoft.com/en-us/affiliates; network: local network per country (50+ countries). See docs/AFFILIATE_QUICKLIST.md"
     },
     "Booking.com Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.booking.com/affiliate-program/v2/index.html; network: CJ (region-based registration). See docs/AFFILIATE_QUICKLIST.md"
     },
     "Traveloka Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — AccessTrade / Traveloka"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.traveloka.com/en-sg/p/affiliate; network: in-house (app referral) / partnership email. See docs/AFFILIATE_QUICKLIST.md"
     },
     "AccessTrade VN": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — https://pub2.accesstrade.vn/ ; FPT Shop, CellphoneS, ĐMX, Samsung VN"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://workspace.accesstrade.vn/authentication/register?lang=vi; network: in-house (Interspace). See docs/AFFILIATE_QUICKLIST.md"
     },
     "ElevenLabs Affiliate (PartnerStack)": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — PartnerStack; see AFFILIATE_SETUP.md §21"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://elevenlabs.io/affiliates; network: PartnerStack. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Kinsta Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — often rejects coupon/deals sites; see AFFILIATE_SETUP.md §22"
+      "aff_speed": "slow",
+      "notes": "DO NOT USE on this site — terms ban coupon/deal sites. TODO — join: https://kinsta.com/affiliates/; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
     },
     "MailerLite Affiliate (Trackdesk)": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — Trackdesk; see AFFILIATE_SETUP.md §23"
+      "aff_speed": "slow",
+      "notes": "DO NOT USE on this site — terms ban coupon/deal sites. TODO — join: https://www.mailerlite.com/affiliate; network: Trackdesk (payouts via Tipalti). See docs/AFFILIATE_QUICKLIST.md"
     },
     "Brevo Affiliate (PartnerStack)": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — PartnerStack; see AFFILIATE_SETUP.md"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://www.brevo.com/partners/affiliates/; network: PartnerStack. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Grammarly Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://www.grammarly.com/affiliates; network: HasOffers / CJ / PartnerStack / ShareASale (per terms). See docs/AFFILIATE_QUICKLIST.md"
     },
     "WP Rocket Affiliate (Awin)": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — Awin; official rules forbid coupon/deal sites"
+      "aff_speed": "slow",
+      "notes": "DO NOT USE on this site — terms ban coupon/deal sites. TODO — join: https://wp-rocket.me/wp-rocket-affiliate-program/; network: Awin. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Later Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://later.com/affiliate-program/; network: PartnerStack. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Rank Math Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "DO NOT USE on this site — terms ban coupon/deal sites. TODO — join: https://rankmath.com/affiliates/; network: In-house (rankmath.com/affiliate-area). See docs/AFFILIATE_QUICKLIST.md"
     },
     "MindPal Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://mindpalspace.lemonsqueezy.com/affiliates; network: Lemon Squeezy. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Seobility Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "instant",
+      "notes": "TODO — join: https://affiliate.seobility.net/affiliates/signup.php; network: In-house portal (affiliate.seobility.net). See docs/AFFILIATE_QUICKLIST.md"
     },
     "OptinMonster Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://optinmonster.com/affiliates/; network: in-house (Easy Affiliate) / ShareASale legacy. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Plerdy Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.plerdy.com/referral-program/; network: In-house. See docs/AFFILIATE_QUICKLIST.md"
     },
     "TimeCamp Partners": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO — https://www.timecamp.com/partners/"
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.timecamp.com/partners/; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
     },
     "Pirsch Affiliate": {
       "id_or_tag": "",
       "link_template": "",
-      "notes": "TODO"
+      "aff_speed": "instant",
+      "notes": "TODO — join: https://docs.pirsch.io/affiliate; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "WordPress.com Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://wordpress.com/affiliates/; network: Impact. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Tidio Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.tidio.com/partners/affiliate/; network: PartnerStack. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "systeme.io Affiliate Program": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "instant",
+      "notes": "TODO — join: https://systeme.io/register; network: In-house. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Dubsado Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "instant",
+      "notes": "TODO — join: https://www.dubsado.com/affiliate-program; network: In-house (in-app dashboard). See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Synthesia Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.synthesia.io/partners/affiliates; network: Rewardful. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Colossyan Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.colossyan.com/affiliate-program; network: in-house (not stated). See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "beehiiv Partner Program": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "instant",
+      "notes": "TODO — join: https://www.beehiiv.com/partners; network: Dub (in-house program). See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "SE Ranking Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://seranking.com/affiliate.html; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Nuelink Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "instant",
+      "notes": "TODO — join: https://nuelink.com/affiliate; network: Rewardful. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "quso.ai Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "instant",
+      "notes": "TODO — join: https://quso.ai/affiliate-program; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "pCloud Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.pcloud.com/affiliate; network: in-house (partner.pcloud.com). See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Sync.com Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.sync.com/affiliates/; network: Awin. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Keeper Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.keepersecurity.com/partnerships.html; network: Rakuten (consumer, not officially confirmed) and PartnerStack (business). See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Anker Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.anker.com/become-an-affiliate; network: not named on page. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Sony Store Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://electronics.sony.com/affiliate; network: CJ Affiliate. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Razer Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.razer.com/affiliate; network: Impact. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Contabo Affiliate (CJ)": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://contabo.com/en-us/affiliate-program/; network: CJ Affiliate. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "FastComet Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://www.fastcomet.com/affiliate; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "DreamHost Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "slow",
+      "notes": "TODO — join: https://partners.dreamhost.com/; network: TUNE (in-house). See docs/AFFILIATE_QUICKLIST.md"
+    },
+    "Shopee Affiliate": {
+      "id_or_tag": "",
+      "link_template": "",
+      "aff_speed": "unknown",
+      "notes": "TODO — join: https://affiliate.shopee.vn/; network: in-house. See docs/AFFILIATE_QUICKLIST.md"
     }
   }
 }
