@@ -14,7 +14,11 @@ npm run dev      # local preview
 npm run build    # output → dist/
 npm run preview  # preview production build
 npm run check-links  # HEAD/GET every source_url (non-blocking)
+npm test         # node:test — lib helpers + happy-path checks on dist/ (build first)
+npm run gen-og   # re-render public/og/*.png share cards (uses agent-browser, closes it after)
 ```
+
+Node: Astro 7.4 needs Node **>= 22.23.4** (Homebrew `node` 26 works; nvm 22.22.x does not).
 
 ### Cloudflare Worker deploy
 
@@ -58,6 +62,15 @@ Edit **one file**: [`src/data/deals.json`](src/data/deals.json).
 1. **Add** — append an object with the existing schema (`id`, `title`, `merchant`, `region`, `category`, `discount_text`, `price`, `end_date`, `source_url`, `aff_program`, `aff_status`, `verified_at`, …). Copy `discount_text` and `price` **exactly** from the merchant page; never invent numbers.
 2. **Expire** — set `end_date` to a past `YYYY-MM-DD`, **or** set `"hidden": true` to remove it from the site while keeping the row.
 3. Rebuild / redeploy. Expired deals are also filtered out client-side by today’s date.
+
+Optional `added_at` (`YYYY-MM-DD` or ISO instant) shows a **New** badge for 48 h; the badge removes itself client-side after that, no rebuild needed.
+
+### Pages & SEO
+
+- `/category/<slug>/` — one page per category with deals (title, description, canonical, OG card, `ItemList` + `BreadcrumbList` JSON-LD).
+- `/robots.txt` and `/sitemap-index.xml` are generated at build time.
+- Share cards live in `public/og/` (`site.png`, `about.png`, one per category). Add a new category to `OG_CATEGORY_SLUGS` in `src/lib/seo.ts` and rerun `npm run gen-og`.
+- Sorts: **Top picks** (default, builder categories first), **Ending soon** (pure end date), **Newest**, **Biggest discount**, **Most liked**. `?sort=ending-soon` preselects a sort.
 
 ### Region & visibility
 

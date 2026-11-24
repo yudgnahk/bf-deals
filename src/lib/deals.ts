@@ -1,5 +1,6 @@
 import dealsData from '../data/deals.json';
 import affiliatesConfig from '../config/affiliates.json';
+import featuredConfig from '../config/featured.json';
 import { DEFAULT_REGION_FILTER } from './constants';
 
 export { DEFAULT_REGION_FILTER };
@@ -27,10 +28,14 @@ export interface Deal {
   added_at?: string;
 }
 
+export type AffSpeed = 'instant' | 'same-day' | 'slow' | 'unknown';
+
 export interface AffiliateProgramConfig {
   id_or_tag: string;
   link_template: string;
   notes?: string;
+  /** Officially stated approval speed; see docs/AFFILIATE_QUICKLIST.md. */
+  aff_speed?: AffSpeed;
 }
 
 export interface ResolvedLink {
@@ -439,16 +444,23 @@ export function daysUntilEnd(endDate: string | null, today = new Date()): number
   return diff;
 }
 
-/**
- * Featured: prefer aff-possible deals in builder categories (AI/dev/SaaS/…).
- * Falls back to other aff deals only if needed. Largest % + ending soon.
- */
+/** Pinned ids from src/config/featured.json first, then the automatic score. */
 export function getFeaturedDeals(list: Deal[], limit = 2): Deal[] {
+  const byId = new Map(list.map((d) => [d.id, d]));
+  const pinned = (featuredConfig.ids as string[])
+    .map((id) => byId.get(id))
+    .filter((d): d is Deal => Boolean(d));
+  const pinnedIds = new Set(pinned.map((d) => d.id));
+  const auto = scoreFeatured(list.filter((d) => !pinnedIds.has(d.id)));
+  return [...pinned, ...auto].slice(0, limit);
+}
+
+/** Prefer aff-possible builder-category deals: largest % plus an ending-soon boost. */
+function scoreFeatured(list: Deal[]): Deal[] {
   const aff = list.filter((d) => d.aff_status === 'aff-possible');
   const primary = aff.filter((d) => isPrimaryCategory(d.category));
-  const pool = primary.length >= limit ? primary : [...primary, ...aff.filter((d) => !isPrimaryCategory(d.category))];
-
-  const scored = pool
+  const pool = [...primary, ...aff.filter((d) => !isPrimaryCategory(d.category))];
+  return pool
     .map((d) => {
       const pct = parseDiscountPercent(d.discount_text) ?? -1;
       const days = daysUntilEnd(d.end_date);
@@ -460,17 +472,8 @@ export function getFeaturedDeals(list: Deal[], limit = 2): Deal[] {
       (a, b) =>
         b.score - a.score ||
         (a.d.end_date || '9999').localeCompare(b.d.end_date || '9999')
-    );
-
-  const seen = new Set<string>();
-  const out: Deal[] = [];
-  for (const { d } of scored) {
-    if (seen.has(d.id)) continue;
-    seen.add(d.id);
-    out.push(d);
-    if (out.length >= limit) break;
-  }
-  return out;
+    )
+    .map(({ d }) => d);
 }
 
 export function sortByBiggestDiscount(list: Deal[]): Deal[] {

@@ -1327,6 +1327,15 @@ html[data-lang='vi'] span.i18n-vi {
   font-size: clamp(2.25rem, 6vw, 4.75rem);
 }
 
+.hero h1 span.i18n-vi,
+html[data-lang='vi'] .hero h1 span.i18n-en {
+  display: none;
+}
+
+html[data-lang='vi'] .hero h1 span.i18n-vi {
+  display: block;
+}
+
 .hero--category .hero__kicker a {
   color: inherit;
 }
@@ -1363,7 +1372,7 @@ html[data-lang='vi'] span.i18n-vi {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1px;
   background: var(--line-2);
   border: 1px solid var(--line-2);
@@ -1371,8 +1380,9 @@ html[data-lang='vi'] span.i18n-vi {
 
 .ending-soon__list a {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem 0.5rem;
   padding: 0.6rem 0.75rem;
   background: var(--card);
   color: var(--ink);
@@ -1386,7 +1396,7 @@ html[data-lang='vi'] span.i18n-vi {
 
 .ending-soon__list strong {
   font-size: 0.85rem;
-  flex: 1;
+  flex: 1 0 100%;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;

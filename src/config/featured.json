@@ -1,0 +1,4 @@
+{
+  "_comment": "Deal ids pinned to the Featured block, in order. Missing or expired ids are skipped; remaining slots use the automatic score.",
+  "ids": []
+}
