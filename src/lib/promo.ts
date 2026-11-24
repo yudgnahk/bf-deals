@@ -4,6 +4,9 @@ const CODE_PATTERNS = [
   /\b[Cc]ode\s+([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/g,
 ];
 
+const STOP_WORDS = new Set(['OFF', 'THE', 'AND', 'FOR', 'WITH', 'FROM', 'NEW', 'OLD', 'USD', 'VND', 'NEEDED',
+  'OFFICIAL', 'HERE', 'BELOW', 'MUST', 'ONLY', 'APPLIED', 'ENTERED', 'FREE', 'AUTO', 'AUTOMATICALLY']);
+
 const NEGATED_BEFORE = [/\bno\s+$/, /without\s+(a\s+)?$/, /invent\s+$/, /earlier\s+note\s+listed\s+$/];
 
 /** Real codes carry a digit or are written in capitals; "code works" / "code already" are prose. */
@@ -29,7 +32,7 @@ export function extractCodes(texts: readonly (string | null | undefined)[]): str
 
       const raw = m[1];
       const key = raw.toUpperCase();
-      if (!looksLikeCode(raw) || seen.has(key) || key === 'OFF') continue;
+      if (!looksLikeCode(raw) || seen.has(key) || STOP_WORDS.has(key)) continue;
       seen.add(key);
       codes.push(raw);
     }

@@ -13,5 +13,6 @@ test('finds labelled codes in discount text, price and notes', () => {
 test('ignores prose after the word code', () => {
   assert.deepEqual(extractCodes(['the code already applied; the code works on annual plans; code stops Monday']), []);
   assert.deepEqual(extractCodes(['No promo code needed']), []);
+  assert.deepEqual(extractCodes(['Discount applies with code ONLY at checkout; code OFFICIAL page']), []);
   assert.deepEqual(extractCodes(['Earlier note listed code BFCM802; it is gone']), []);
 });
