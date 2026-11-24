@@ -72,6 +72,7 @@ Optional `added_at` (`YYYY-MM-DD` or ISO instant) shows a **New** badge for 48 h
 - `/vn/` — Vietnamese view with a day-by-day sale schedule 25–30/11 from `src/data/vn-schedule.json` (rows whose deal is gone are dropped at build).
 - `/robots.txt` and `/sitemap-index.xml` are generated at build time.
 - Share cards live in `public/og/` (`site.png`, `about.png`, one per category). Add a new category to `OG_CATEGORY_SLUGS` in `src/lib/seo.ts` and rerun `npm run gen-og`.
+- Per-deal cards live in `public/og/deal/<id>.png` (`npm run gen-og:deals`, ~1.5 min). A deal without a card falls back to its category card, so rerun after adding deals.
 - Sorts: **Top picks** (default, builder categories first), **Ending soon** (pure end date), **Newest**, **Biggest discount**, **Most liked**. `?sort=ending-soon` preselects a sort.
 
 ### Region & visibility
