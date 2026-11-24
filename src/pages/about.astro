@@ -34,8 +34,12 @@ const lastVerified = getLastVerifiedDate();
         Deals whose <code>end_date</code> is in the past are hidden automatically.
       </li>
       <li>
-        Vietnam marketplace campaigns can live in the data file with
-        <code>hidden: true</code>; v1 focuses on international deals.
+        Vietnam-only campaigns stay off the international board and are listed on the
+        Vietnamese page <a href="/vn/">/vn/</a>.
+      </li>
+      <li>
+        Rows added in the last 48 hours carry a <em>New</em> badge; every category also has its
+        own page, e.g. <a href="/category/ai/">AI tools</a> or <a href="/category/vpn/">VPN</a>.
       </li>
       <li>Last research pass reflected on this build: {lastVerified || '—'}</li>
     </ul>
