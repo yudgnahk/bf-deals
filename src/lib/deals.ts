@@ -2,6 +2,7 @@ import dealsData from '../data/deals.json';
 import affiliatesConfig from '../config/affiliates.json';
 import featuredConfig from '../config/featured.json';
 import { DEFAULT_REGION_FILTER } from './constants';
+import { extractCodes } from './promo';
 
 export { DEFAULT_REGION_FILTER };
 
@@ -246,62 +247,8 @@ export function sortEndingSoon(list: Deal[]): Deal[] {
   });
 }
 
-/**
- * Pull clearly labeled promo/coupon codes from discount_text + notes.
- * Conservative: only when the text uses "code …" phrasing; skips "no promo code".
- */
 export function extractPromoCodes(deal: Deal): string[] {
-  const text = [deal.discount_text, deal.notes].filter(Boolean).join('\n');
-  if (!text) return [];
-
-  const codes: string[] = [];
-  const seen = new Set<string>();
-  const patterns = [
-    /\b(?:(?:use|enter|apply)\s+(?:the\s+)?(?:promo\s+)?code|promo\s+code|with\s+code|uses\s+code)\s*[:=]?\s*([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/g,
-    /\bCodes?:\s*([A-Za-z0-9][A-Za-z0-9_-]{2,})\s*=/g,
-    /\b[Cc]ode\s+([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/g,
-  ];
-  const ban = new Set([
-    'OFF',
-    'THE',
-    'AND',
-    'FOR',
-    'WITH',
-    'FROM',
-    'NEW',
-    'OLD',
-    'USD',
-    'VND',
-    'NEEDED',
-    'OFFICIAL',
-    'HERE',
-    'BELOW',
-    'MUST',
-    'ONLY',
-    'APPLIED',
-    'ENTERED',
-  ]);
-
-  for (const re of patterns) {
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(text))) {
-      const start = Math.max(0, m.index - 24);
-      const before = text.slice(start, m.index).toLowerCase();
-      if (/\bno\s+$/.test(before) || /without\s+(a\s+)?$/.test(before) || /invent\s+$/.test(before)) {
-        continue;
-      }
-      const after = text.slice(m.index + m[0].length, m.index + m[0].length + 12).toLowerCase();
-      if (/^\s*needed\b/.test(after)) continue;
-
-      const raw = m[1];
-      const key = raw.toUpperCase();
-      if (ban.has(key) || seen.has(key)) continue;
-      seen.add(key);
-      codes.push(raw);
-    }
-  }
-
-  return codes;
+  return extractCodes([deal.discount_text, deal.price, deal.notes]);
 }
 
 /** First % number found in discount_text (for sorting / badge preference). Never invents. */

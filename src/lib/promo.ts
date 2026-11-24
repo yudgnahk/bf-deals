@@ -1,0 +1,38 @@
+const CODE_PATTERNS = [
+  /\b(?:(?:use|enter|apply)\s+(?:the\s+)?(?:promo\s+|coupon\s+)?code|promo\s+code|coupon\s+code|with\s+(?:code|coupon)|uses\s+code)\s*[:=]?\s*([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/gi,
+  /\bCodes?:\s*([A-Za-z0-9][A-Za-z0-9_-]{2,})\s*=/g,
+  /\b[Cc]ode\s+([A-Za-z0-9][A-Za-z0-9_-]{2,})\b/g,
+];
+
+const NEGATED_BEFORE = [/\bno\s+$/, /without\s+(a\s+)?$/, /invent\s+$/, /earlier\s+note\s+listed\s+$/];
+
+/** Real codes carry a digit or are written in capitals; "code works" / "code already" are prose. */
+function looksLikeCode(token: string): boolean {
+  if (/\d/.test(token)) return true;
+  return token.length >= 4 && token === token.toUpperCase();
+}
+
+/** Pull clearly labeled promo codes ("code XYZ", "with code XYZ") from free text. Never guesses. */
+export function extractCodes(texts: readonly (string | null | undefined)[]): string[] {
+  const text = texts.filter(Boolean).join('\n');
+  if (!text) return [];
+
+  const seen = new Set<string>();
+  const codes: string[] = [];
+  for (const re of CODE_PATTERNS) {
+    for (const m of text.matchAll(re)) {
+      const index = m.index ?? 0;
+      const before = text.slice(Math.max(0, index - 32), index).toLowerCase();
+      if (NEGATED_BEFORE.some((neg) => neg.test(before))) continue;
+      const after = text.slice(index + m[0].length, index + m[0].length + 18).toLowerCase();
+      if (/^\s*(needed|required|is no longer)\b/.test(after)) continue;
+
+      const raw = m[1];
+      const key = raw.toUpperCase();
+      if (!looksLikeCode(raw) || seen.has(key) || key === 'OFF') continue;
+      seen.add(key);
+      codes.push(raw);
+    }
+  }
+  return codes;
+}
