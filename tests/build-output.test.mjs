@@ -89,3 +89,11 @@ test('VN page shows the 25–30/11 schedule with links to deal pages', () => {
   assert.deepEqual(days, ['2026-11-25', '2026-11-26', '2026-11-27', '2026-11-28', '2026-11-29', '2026-11-30']);
   assert.match(html, /<a href="\/deal\/cellphones-black-fire-day\/">CellphoneS<\/a>/);
 });
+
+test('board offers a Has code toggle whose count matches rows with a code', () => {
+  const html = read('index.html');
+  const count = Number(html.match(/data-filter-code[^>]*>[\s\S]*?class="chip__count"[^>]*>(\d+)</)?.[1]);
+  assert.ok(count > 0);
+  const withCode = (html.match(/data-region="(?:intl|both)"[^>]*data-has-code="1"/g) || []).length;
+  assert.equal(withCode, count);
+});

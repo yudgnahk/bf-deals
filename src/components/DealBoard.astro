@@ -1,7 +1,7 @@
 ---
 import DealRow from './DealRow.astro';
 import Filters from './Filters.astro';
-import { DEFAULT_REGION_FILTER, matchesRegion, type Deal } from '../lib/deals';
+import { DEFAULT_REGION_FILTER, extractPromoCodes, matchesRegion, type Deal } from '../lib/deals';
 
 interface Props {
   deals: Deal[];
@@ -22,11 +22,13 @@ const {
   region = DEFAULT_REGION_FILTER,
   searchPlaceholder,
 } = Astro.props;
-const initialCount = deals.filter((d) => matchesRegion(d, region)).length;
+const regionDeals = deals.filter((d) => matchesRegion(d, region));
+const initialCount = regionDeals.length;
+const codeCount = regionDeals.filter((d) => extractPromoCodes(d).length > 0).length;
 ---
 
 <div class="board wrap">
-  <Filters categories={categories} counts={counts} total={deals.length} showChips={showChips} region={region} placeholder={searchPlaceholder} />
+  <Filters categories={categories} counts={counts} total={deals.length} showChips={showChips} region={region} placeholder={searchPlaceholder} codeCount={codeCount} />
 
   <div class="results-meta">
     <p>

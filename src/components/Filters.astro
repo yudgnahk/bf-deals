@@ -1,6 +1,6 @@
 ---
 import { categoryLabel } from '../lib/deals';
-import { DEFAULT_SORT } from '../lib/constants';
+import { DEFAULT_REGION_FILTER, DEFAULT_SORT } from '../lib/constants';
 
 interface Props {
   categories: string[];
@@ -10,6 +10,8 @@ interface Props {
   showChips?: boolean;
   region?: string;
   placeholder?: string;
+  /** Rows with a copyable promo code; 0 hides the toggle. */
+  codeCount?: number;
 }
 
 const {
@@ -19,6 +21,7 @@ const {
   showChips = true,
   region = DEFAULT_REGION_FILTER,
   placeholder = 'Search deals… (e.g. NordVPN, hosting, AI)',
+  codeCount = 0,
 } = Astro.props;
 const defaultSort = DEFAULT_SORT;
 ---
@@ -46,6 +49,15 @@ const defaultSort = DEFAULT_SORT;
         <option value="most-liked">Most liked</option>
       </select>
     </div>
+    {
+      codeCount > 0 && (
+        <button type="button" class="chip chip--code" data-filter-code aria-pressed="false">
+          <span class="i18n-en">Has code</span>
+          <span class="i18n-vi">Có mã</span>
+          <span class="chip__count">{codeCount}</span>
+        </button>
+      )
+    }
   </div>
 
   {showChips && (
@@ -124,6 +136,7 @@ const defaultSort = DEFAULT_SORT;
     let category = 'all';
     let sort = DEFAULT_SORT;
     let query = '';
+    let codeOnly = false;
 
     if (sortSelect) sortSelect.value = sort;
 
@@ -180,7 +193,8 @@ const defaultSort = DEFAULT_SORT;
           category === 'all' || row.dataset.category === category;
         const searchOk =
           !query || (row.dataset.search || '').includes(query);
-        const show = !expired && regionOk && categoryOk && searchOk;
+        const codeOk = !codeOnly || row.dataset.hasCode === '1';
+        const show = !expired && regionOk && categoryOk && searchOk && codeOk;
         row.hidden = !show;
         if (show) visible += 1;
       }
@@ -213,6 +227,13 @@ const defaultSort = DEFAULT_SORT;
         });
         apply();
       });
+    });
+
+    const codeBtn = root.querySelector<HTMLButtonElement>('[data-filter-code]');
+    codeBtn?.addEventListener('click', () => {
+      codeOnly = !codeOnly;
+      codeBtn.setAttribute('aria-pressed', String(codeOnly));
+      apply();
     });
 
     sortSelect?.addEventListener('change', () => {

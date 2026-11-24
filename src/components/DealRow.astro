@@ -67,6 +67,7 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
   data-end-date={deal.end_date ?? ''}
   data-discount={pct ?? ''}
   data-added-at={deal.added_at ?? ''}
+  data-has-code={codes.length > 0 ? '1' : '0'}
   data-likes="0"
   data-search={searchBlob}
 >

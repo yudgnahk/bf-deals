@@ -322,3 +322,18 @@
 .toast {
   overflow-wrap: anywhere;
 }
+
+.chip--code {
+  justify-self: start;
+  white-space: nowrap;
+}
+
+@media (min-width: 720px) {
+  .search-row:has(.chip--code) {
+    grid-template-columns: 1fr auto auto;
+  }
+
+  .chip--code {
+    justify-self: stretch;
+  }
+}
