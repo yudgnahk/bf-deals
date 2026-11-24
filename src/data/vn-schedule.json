@@ -8,5 +8,7 @@
   { "deal_id": "cellphones-black-fire-day", "from": "2026-11-27", "to": "2026-11-30", "slots": "9h–11h · 20h–22h", "what": "Black Fire-Day Flash Sale, vòng quay voucher đến 2 triệu" },
   { "deal_id": "dmx-ngay-den-bat-den", "from": "2026-11-27", "to": "2026-11-30", "slots": null, "what": "Ngày Đen Bật Đèn – giảm tất cả; đồng giá overnight 27–29/11" },
   { "deal_id": "gearvn-bf-2026-showroom", "from": "2026-11-27", "to": "2026-11-28", "slots": null, "what": "Deal 99K tại showroom Hoàng Hoa Thám (TP.HCM), bốc thăm" },
-  { "deal_id": "samsung-vn-bf-tradein", "from": "2026-11-02", "to": "2026-11-30", "slots": null, "what": "Thu cũ lên đời tiết kiệm đến 23.5 triệu" }
+  { "deal_id": "samsung-vn-bf-tradein", "from": "2026-11-02", "to": "2026-11-30", "slots": null, "what": "Thu cũ lên đời tiết kiệm đến 23.5 triệu" },
+  { "deal_id": "viettel-store-bf-den-gia-do", "from": "2026-11-24", "to": "2026-11-26", "slots": "11h–14h", "what": "Flash sale Black Friday – Ngày đen giá đỏ" },
+  { "deal_id": "viettel-store-bf-den-gia-do", "from": "2026-11-27", "to": "2026-11-27", "slots": "11h–13h", "what": "Livestream trên fanpage Viettel Store" }
 ]

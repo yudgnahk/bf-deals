@@ -4,6 +4,24 @@ Black Friday 2026 is Friday 27 Nov; Cyber Monday is Monday 30 Nov. Many Vietnam 
 
 Last research pass: **25 Nov 2026** (second pass; every new row re-read by an independent checker). Live, source-verified deals are in `deals.json`.
 
+## Third pass, 25 Nov ~06:30 (+07)
+
+Added (each re-read by an independent checker): Snov.io, Elementor, Walmart, Target, Apple (gift card event), Samsung US, Epic Games Store, Amazon devices (Echo/Ring), Viettel Store. Cloudways code BFCM802 is printed again (ends 4 Dec).
+
+Rejected this pass:
+
+| Merchant | Why |
+| --- | --- |
+| **Scrimba** | Checker saw only the standing 50% annual price ($24.50/mo), no BF coupon. |
+| **Jotform** 60% | `/discounts/black-friday/` carries no 2026 date — could be last year's page. |
+| **Grammarly** 50% | Superhuman help article confirms 50% Pro but is undated; `/plans` shows no badge. Existing row kept as is. |
+| **Adobe** | special-offers and plans pages still render placeholders only. |
+| **Dell, Logitech** | Homepage BF banners with no year or end date. |
+| **Picsart** | Video-credit bonus, not a price cut. |
+| **Ahrefs** | Help center says Ahrefs does not run BF/CM discounts — stop rechecking. |
+
+Still no official offer on 25 Nov: Claude, Cursor, Midjourney, Perplexity, GitHub Copilot (only a non-BF usage promo), Gemini, JetBrains (`/store/black-friday/` 404), Vercel, Netlify, Linear, Raycast, Warp, Notion, Figma, Canva, Dropbox, Semrush, Webflow, Squarespace, Bitwarden, Lenovo, Xiaomi, Lazada, Tiki, Agoda, AEON, Nguyễn Kim. Framer starts 27 Nov 9:00 CET.
+
 ## Open after the 25 Nov pass — check in a normal browser
 
 | What | Why it is not on the site |
