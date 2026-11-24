@@ -1,0 +1,101 @@
+---
+// Copy-code, copy-link and share buttons for every page, plus one shared toast.
+---
+
+<div class="toast" data-toast role="status" aria-live="polite" hidden></div>
+
+<script>
+  const TOAST_MS = 2600;
+  const HINT_MS = 1400;
+  let toastTimer = 0;
+
+  const isVi = () => document.documentElement.getAttribute('data-lang') === 'vi';
+
+  function showToast(en: string, vi: string) {
+    const el = document.querySelector<HTMLElement>('[data-toast]');
+    if (!el) return;
+    el.textContent = isVi() ? vi : en;
+    el.hidden = false;
+    el.classList.add('is-visible');
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => {
+      el.classList.remove('is-visible');
+      el.hidden = true;
+    }, TOAST_MS);
+  }
+
+  async function writeClipboard(text: string): Promise<boolean> {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      const input = document.createElement('textarea');
+      input.value = text;
+      input.setAttribute('readonly', '');
+      input.style.position = 'fixed';
+      input.style.opacity = '0';
+      document.body.appendChild(input);
+      input.select();
+      const ok = document.execCommand('copy');
+      input.remove();
+      return ok;
+    }
+  }
+
+  function flashHint(btn: HTMLElement, done: string, idle: string) {
+    const hint = btn.querySelector('.coupon-code__hint, [data-hint]');
+    btn.classList.add('is-copied');
+    if (hint) hint.textContent = done;
+    window.setTimeout(() => {
+      btn.classList.remove('is-copied');
+      if (hint) hint.textContent = idle;
+    }, HINT_MS);
+  }
+
+  async function copyCode(btn: HTMLElement) {
+    const code = btn.dataset.copyCode || '';
+    if (!code) return;
+    if (!(await writeClipboard(code))) {
+      showToast(`Copy failed — the code is ${code}`, `Không copy được — mã là ${code}`);
+      return;
+    }
+    flashHint(btn, isVi() ? 'đã copy' : 'copied', 'copy');
+    showToast(`Code ${code} copied — paste it at checkout`, `Đã copy mã ${code} — dán khi thanh toán`);
+  }
+
+  async function copyLink(url: string) {
+    if (await writeClipboard(url)) {
+      showToast('Link copied', 'Đã copy link');
+    } else {
+      showToast('Copy failed — copy the address bar instead', 'Không copy được — copy thanh địa chỉ nhé');
+    }
+  }
+
+  async function share(btn: HTMLElement) {
+    const url = new URL(btn.dataset.shareUrl || '', window.location.origin).toString();
+    const text = btn.dataset.shareText || document.title;
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share({ title: text, text, url });
+        return;
+      } catch (err) {
+        if (err instanceof DOMException && err.name === 'AbortError') return;
+      }
+    }
+    await copyLink(url);
+  }
+
+  document.addEventListener('click', (e) => {
+    const target = e.target instanceof Element ? e.target : null;
+    const codeBtn = target?.closest<HTMLElement>('[data-copy-code]');
+    const shareBtn = target?.closest<HTMLElement>('[data-share-url]');
+    const linkBtn = target?.closest<HTMLElement>('[data-copy-link]');
+    const btn = codeBtn ?? shareBtn ?? linkBtn;
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (codeBtn) void copyCode(codeBtn);
+    else if (shareBtn) void share(shareBtn);
+    else if (linkBtn) void copyLink(new URL(linkBtn.dataset.copyLink || '', window.location.origin).toString());
+  });
+</script>

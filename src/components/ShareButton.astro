@@ -1,0 +1,27 @@
+---
+import { dealPath, dealShareText, type ShareDeal } from '../lib/share.ts';
+
+interface Props {
+  deal: ShareDeal & { region?: string };
+}
+
+const { deal } = Astro.props;
+const lang = deal.region === 'vn' ? 'vi' : 'en';
+---
+
+<a class="deal-link" href={dealPath(deal.id)} aria-label={`${deal.merchant} deal details`}>
+  <span class="i18n-en">Details</span>
+  <span class="i18n-vi">Chi tiết</span>
+</a>
+<button
+  type="button"
+  class="share-btn"
+  data-share-url={dealPath(deal.id)}
+  data-share-text={dealShareText(deal, lang)}
+  aria-label={`Share the ${deal.merchant} deal`}
+  title="Share"
+>
+  <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" /><path d="M12 3v12" /><path d="m7 8 5-5 5 5" />
+  </svg>
+</button>

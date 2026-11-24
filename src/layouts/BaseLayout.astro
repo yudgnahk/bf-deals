@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import '../styles/share.css';
+import ShareCopyInit from '../components/ShareCopyInit.astro';
 import { categoryLabel, getActiveDeals, getCategories } from '../lib/deals';
 import { DEFAULT_OG_IMAGE, OG_IMAGE_SIZE, SITE_NAME, categoryPath } from '../lib/seo';
 
@@ -122,6 +124,7 @@ const tickerLoop = [...ticker, ...ticker];
     <main id="main">
       <slot />
     </main>
+    <ShareCopyInit />
 
     <footer class="site-footer">
       <nav class="wrap footer-cats" aria-label="Browse by category">

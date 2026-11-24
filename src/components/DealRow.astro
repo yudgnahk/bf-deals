@@ -1,6 +1,7 @@
 ---
 import LikeButton from './LikeButton.astro';
 import MerchantIcon from './MerchantIcon.astro';
+import ShareButton from './ShareButton.astro';
 import {
   buildDealLink,
   categoryRank,
@@ -138,6 +139,7 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
 
   <div class="deal-row__actions">
     <LikeButton dealId={deal.id} compact />
+    <ShareButton deal={deal} />
     <span class="deal-row__cta" aria-hidden="true">
       <span class="deal-row__cta-label">View</span>
       →

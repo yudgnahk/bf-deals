@@ -57,3 +57,27 @@ test('VN page is Vietnamese and lists only vn rows', () => {
   assert.ok(regions.length > 0);
   assert.ok(regions.every((r) => r === 'vn'));
 });
+
+test('deal page has its own meta, Offer JSON-LD, merchant CTA and share links', () => {
+  const html = read('deal/hostinger-premium-199/index.html');
+  assert.match(html, /<link rel="canonical" href="https:\/\/[^"]+\/deal\/hostinger-premium-199\/"/);
+  assert.match(html, /<title>Hostinger: 85% off — Black Friday 2026/);
+  const types = jsonLdBlocks(html).flat().map((b) => b['@type']);
+  assert.deepEqual(types.sort(), ['BreadcrumbList', 'Offer']);
+  assert.match(html, /class="deal-page__cta" href="https:\/\/www\.hostinger\.com\//);
+  assert.match(html, /data-copy-link="\/deal\/hostinger-premium-199\/"/);
+  assert.match(html, /x\.com\/intent\/post\?url=https%3A%2F%2F/);
+  assert.match(read('sitemap-0.xml'), /\/deal\/hostinger-premium-199\/<\/loc>/);
+});
+
+test('deal rows link to their deal page and carry a share button', () => {
+  const html = read('index.html');
+  assert.match(html, /class="deal-link" href="\/deal\/[a-z0-9-]+\/"/);
+  assert.match(html, /class="share-btn" data-share-url="\/deal\/[a-z0-9-]+\/"/);
+  assert.match(html, /data-toast/);
+});
+
+test('VN deal page is Vietnamese', () => {
+  const html = read('deal/cellphones-black-fire-day/index.html');
+  assert.match(html, /<html lang="vi" data-lang="vi"/);
+});

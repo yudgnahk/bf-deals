@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DealRow from '../../components/DealRow.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import LikeButton from '../../components/LikeButton.astro';
+import LikesInit from '../../components/LikesInit.astro';
+import MerchantIcon from '../../components/MerchantIcon.astro';
+import {
+  buildDealLink,
+  categoryLabel,
+  extractPromoCodes,
+  formatDiscountBadge,
+  formatEndDate,
+  getActiveDeals,
+  getVnDeals,
+  parsePriceParts,
+  sortEndingSoon,
+  type Deal,
+} from '../../lib/deals';
+import { buildBreadcrumbJsonLd, categoryPath, ogImageFor } from '../../lib/seo';
+import {
+  buildOfferJsonLd,
+  dealPageDescription,
+  dealPageTitle,
+  dealPath,
+  dealShareText,
+  shareTargets,
+} from '../../lib/share.ts';
+
+const RELATED_LIMIT = 6;
+
+export function getStaticPaths() {
+  const byId = new Map<string, Deal>();
+  for (const deal of [...getActiveDeals(), ...getVnDeals()]) byId.set(deal.id, deal);
+  const all = [...byId.values()];
+  return all.map((deal) => ({ params: { id: deal.id }, props: { deal, all } }));
+}
+
+interface Props {
+  deal: Deal;
+  all: Deal[];
+}
+
+const { deal, all } = Astro.props;
+const isVn = deal.region === 'vn';
+const lang = isVn ? 'vi' : 'en';
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const path = dealPath(deal.id);
+const pageUrl = `${site}${path}`;
+const link = buildDealLink(deal);
+const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
+const codes = extractPromoCodes(deal);
+const badge = formatDiscountBadge(deal.discount_text);
+const prices = parsePriceParts(deal.price);
+const priceLine =
+  prices.original && prices.current ? `${prices.original} → ${prices.current}` : prices.raw;
+const shareText = dealShareText(deal, lang);
+const targets = shareTargets(pageUrl, shareText);
+const labelEn = categoryLabel(deal.category, 'en');
+const labelVi = categoryLabel(deal.category, 'vi');
+const backHref = isVn ? '/vn/' : categoryPath(deal.category);
+
+const related = sortEndingSoon(
+  all.filter((d) => d.id !== deal.id && d.category === deal.category && (d.region === 'vn') === isVn)
+).slice(0, RELATED_LIMIT);
+
+const jsonLd = [
+  buildOfferJsonLd(deal, pageUrl),
+  buildBreadcrumbJsonLd([
+    { name: 'Deals', url: `${site}/` },
+    isVn
+      ? { name: 'Việt Nam', url: `${site}/vn/` }
+      : { name: labelEn, url: `${site}${categoryPath(deal.category)}` },
+    { name: deal.merchant, url: pageUrl },
+  ]),
+];
+---
+
+<BaseLayout
+  title={dealPageTitle(deal)}
+  description={dealPageDescription(deal)}
+  path={path}
+  marqueeItems={[shareText]}
+  ogImage={isVn ? '/og/vn.png' : ogImageFor(deal.category)}
+  ogImageAlt={shareText}
+  forceLang={isVn ? 'vi' : undefined}
+>
+  <JsonLd slot="head" data={jsonLd} />
+
+  <section class="hero hero--category">
+    <div class="wrap">
+      <p class="hero__kicker">
+        <a href="/">Deals</a> /{' '}
+        <a href={backHref}>
+          {isVn ? 'Việt Nam' : (<><span class="i18n-en">{labelEn}</span><span class="i18n-vi">{labelVi}</span></>)}
+        </a>{' '}
+        / {deal.merchant}
+      </p>
+      <h1 class="deal-page__h1"><span>{deal.title}</span></h1>
+    </div>
+  </section>
+
+  <div class="wrap deal-page">
+    <article class="deal-page__card" data-deal-id={deal.id} data-likes="0">
+      <div class="featured-card__top">
+        <div class="featured-card__merchant">
+          <MerchantIcon deal={deal} large />
+          <strong>{deal.merchant}</strong>
+        </div>
+        {badge && <span class="pct-badge">{badge}</span>}
+        <LikeButton dealId={deal.id} />
+      </div>
+
+      {deal.discount_text && <p class="deal-page__discount">{deal.discount_text}</p>}
+      {priceLine && <p class="featured-card__price">{priceLine}</p>}
+
+      {
+        codes.length > 0 && (
+          <div class="deal-page__codes">
+            <p class="coupon-field__label">
+              <span class="i18n-en">Code printed on the official page — tap to copy</span>
+              <span class="i18n-vi">Mã in trên trang chính thức — bấm để copy</span>
+            </p>
+            {codes.map((code) => (
+              <button type="button" class="coupon-code coupon-code--big" data-copy-code={code}>
+                <code>{code}</code>
+                <span class="coupon-code__hint">copy</span>
+              </button>
+            ))}
+          </div>
+        )
+      }
+
+      <dl class="deal-page__facts">
+        <div>
+          <dt><span class="i18n-en">Ends</span><span class="i18n-vi">Hết hạn</span></dt>
+          <dd>{deal.end_date ? formatEndDate(deal.end_date) : (<><span class="i18n-en">No end date listed</span><span class="i18n-vi">Chưa ghi hạn</span></>)}</dd>
+        </div>
+        <div>
+          <dt><span class="i18n-en">Checked</span><span class="i18n-vi">Kiểm tra</span></dt>
+          <dd>{deal.verified_at}</dd>
+        </div>
+        <div>
+          <dt><span class="i18n-en">Source</span><span class="i18n-vi">Nguồn</span></dt>
+          <dd><a href={deal.source_url} rel="noopener noreferrer" target="_blank">{new URL(deal.source_url).hostname}</a></dd>
+        </div>
+      </dl>
+
+      {deal.notes && <p class="deal-page__notes">{deal.notes}</p>}
+
+      <a class="deal-page__cta" href={link.href} rel={rel} target="_blank">
+        <span class="i18n-en">Get the deal on {deal.merchant} ↗</span>
+        <span class="i18n-vi">Xem deal trên {deal.merchant} ↗</span>
+      </a>
+      {
+        link.isAffiliate && (
+          <p class="deal-page__aff">
+            <span class="i18n-en">Affiliate link — we may earn a commission at no extra cost to you.</span>
+            <span class="i18n-vi">Link affiliate — mình có thể nhận hoa hồng, bạn không tốn thêm.</span>
+          </p>
+        )
+      }
+    </article>
+
+    <section class="deal-page__share" aria-label="Share this deal">
+      <h2><span class="i18n-en">Share this deal</span><span class="i18n-vi">Chia sẻ deal</span></h2>
+      <div class="share-row">
+        <button type="button" class="share-chip" data-share-url={path} data-share-text={shareText}>
+          <span class="i18n-en">Share…</span><span class="i18n-vi">Chia sẻ…</span>
+        </button>
+        <button type="button" class="share-chip" data-copy-link={path}>
+          <span class="i18n-en">Copy link</span><span class="i18n-vi">Copy link</span>
+        </button>
+        {
+          targets.map((t) => (
+            <a class="share-chip" href={t.href} target="_blank" rel="noopener noreferrer">{t.name}</a>
+          ))
+        }
+      </div>
+    </section>
+
+    {
+      related.length > 0 && (
+        <section class="deal-page__related">
+          <h2>
+            <span class="i18n-en">More {labelEn.toLowerCase()} deals</span>
+            <span class="i18n-vi">Deal {labelVi} khác</span>
+          </h2>
+          <div class="deal-list">
+            {related.map((d) => <DealRow deal={d} />)}
+          </div>
+          <p><a href={backHref}>
+            <span class="i18n-en">See all →</span><span class="i18n-vi">Xem tất cả →</span>
+          </a></p>
+        </section>
+      )
+    }
+  </div>
+  <LikesInit />
+</BaseLayout>
