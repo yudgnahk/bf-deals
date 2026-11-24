@@ -81,3 +81,11 @@ test('VN deal page is Vietnamese', () => {
   const html = read('deal/cellphones-black-fire-day/index.html');
   assert.match(html, /<html lang="vi" data-lang="vi"/);
 });
+
+test('VN page shows the 25–30/11 schedule with links to deal pages', () => {
+  const html = read('vn/index.html');
+  assert.match(html, /Lịch săn sale 25–30\/11/);
+  const days = [...html.matchAll(/class="vn-day" data-date="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(days, ['2026-11-25', '2026-11-26', '2026-11-27', '2026-11-28', '2026-11-29', '2026-11-30']);
+  assert.match(html, /<a href="\/deal\/cellphones-black-fire-day\/">CellphoneS<\/a>/);
+});

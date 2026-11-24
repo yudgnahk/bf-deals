@@ -4,6 +4,7 @@ import DealBoard from '../../components/DealBoard.astro';
 import EndingSoon from '../../components/EndingSoon.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import LikesInit from '../../components/LikesInit.astro';
+import VnSchedule from '../../components/VnSchedule.astro';
 import {
   formatDiscountBadge,
   getCategories,
@@ -53,6 +54,8 @@ const marqueeItems = deals
       </p>
     </div>
   </section>
+
+  <VnSchedule />
 
   <EndingSoon deals={deals} />
 
