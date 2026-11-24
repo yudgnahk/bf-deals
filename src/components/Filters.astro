@@ -9,9 +9,17 @@ interface Props {
   /** Category pages already scope the list, so they hide the chips. */
   showChips?: boolean;
   region?: string;
+  placeholder?: string;
 }
 
-const { categories, counts, total, showChips = true, region = DEFAULT_REGION_FILTER } = Astro.props;
+const {
+  categories,
+  counts,
+  total,
+  showChips = true,
+  region = DEFAULT_REGION_FILTER,
+  placeholder = 'Search deals… (e.g. NordVPN, hosting, AI)',
+} = Astro.props;
 const defaultSort = DEFAULT_SORT;
 ---
 
@@ -22,7 +30,7 @@ const defaultSort = DEFAULT_SORT;
       id="deal-search"
       class="search-input"
       type="search"
-      placeholder="Search deals… (e.g. NordVPN, hosting, AI)"
+      placeholder={placeholder}
       data-search
       autocomplete="off"
     />

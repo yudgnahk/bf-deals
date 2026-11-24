@@ -1373,9 +1373,12 @@ html[data-lang='vi'] .hero h1 span.i18n-vi {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1px;
-  background: var(--line-2);
+  background: var(--card);
   border: 1px solid var(--line-2);
+}
+
+.ending-soon__list li {
+  box-shadow: 1px 1px 0 var(--line-2);
 }
 
 .ending-soon__list a {
@@ -1425,4 +1428,14 @@ html[data-lang='vi'] .hero h1 span.i18n-vi {
   flex-wrap: wrap;
   gap: 0.35rem 1rem;
   font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .nav {
+    gap: 0.7rem;
+  }
+
+  .nav .nav__extra {
+    display: none;
+  }
 }

@@ -10,6 +10,7 @@ interface Props {
   lastVerified: string;
   showChips?: boolean;
   region?: string;
+  searchPlaceholder?: string;
 }
 
 const {
@@ -19,12 +20,13 @@ const {
   lastVerified,
   showChips = true,
   region = DEFAULT_REGION_FILTER,
+  searchPlaceholder,
 } = Astro.props;
 const initialCount = deals.filter((d) => matchesRegion(d, region)).length;
 ---
 
 <div class="board wrap">
-  <Filters categories={categories} counts={counts} total={deals.length} showChips={showChips} region={region} />
+  <Filters categories={categories} counts={counts} total={deals.length} showChips={showChips} region={region} placeholder={searchPlaceholder} />
 
   <div class="results-meta">
     <p>

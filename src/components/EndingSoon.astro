@@ -9,7 +9,10 @@ interface Props {
 }
 
 const { deals, days = 3, limit = 8 } = Astro.props;
-const soon = endingWithin(deals, days).slice(0, limit);
+// One tile per merchant so a retailer with many doorbusters doesn't fill the strip.
+const soon = endingWithin(deals, days)
+  .filter((deal, i, list) => list.findIndex((d) => d.merchant === deal.merchant) === i)
+  .slice(0, limit);
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const shortDate = (iso: string) => {
   const [, m, d] = iso.split('-');
