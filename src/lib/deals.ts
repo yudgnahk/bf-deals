@@ -23,6 +23,8 @@ export interface Deal {
   notes?: string;
   /** When true, deal is omitted from the site (kept in data for later). */
   hidden?: boolean;
+  /** Date or ISO instant the row was first added; drives the "New" badge. */
+  added_at?: string;
 }
 
 export interface AffiliateProgramConfig {

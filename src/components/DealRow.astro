@@ -11,6 +11,7 @@ import {
   parsePriceParts,
   type Deal,
 } from '../lib/deals';
+import { isNewDeal, newUntil } from '../lib/freshness';
 
 interface Props {
   deal: Deal;
@@ -23,6 +24,8 @@ const pct = parseDiscountPercent(deal.discount_text);
 const badge = formatDiscountBadge(deal.discount_text);
 const prices = parsePriceParts(deal.price);
 const days = daysUntilEnd(deal.end_date);
+const showNew = isNewDeal(deal.added_at);
+const newUntilIso = newUntil(deal.added_at);
 
 let endsLabel: string | null = null;
 if (days !== null) {
@@ -62,6 +65,7 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
   data-cat-rank={categoryRank(deal.category)}
   data-end-date={deal.end_date ?? ''}
   data-discount={pct ?? ''}
+  data-added-at={deal.added_at ?? ''}
   data-likes="0"
   data-search={searchBlob}
 >
@@ -77,6 +81,14 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
     <div class="deal-row__title-line">
       <MerchantIcon deal={deal} />
       <span class="deal-row__merchant">{deal.merchant}</span>
+      {
+        showNew && (
+          <span class="new-tag" data-new-until={newUntilIso}>
+            <span class="i18n-en">New</span>
+            <span class="i18n-vi">Mới</span>
+          </span>
+        )
+      }
       {
         deal.aff_status === 'hook' && (
           <span class="hook-tag">

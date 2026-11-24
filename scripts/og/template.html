@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../public/fonts/fonts.css" />
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #070707; }
+  body { font-family: 'Syne', sans-serif; color: #f4f4ee; position: relative; }
+  .frame { position: absolute; inset: 56px 72px; display: flex; flex-direction: column; }
+  .brand { display: flex; align-items: center; gap: 16px; font-weight: 800; font-size: 30px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .mark { width: 56px; height: 56px; background: #d2ff3a; color: #111; display: grid; place-items: center; font-size: 26px; }
+  .brand span { color: #d2ff3a; }
+  .kicker { margin-top: auto; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.16em; text-transform: uppercase; color: #d2ff3a; }
+  h1 { margin: 14px 0 0; width: max-content; max-width: none; font-weight: 800; font-size: 128px; line-height: 0.84; letter-spacing: -0.06em; text-transform: uppercase; }
+  h1 em { font-style: normal; color: #d2ff3a; display: block; }
+  .foot { margin-top: 36px; display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 22px; color: #8c8c82; border-top: 1px solid #222; padding-top: 22px; }
+  .stripe { position: absolute; right: 0; top: 0; bottom: 0; width: 18px; background: #d2ff3a; }
+</style>
+</head>
+<body>
+  <div class="stripe"></div>
+  <div class="frame">
+    <div class="brand"><div class="mark">bf</div>Deals <span>2026</span></div>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div class="foot"><span>Checked on official merchant pages</span><span>BF 27 Nov · CM 30 Nov</span></div>
+  </div>
+  <script>
+    const p = new URLSearchParams(location.search);
+    document.getElementById('kicker').textContent = p.get('kicker') || '';
+    const t = document.getElementById('title');
+    t.textContent = p.get('line1') || 'Black Friday';
+    if (p.get('line2')) {
+      const em = document.createElement('em');
+      em.textContent = p.get('line2');
+      t.appendChild(em);
+    }
+    document.fonts.ready.then(() => {
+      const max = document.querySelector('.frame').clientWidth;
+      let size = 128;
+      while (t.scrollWidth > max && size > 48) {
+        size -= 4;
+        t.style.fontSize = size + 'px';
+      }
+      document.body.setAttribute('data-ready', '1');
+    });
+  </script>
+</body>
+</html>

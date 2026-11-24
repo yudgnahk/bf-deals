@@ -6,9 +6,11 @@ interface Props {
   categories: string[];
   counts: Record<string, number>;
   total: number;
+  /** Category pages already scope the list, so they hide the chips. */
+  showChips?: boolean;
 }
 
-const { categories, counts, total } = Astro.props;
+const { categories, counts, total, showChips = true } = Astro.props;
 const defaultSort = DEFAULT_SORT;
 ---
 
@@ -26,18 +28,18 @@ const defaultSort = DEFAULT_SORT;
     <div class="select-wrap">
       <label class="visually-hidden" for="sort-select">Sort</label>
       <select id="sort-select" data-sort>
+        <option value="default" selected={defaultSort === 'default'}>Top picks</option>
         <option value="ending-soon" selected={defaultSort === 'ending-soon'}>
           Ending soon
         </option>
+        <option value="newest">Newest</option>
         <option value="biggest-discount">Biggest discount</option>
         <option value="most-liked">Most liked</option>
-        <option value="default" selected={defaultSort === 'default'}>
-          Default
-        </option>
       </select>
     </div>
   </div>
 
+  {showChips && (
   <div class="chip-row" role="group" aria-label="Category">
     <button type="button" class="chip" data-filter-category="all" aria-pressed="true">
       All <span class="chip__count">{total}</span>
@@ -57,6 +59,7 @@ const defaultSort = DEFAULT_SORT;
       ))
     }
   </div>
+  )}
 
   {/* Region filter hidden for v1: VN deals are hidden:true; site is international-only. */}
 </section>
@@ -125,9 +128,6 @@ const defaultSort = DEFAULT_SORT;
       let ordered = [...rows];
       if (sort === 'ending-soon') {
         ordered.sort((a, b) => {
-          const ar = Number(a.dataset.catRank || 200);
-          const br = Number(b.dataset.catRank || 200);
-          if (ar !== br) return ar - br;
           const ae = a.dataset.endDate || '';
           const be = b.dataset.endDate || '';
           if (!ae && !be) return 0;
@@ -135,6 +135,10 @@ const defaultSort = DEFAULT_SORT;
           if (!be) return -1;
           return ae.localeCompare(be);
         });
+      } else if (sort === 'newest') {
+        ordered.sort((a, b) =>
+          (b.dataset.addedAt || '').localeCompare(a.dataset.addedAt || '')
+        );
       } else if (sort === 'biggest-discount') {
         ordered.sort((a, b) => {
           const ar = Number(a.dataset.catRank || 200);
@@ -254,6 +258,26 @@ const defaultSort = DEFAULT_SORT;
     });
   }
 
+  function expireNewBadges() {
+    const now = Date.now();
+    document.querySelectorAll<HTMLElement>('[data-new-until]').forEach((el) => {
+      const until = Date.parse(el.dataset.newUntil || '');
+      if (Number.isFinite(until) && now > until) el.remove();
+    });
+  }
+
+  function initSortFromUrl() {
+    const select = document.querySelector('[data-sort]') as HTMLSelectElement | null;
+    const wanted = new URLSearchParams(window.location.search).get('sort');
+    if (!select || !wanted) return;
+    if (Array.from(select.options).some((o) => o.value === wanted)) {
+      select.value = wanted;
+      select.dispatchEvent(new Event('change'));
+    }
+  }
+
+  expireNewBadges();
   initFilters();
+  initSortFromUrl();
   initCopyCodes();
 </script>

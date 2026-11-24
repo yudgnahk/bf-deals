@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import DealRow from '../components/DealRow.astro';
+import DealBoard from '../components/DealBoard.astro';
+import EndingSoon from '../components/EndingSoon.astro';
 import FeaturedDeal from '../components/FeaturedDeal.astro';
-import Filters from '../components/Filters.astro';
+import JsonLd from '../components/JsonLd.astro';
 import LikesInit from '../components/LikesInit.astro';
 import TopLiked from '../components/TopLiked.astro';
 import {
@@ -12,11 +13,10 @@ import {
   getCategoryCounts,
   getFeaturedDeals,
   getLastVerifiedDate,
-  matchesRegion,
   parseDiscountPercent,
   sortEndingSoon,
-  DEFAULT_REGION_FILTER,
 } from '../lib/deals';
+import { buildItemListJsonLd, buildWebsiteJsonLd } from '../lib/seo';
 
 const activeDeals = sortEndingSoon(getActiveDeals());
 const categories = getCategories(activeDeals);
@@ -24,12 +24,14 @@ const counts = getCategoryCounts(activeDeals);
 const lastVerified = getLastVerifiedDate(activeDeals);
 const featured = getFeaturedDeals(activeDeals, 5);
 const [heroDeal, ...sideDeals] = featured;
-const listDeals = activeDeals;
-
-const initialVisible = activeDeals.filter((d) =>
-  matchesRegion(d, DEFAULT_REGION_FILTER)
-);
-const initialCount = initialVisible.length;
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const jsonLd = [
+  buildWebsiteJsonLd(site),
+  buildItemListJsonLd(activeDeals, {
+    name: 'Black Friday & Cyber Monday 2026 deals',
+    pageUrl: `${site}/`,
+  }),
+];
 
 const checkedLabel = lastVerified
   ? lastVerified.replace(/^(\d{4})-(\d{2})-(\d{2})$/, (_, y, m, d) => {
@@ -55,7 +57,9 @@ const marqueeItems = activeDeals
   description="International Black Friday and Cyber Monday 2026 deals for AI tools, developer tools, SaaS, hosting, and more. Prices verified from official merchant pages."
   path="/"
   marqueeItems={marqueeItems}
+  ogImage="/og/site.png"
 >
+  <JsonLd slot="head" data={jsonLd} />
   <section class="hero">
     <div class="wrap hero__grid">
       <div>
@@ -126,24 +130,14 @@ const marqueeItems = activeDeals
     <TopLiked />
   </div>
 
-  <div class="board wrap">
-    <Filters categories={categories} counts={counts} total={activeDeals.length} />
+  <EndingSoon deals={activeDeals} />
 
-    <div class="results-meta">
-      <p>
-        <span data-deal-count>{initialCount}</span> deals
-      </p>
-      <p>Last checked {lastVerified || '—'}</p>
-    </div>
-
-    <div class="deal-list" data-deal-list>
-      {listDeals.map((deal) => <DealRow deal={deal} />)}
-    </div>
-    <p class="empty-state" data-empty hidden>
-      <span class="i18n-en">No deals match these filters.</span>
-      <span class="i18n-vi">Không có deal khớp bộ lọc này.</span>
-    </p>
-  </div>
+  <DealBoard
+    deals={activeDeals}
+    categories={categories}
+    counts={counts}
+    lastVerified={lastVerified}
+  />
   <LikesInit />
 
   <script>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import DealBoard from '../../components/DealBoard.astro';
+import EndingSoon from '../../components/EndingSoon.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import LikesInit from '../../components/LikesInit.astro';
+import {
+  categoryLabel,
+  formatDiscountBadge,
+  getActiveDeals,
+  getCategories,
+  getCategoryCounts,
+  getLastVerifiedDate,
+  sortEndingSoon,
+} from '../../lib/deals';
+import {
+  buildBreadcrumbJsonLd,
+  buildItemListJsonLd,
+  categoryDescription,
+  categoryPath,
+  categoryTitle,
+  ogImageFor,
+} from '../../lib/seo';
+
+export function getStaticPaths() {
+  return getCategories(getActiveDeals()).map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const allActive = sortEndingSoon(getActiveDeals());
+const deals = allActive.filter((d) => d.category === slug);
+const categories = getCategories(allActive);
+const counts = getCategoryCounts(allActive);
+const lastVerified = getLastVerifiedDate(deals);
+const labelEn = categoryLabel(slug, 'en');
+const labelVi = categoryLabel(slug, 'vi');
+const path = categoryPath(slug);
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const pageUrl = `${site}${path}`;
+
+const jsonLd = [
+  buildBreadcrumbJsonLd([
+    { name: 'Deals', url: `${site}/` },
+    { name: labelEn, url: pageUrl },
+  ]),
+  buildItemListJsonLd(deals, { name: `Black Friday 2026 ${labelEn} deals`, pageUrl }),
+];
+
+const marqueeItems = deals
+  .map((d) => {
+    const badge = formatDiscountBadge(d.discount_text);
+    return badge ? `${d.merchant} · ${badge}` : null;
+  })
+  .filter((x): x is string => Boolean(x))
+  .slice(0, 14);
+---
+
+<BaseLayout
+  title={categoryTitle(labelEn, deals.length)}
+  description={categoryDescription(labelEn, deals.length, lastVerified)}
+  path={path}
+  marqueeItems={marqueeItems}
+  ogImage={ogImageFor(slug)}
+  ogImageAlt={`Black Friday 2026 ${labelEn} deals — BF Deals 2026`}
+>
+  <JsonLd slot="head" data={jsonLd} />
+
+  <section class="hero hero--category">
+    <div class="wrap">
+      <p class="hero__kicker">
+        <a href="/">Deals</a> / {labelEn} — checked {lastVerified || '—'}
+      </p>
+      <h1>
+        <span class="i18n-en">{labelEn}</span>
+        <span class="i18n-vi">{labelVi}</span>
+      </h1>
+      <p class="hero__lede">
+        <span class="i18n-en">
+          {deals.length} Black Friday &amp; Cyber Monday 2026 {labelEn.toLowerCase()} deals,
+          copied from official merchant pages. Unknown prices or end dates stay blank.
+        </span>
+        <span class="i18n-vi">
+          {deals.length} deal {labelVi} Black Friday &amp; Cyber Monday 2026, copy từ trang
+          merchant chính thức. Giá hoặc hạn chưa rõ thì để trống.
+        </span>
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <CategoryNav categories={categories} counts={counts} current={slug} />
+  </div>
+
+  <EndingSoon deals={deals} />
+
+  <div id="deals">
+    <DealBoard
+      deals={deals}
+      categories={[slug]}
+      counts={counts}
+      lastVerified={lastVerified}
+      showChips={false}
+    />
+  </div>
+  <LikesInit />
+</BaseLayout>

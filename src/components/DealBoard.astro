@@ -1,0 +1,35 @@
+---
+import DealRow from './DealRow.astro';
+import Filters from './Filters.astro';
+import { DEFAULT_REGION_FILTER, matchesRegion, type Deal } from '../lib/deals';
+
+interface Props {
+  deals: Deal[];
+  categories: string[];
+  counts: Record<string, number>;
+  lastVerified: string;
+  showChips?: boolean;
+}
+
+const { deals, categories, counts, lastVerified, showChips = true } = Astro.props;
+const initialCount = deals.filter((d) => matchesRegion(d, DEFAULT_REGION_FILTER)).length;
+---
+
+<div class="board wrap">
+  <Filters categories={categories} counts={counts} total={deals.length} showChips={showChips} />
+
+  <div class="results-meta">
+    <p>
+      <span data-deal-count>{initialCount}</span> deals
+    </p>
+    <p>Last checked {lastVerified || '—'}</p>
+  </div>
+
+  <div class="deal-list" data-deal-list>
+    {deals.map((deal) => <DealRow deal={deal} />)}
+  </div>
+  <p class="empty-state" data-empty hidden>
+    <span class="i18n-en">No deals match these filters.</span>
+    <span class="i18n-vi">Không có deal khớp bộ lọc này.</span>
+  </p>
+</div>

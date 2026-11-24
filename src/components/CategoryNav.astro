@@ -1,0 +1,32 @@
+---
+import { categoryLabel } from '../lib/deals';
+import { categoryPath } from '../lib/seo';
+
+interface Props {
+  categories: string[];
+  counts: Record<string, number>;
+  current?: string;
+}
+
+const { categories, counts, current } = Astro.props;
+---
+
+<nav class="cat-nav" aria-label="Deal categories">
+  <a class="chip" href="/#deals" aria-current={current ? undefined : 'page'}>
+    <span class="i18n-en">All deals</span>
+    <span class="i18n-vi">Tất cả</span>
+  </a>
+  {
+    categories.map((cat) => (
+      <a
+        class="chip"
+        href={categoryPath(cat)}
+        aria-current={cat === current ? 'page' : undefined}
+      >
+        <span class="i18n-en">{categoryLabel(cat, 'en')}</span>
+        <span class="i18n-vi">{categoryLabel(cat, 'vi')}</span>
+        <span class="chip__count">{counts[cat] ?? 0}</span>
+      </a>
+    ))
+  }
+</nav>

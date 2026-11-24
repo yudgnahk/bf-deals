@@ -1,11 +1,17 @@
 ---
 import '../styles/global.css';
+import { categoryLabel, getActiveDeals, getCategories } from '../lib/deals';
+import { DEFAULT_OG_IMAGE, OG_IMAGE_SIZE, SITE_NAME, categoryPath } from '../lib/seo';
 
 interface Props {
   title: string;
   description?: string;
   path?: string;
   marqueeItems?: string[];
+  /** Site-relative path to a 1200×630 PNG. */
+  ogImage?: string;
+  ogImageAlt?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -13,11 +19,15 @@ const {
   description = 'Black Friday & Cyber Monday 2026 deals for AI tools, developer tools, SaaS, hosting, and more. Prices verified from official merchant pages.',
   path = '/',
   marqueeItems = [],
+  ogImage: ogImagePath = DEFAULT_OG_IMAGE,
+  ogImageAlt = 'BF Deals 2026 — Black Friday & Cyber Monday deals',
+  noindex = false,
 } = Astro.props;
 
 const site = Astro.site?.toString().replace(/\/$/, '') || 'https://bf-deals.haleduykhang.workers.dev';
 const canonical = `${site}${path}`;
-const ogImage = `${site}/og.svg`;
+const ogImage = `${site}${ogImagePath}`;
+const footerCategories = getCategories(getActiveDeals());
 const ticker =
   marqueeItems.length > 0
     ? marqueeItems
@@ -35,25 +45,32 @@ const tickerLoop = [...ticker, ...ticker];
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow'} />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="BF Deals 2026" />
+    <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content={String(OG_IMAGE_SIZE.width)} />
+    <meta property="og:image:height" content={String(OG_IMAGE_SIZE.height)} />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/fonts/syne-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/fonts/fonts.css" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <slot name="head" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -85,6 +102,10 @@ const tickerLoop = [...ticker, ...ticker];
         </a>
         <nav class="nav" aria-label="Primary">
           <a href="/#deals">Deals</a>
+          <a href="/?sort=ending-soon#deals">
+            <span class="i18n-en">Ending soon</span>
+            <span class="i18n-vi">Sắp hết</span>
+          </a>
           <a href="/about/">About</a>
           <div class="lang-toggle" role="group" aria-label="Language">
             <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
@@ -99,6 +120,14 @@ const tickerLoop = [...ticker, ...ticker];
     </main>
 
     <footer class="site-footer">
+      <nav class="wrap footer-cats" aria-label="Browse by category">
+        <p>Browse by category</p>
+        <ul>
+          {footerCategories.map((cat) => (
+            <li><a href={categoryPath(cat)}>{categoryLabel(cat, 'en')} deals</a></li>
+          ))}
+        </ul>
+      </nav>
       <div class="wrap footer-grid">
         <div>
           <p>
