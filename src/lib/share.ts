@@ -1,3 +1,4 @@
+import { formatDiscountBadge } from './discount.ts';
 import { SITE_NAME } from './seo.ts';
 
 export interface ShareDeal {
@@ -77,5 +78,25 @@ export function buildOfferJsonLd(deal: ShareDeal, pageUrl: string) {
     ...(deal.discount_text ? { description: deal.discount_text } : {}),
     ...(deal.end_date ? { validThrough: `${deal.end_date}T23:59:59+07:00` } : {}),
     seller: { '@type': 'Organization', name: deal.merchant },
+  };
+}
+
+export interface OgCard {
+  kicker: string;
+  line1: string;
+  line2: string;
+}
+
+export function dealOgPath(id: string): string {
+  return `/og/deal/${id}.png`;
+}
+
+/** Text for the per-deal 1200×630 card rendered by scripts/gen-og.mjs. */
+export function dealOgCard(deal: ShareDeal, lang: 'en' | 'vi' = 'en'): OgCard {
+  const ends = deal.end_date ? shortEndDate(deal.end_date, lang) : null;
+  return {
+    kicker: ends ? `Black Friday 2026 · ${ends}` : 'Black Friday & Cyber Monday 2026',
+    line1: deal.merchant,
+    line2: formatDiscountBadge(deal.discount_text) ?? 'deal',
   };
 }

@@ -1,4 +1,6 @@
 ---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DealRow from '../../components/DealRow.astro';
 import JsonLd from '../../components/JsonLd.astro';
@@ -20,6 +22,7 @@ import {
 import { buildBreadcrumbJsonLd, categoryPath, ogImageFor } from '../../lib/seo';
 import {
   buildOfferJsonLd,
+  dealOgPath,
   dealPageDescription,
   dealPageTitle,
   dealPath,
@@ -59,6 +62,8 @@ const targets = shareTargets(pageUrl, shareText);
 const labelEn = categoryLabel(deal.category, 'en');
 const labelVi = categoryLabel(deal.category, 'vi');
 const backHref = isVn ? '/vn/' : categoryPath(deal.category);
+const hasDealCard = existsSync(join(process.cwd(), 'public', dealOgPath(deal.id)));
+const ogImage = hasDealCard ? dealOgPath(deal.id) : isVn ? '/og/vn.png' : ogImageFor(deal.category);
 
 const related = sortEndingSoon(
   all.filter((d) => d.id !== deal.id && d.category === deal.category && (d.region === 'vn') === isVn)
@@ -81,7 +86,7 @@ const jsonLd = [
   description={dealPageDescription(deal)}
   path={path}
   marqueeItems={[shareText]}
-  ogImage={isVn ? '/og/vn.png' : ogImageFor(deal.category)}
+  ogImage={ogImage}
   ogImageAlt={shareText}
   forceLang={isVn ? 'vi' : undefined}
 >

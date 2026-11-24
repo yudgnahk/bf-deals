@@ -42,7 +42,7 @@ test('robots.txt and sitemap include category pages', () => {
 });
 
 test('every OG image referenced by a page exists', () => {
-  for (const page of ['index.html', 'about/index.html', 'category/ai/index.html', 'vn/index.html']) {
+  for (const page of ['index.html', 'about/index.html', 'category/ai/index.html', 'vn/index.html', 'deal/hostinger-premium-199/index.html', 'deal/cellphones-black-fire-day/index.html']) {
     const m = read(page).match(/property="og:image" content="https?:\/\/[^/]+(\/[^"]+)"/);
     assert.ok(m, `${page} has og:image`);
     assert.ok(existsSync(join(dist, m[1])), `${m[1]} exists`);

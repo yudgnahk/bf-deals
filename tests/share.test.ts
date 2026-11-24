@@ -2,6 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   buildOfferJsonLd,
+  dealOgCard,
+  dealOgPath,
   dealPageDescription,
   dealPageTitle,
   dealPath,
@@ -62,4 +64,23 @@ test('Offer JSON-LD points at the merchant and keeps validThrough optional', () 
   assert.equal(ld.validThrough, '2026-11-30T23:59:59+07:00');
   assert.equal(ld.seller.name, 'Acme');
   assert.equal('validThrough' in buildOfferJsonLd(bare, 'https://x/'), false);
+});
+
+test('OG card shows merchant, badge and end date; never invents a badge', () => {
+  assert.deepEqual(dealOgCard(deal), {
+    kicker: 'Black Friday 2026 · ends 30 Nov',
+    line1: 'Acme',
+    line2: '-50%',
+  });
+  assert.deepEqual(dealOgCard(bare), {
+    kicker: 'Black Friday & Cyber Monday 2026',
+    line1: 'Acme',
+    line2: 'deal',
+  });
+  assert.equal(dealOgCard({ ...deal, discount_text: 'Giảm đến 50%' }, 'vi').kicker, 'Black Friday 2026 · hết hạn 30/11');
+  assert.equal(dealOgCard({ ...deal, discount_text: 'Up to 78% off' }).line2, 'up to 78%');
+});
+
+test('OG image path is per deal under /og/deal/', () => {
+  assert.equal(dealOgPath('acme-bf-50'), '/og/deal/acme-bf-50.png');
 });
