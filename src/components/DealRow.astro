@@ -1,4 +1,5 @@
 ---
+import CouponButton from './CouponButton.astro';
 import LikeButton from './LikeButton.astro';
 import MerchantIcon from './MerchantIcon.astro';
 import ShareButton from './ShareButton.astro';
@@ -123,10 +124,7 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
     {
       codes.length > 0 &&
         codes.slice(0, 1).map((code) => (
-          <button type="button" class="coupon-code" data-copy-code={code}>
-            <code>{code}</code>
-            <span class="coupon-code__hint">copy</span>
-          </button>
+          <CouponButton deal={deal} code={code} />
         ))
     }
   {

@@ -42,8 +42,9 @@
     }
   }
 
-  function flashHint(btn: HTMLElement, done: string, idle: string) {
-    const hint = btn.querySelector('.coupon-code__hint, [data-hint]');
+  function flashHint(btn: HTMLElement, done: string) {
+    const hint = btn.querySelector<HTMLElement>('.coupon-code__hint, [data-hint]');
+    const idle = hint?.dataset.hintIdle ?? 'copy';
     btn.classList.add('is-copied');
     if (hint) hint.textContent = done;
     window.setTimeout(() => {
@@ -59,8 +60,15 @@
       showToast(`Copy failed — the code is ${code}`, `Không copy được — mã là ${code}`);
       return;
     }
-    flashHint(btn, isVi() ? 'đã copy' : 'copied', 'copy');
-    showToast(`Code ${code} copied — paste it at checkout`, `Đã copy mã ${code} — dán khi thanh toán`);
+    flashHint(btn, isVi() ? 'đã copy' : 'copied');
+    if (btn.dataset.autoApplied) {
+      showToast(
+        `Code ${code} copied — it should apply by itself; paste it if not`,
+        `Đã copy mã ${code} — mã thường tự áp dụng, nếu không thì dán vào`
+      );
+    } else {
+      showToast(`Code ${code} copied — paste it at checkout`, `Đã copy mã ${code} — dán khi thanh toán`);
+    }
   }
 
   async function copyLink(url: string) {

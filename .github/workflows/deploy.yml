@@ -29,6 +29,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Build-time "today" (expiry, ending-soon) must match the site's Asia/Saigon day, not UTC.
+          TZ: Asia/Ho_Chi_Minh
 
       - name: Check for Cloudflare secrets
         id: secrets

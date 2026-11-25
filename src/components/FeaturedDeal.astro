@@ -1,4 +1,5 @@
 ---
+import CouponButton from './CouponButton.astro';
 import LikeButton from './LikeButton.astro';
 import MerchantIcon from './MerchantIcon.astro';
 import ShareButton from './ShareButton.astro';
@@ -83,10 +84,7 @@ const priceLine =
     codes.length > 0 && (
       <div class="coupon-field">
         {codes.slice(0, hero ? 2 : 1).map((code) => (
-          <button type="button" class="coupon-code" data-copy-code={code}>
-            <code>{code}</code>
-            <span class="coupon-code__hint">copy</span>
-          </button>
+          <CouponButton deal={deal} code={code} />
         ))}
       </div>
     )

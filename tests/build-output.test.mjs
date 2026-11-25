@@ -104,3 +104,9 @@ test('home clock renders phase labels in both languages', () => {
   assert.match(html, /data-phase-label="vi"[^>]*>[^<]+</);
   assert.match(html, /data-departure-clock/);
 });
+
+test('auto-applied codes are marked and keep a copy button', () => {
+  const html = read('deal/ai-toolbox-bf-50/index.html');
+  assert.match(html, /data-copy-code="BLACKFRIDAY" data-auto-applied="1"/);
+  assert.match(html, /data-hint-idle="auto"/);
+});

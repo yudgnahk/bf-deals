@@ -143,6 +143,17 @@ const defaultSort = DEFAULT_SORT;
     const rows = Array.from(list.querySelectorAll<HTMLElement>('.deal-row'));
     const defaultOrder = rows.map((r) => r);
 
+    // Counts follow the live rows so chips never promise deals that expired after the build.
+    function updateChipCounts(catCounts: Record<string, number>, allCount: number, codeCount: number) {
+      root?.querySelectorAll<HTMLElement>('[data-filter-category]').forEach((chip) => {
+        const cat = chip.dataset.filterCategory || '';
+        const el = chip.querySelector('.chip__count');
+        if (el) el.textContent = String(cat === 'all' ? allCount : (catCounts[cat] ?? 0));
+      });
+      const codeEl = root?.querySelector('[data-filter-code] .chip__count');
+      if (codeEl) codeEl.textContent = String(codeCount);
+    }
+
     function apply() {
       const today = todayLocal();
       let visible = 0;
@@ -186,18 +197,27 @@ const defaultSort = DEFAULT_SORT;
       }
       ordered.forEach((r) => list.appendChild(r));
 
+      const catCounts: Record<string, number> = {};
+      let allCount = 0;
+      let codeCount = 0;
       for (const row of rows) {
-        const expired = isExpired(row.dataset.endDate, today);
-        const regionOk = matchesRegion(row.dataset.region || '', region);
-        const categoryOk =
-          category === 'all' || row.dataset.category === category;
-        const searchOk =
-          !query || (row.dataset.search || '').includes(query);
-        const codeOk = !codeOnly || row.dataset.hasCode === '1';
-        const show = !expired && regionOk && categoryOk && searchOk && codeOk;
+        const base =
+          !isExpired(row.dataset.endDate, today) &&
+          matchesRegion(row.dataset.region || '', region) &&
+          (!query || (row.dataset.search || '').includes(query));
+        const categoryOk = category === 'all' || row.dataset.category === category;
+        const hasCode = row.dataset.hasCode === '1';
+        const show = base && categoryOk && (!codeOnly || hasCode);
         row.hidden = !show;
         if (show) visible += 1;
+        if (base && (!codeOnly || hasCode)) {
+          allCount += 1;
+          const cat = row.dataset.category || '';
+          catCounts[cat] = (catCounts[cat] ?? 0) + 1;
+        }
+        if (base && categoryOk && hasCode) codeCount += 1;
       }
+      updateChipCounts(catCounts, allCount, codeCount);
 
       if (countEl) countEl.textContent = String(visible);
       if (emptyEl) (emptyEl as HTMLElement).hidden = visible > 0;

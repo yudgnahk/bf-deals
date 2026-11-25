@@ -1,0 +1,23 @@
+---
+import { isPromoAutoApplied, type Deal } from '../lib/deals';
+
+interface Props {
+  deal: Deal;
+  code: string;
+  big?: boolean;
+}
+
+const { deal, code, big = false } = Astro.props;
+const auto = isPromoAutoApplied(deal, code);
+---
+
+<button
+  type="button"
+  class:list={['coupon-code', big && 'coupon-code--big', auto && 'coupon-code--auto']}
+  data-copy-code={code}
+  data-auto-applied={auto ? '1' : undefined}
+  title={auto ? 'The merchant applies this code automatically; copy it in case it does not' : 'Copy code'}
+>
+  <code>{code}</code>
+  <span class="coupon-code__hint" data-hint-idle={auto ? 'auto' : 'copy'}>{auto ? 'auto' : 'copy'}</span>
+</button>

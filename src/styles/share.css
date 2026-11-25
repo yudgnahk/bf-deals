@@ -7,7 +7,7 @@
 }
 
 .deal-link {
-  display: none;
+  display: inline;
   font-family: var(--font-mono);
   font-size: 0.62rem;
   font-weight: 600;
@@ -43,11 +43,6 @@
   border-color: var(--acid-dim);
 }
 
-@media (min-width: 720px) {
-  .deal-link {
-    display: inline;
-  }
-}
 
 .toast {
   position: fixed;
@@ -340,4 +335,8 @@
 
 .clock__digits[hidden] {
   display: none;
+}
+
+.coupon-code--auto .coupon-code__hint {
+  color: var(--muted);
 }

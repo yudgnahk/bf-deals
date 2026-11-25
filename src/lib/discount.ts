@@ -13,8 +13,11 @@ export function parseDiscountPercent(discountText: string | null): number | null
  */
 export function formatDiscountBadge(discountText: string | null): string | null {
   if (!discountText) return null;
-  const pct = parseDiscountPercent(discountText);
-  if (pct === null) return null;
-  const upTo = /\bup\s+to\b/i.test(discountText) || /\bđến\b/i.test(discountText);
-  return upTo ? `up to ${pct}%` : `-${pct}%`;
+  const all = [...discountText.matchAll(/(\d{1,3})\s*%/g)].map((m) => Number(m[1]));
+  if (all.length === 0) return null;
+  const max = Math.max(...all);
+  // Tiered offers ("15% off one, 25% off three") advertise the top tier, never the first number.
+  const tiered = new Set(all).size > 1;
+  const upTo = tiered || /\bup\s+to\b/i.test(discountText) || /(?:^|\s)đến(?=\s|$)/i.test(discountText);
+  return upTo ? `up to ${max}%` : `-${max}%`;
 }

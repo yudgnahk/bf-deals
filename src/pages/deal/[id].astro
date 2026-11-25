@@ -1,4 +1,5 @@
 ---
+import CouponButton from '../../components/CouponButton.astro';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -127,10 +128,7 @@ const jsonLd = [
               <span class="i18n-vi">Mã in trên trang chính thức — bấm để copy</span>
             </p>
             {codes.map((code) => (
-              <button type="button" class="coupon-code coupon-code--big" data-copy-code={code}>
-                <code>{code}</code>
-                <span class="coupon-code__hint">copy</span>
-              </button>
+              <CouponButton deal={deal} code={code} big />
             ))}
           </div>
         )

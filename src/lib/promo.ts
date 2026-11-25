@@ -39,3 +39,11 @@ export function extractCodes(texts: readonly (string | null | undefined)[]): str
   }
   return codes;
 }
+
+const AUTO_APPLIED = /\bautomatic(?:ally)?\b|\bpre-?applied\b|\balready applied\b|\badded when\b/i;
+
+/** True when the sentence naming the code says the merchant applies it without typing. */
+export function isAutoApplied(code: string, texts: readonly (string | null | undefined)[]): boolean {
+  const sentences = texts.filter(Boolean).join('\n').split(/(?<=[.;!?])\s+|\n/);
+  return sentences.some((s) => s.includes(code) && AUTO_APPLIED.test(s));
+}

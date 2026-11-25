@@ -2,7 +2,7 @@ import dealsData from '../data/deals.json';
 import affiliatesConfig from '../config/affiliates.json';
 import featuredConfig from '../config/featured.json';
 import { DEFAULT_REGION_FILTER } from './constants';
-import { extractCodes } from './promo';
+import { extractCodes, isAutoApplied } from './promo';
 import { formatDiscountBadge, parseDiscountPercent } from './discount';
 import { parsePriceParts, type PriceParts } from './price';
 
@@ -251,6 +251,10 @@ export function sortEndingSoon(list: Deal[]): Deal[] {
 
 export function extractPromoCodes(deal: Deal): string[] {
   return extractCodes([deal.discount_text, deal.price, deal.notes]);
+}
+
+export function isPromoAutoApplied(deal: Deal, code: string): boolean {
+  return isAutoApplied(code, [deal.discount_text, deal.price, deal.notes]);
 }
 
 /** Featured / compact surfaces: use only the first tier when price lists multiple plans. */
