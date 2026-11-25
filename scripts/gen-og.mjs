@@ -2,7 +2,7 @@
 // Renders public/og/*.png (1200×630) from scripts/og/template.html with agent-browser.
 // `--deals` renders one card per deal into public/og/deal/ instead.
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { OG_CATEGORY_SLUGS } from '../src/lib/seo.ts';
@@ -41,9 +41,25 @@ function dealCards() {
     .map((d) => ({ slug: `deal/${d.id}`, ...dealOgCard(d, d.region === 'vn' ? 'vi' : 'en') }));
 }
 
-const cards = process.argv.includes('--deals') ? dealCards() : siteCards;
+const allCards = process.argv.includes('--deals') ? dealCards() : siteCards;
+// `--missing` renders only cards with no PNG yet (new deals) instead of all of them.
+const cards = process.argv.includes('--missing')
+  ? allCards.filter((card) => !existsSync(join(outDir, `${card.slug}.png`)))
+  : allCards;
 
-const ab = (...args) => execFileSync('agent-browser', ['--session', SESSION, ...args], { stdio: 'pipe' });
+const RETRIES = 4;
+
+// The agent-browser daemon is shared and can briefly refuse calls; retry before giving up.
+function ab(...args) {
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      return execFileSync('agent-browser', ['--session', SESSION, ...args], { stdio: 'pipe' });
+    } catch (err) {
+      if (attempt >= RETRIES) throw new Error(`agent-browser ${args[0]} failed: ${err.stderr?.toString() ?? err}`);
+      execFileSync('sleep', [String(attempt)]);
+    }
+  }
+}
 
 mkdirSync(join(outDir, 'deal'), { recursive: true });
 try {
