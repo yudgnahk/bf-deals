@@ -123,3 +123,10 @@ test('404 page is noindex and offers live deals for expired deal links', () => {
   assert.match(html, /data-404-deal hidden/);
   assert.ok((html.match(/class="deal-row"/g) || []).length > 0);
 });
+
+test('sitemap lastmod for a deal page is the day it was last verified', () => {
+  const sitemap = read('sitemap-0.xml');
+  const m = sitemap.match(/<loc>[^<]+\/deal\/hostinger-premium-199\/<\/loc><lastmod>([^<]+)<\/lastmod>/);
+  assert.ok(m, 'deal page has a lastmod');
+  assert.match(m[1], /^2026-11-25/);
+});
