@@ -63,6 +63,8 @@ test('Offer JSON-LD points at the merchant and keeps validThrough optional', () 
   assert.equal(ld.url, 'https://acme.example/pricing');
   assert.equal(ld.validThrough, '2026-11-30T23:59:59+07:00');
   assert.equal(ld.seller.name, 'Acme');
+  assert.equal(ld.price, '10');
+  assert.equal(ld.priceCurrency, 'USD');
   assert.equal('validThrough' in buildOfferJsonLd(bare, 'https://x/'), false);
 });
 

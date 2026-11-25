@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parsePriceParts } from '../src/lib/price.ts';
+import { offerPrice, parsePriceParts } from '../src/lib/price.ts';
 
 const pair = (price: string) => {
   const p = parsePriceParts(price);
@@ -40,4 +40,16 @@ test('real list → sale pairs still split', () => {
 
 test('sale higher than list is never paired', () => {
   assert.equal(pair('$10 → $20'), null);
+});
+
+test('offerPrice reads the sale amount and currency, or nothing when unclear', () => {
+  assert.deepEqual(offerPrice('$12.99 $1.99/mo'), { price: '1.99', priceCurrency: 'USD' });
+  assert.deepEqual(offerPrice('$399 → $239'), { price: '239', priceCurrency: 'USD' });
+  assert.deepEqual(offerPrice('€9.99/month'), { price: '9.99', priceCurrency: 'EUR' });
+  assert.deepEqual(offerPrice('3.490.000đ → 1.990.000đ'), { price: '1990000', priceCurrency: 'VND' });
+  assert.deepEqual(offerPrice('$1,620 → $540'), { price: '540', priceCurrency: 'USD' });
+  assert.equal(offerPrice(null), null);
+  assert.equal(offerPrice('Courses starting at $9.99; bundles from $29'), null, 'several amounts, no clear sale price');
+  assert.equal(offerPrice('Giảm đến 50%'), null);
+  assert.equal(offerPrice('Basic $99/license before the code (sale total not printed)'), null, 'pre-discount amount');
 });

@@ -1,4 +1,5 @@
 import { formatDiscountBadge } from './discount.ts';
+import { offerPrice } from './price.ts';
 import { SITE_NAME } from './seo.ts';
 
 export interface ShareDeal {
@@ -77,6 +78,7 @@ export function buildOfferJsonLd(deal: ShareDeal, pageUrl: string) {
     category: deal.category,
     ...(deal.discount_text ? { description: deal.discount_text } : {}),
     ...(deal.end_date ? { validThrough: `${deal.end_date}T23:59:59+07:00` } : {}),
+    ...(offerPrice(deal.price) ?? {}),
     seller: { '@type': 'Organization', name: deal.merchant },
   };
 }

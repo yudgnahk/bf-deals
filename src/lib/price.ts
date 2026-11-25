@@ -103,3 +103,25 @@ export function parsePriceParts(price: string | null): PriceParts {
 
   return { original: null, current: null, raw: trimmed };
 }
+
+const CURRENCY_CODES: Record<string, string> = { $: 'USD', '€': 'EUR', '£': 'GBP', '₫': 'VND', đ: 'VND', vnd: 'VND' };
+const AMOUNTS = /([$€£₫])\s?(\d[\d,]*(?:\.\d+)?)|(\d[\d.,]*)\s?(đ|₫|VND)(?![a-z])/gi;
+
+function amountsIn(text: string): { price: string; priceCurrency: string }[] {
+  return [...text.matchAll(AMOUNTS)].map((m) =>
+    m[1] !== undefined
+      ? { price: m[2].replace(/,/g, ''), priceCurrency: CURRENCY_CODES[m[1]] }
+      : { price: m[3].replace(/[.,]/g, ''), priceCurrency: CURRENCY_CODES[m[4].toLowerCase()] }
+  );
+}
+
+/** schema.org price for the sale side; null unless one sale amount is unambiguous. */
+export function offerPrice(price: string | null): { price: string; priceCurrency: string } | null {
+  if (!price) return null;
+  const parts = parsePriceParts(price);
+  if (parts.original && parts.current) return amountsIn(parts.current)[0] ?? null;
+  // A lone amount labelled as the pre-discount or regular price is not what the buyer pays.
+  if (/\b(?:before|regular|list price|not printed)\b/i.test(price)) return null;
+  const all = amountsIn(price);
+  return all.length === 1 ? all[0] : null;
+}
