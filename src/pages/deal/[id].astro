@@ -107,7 +107,11 @@ const jsonLd = [
   </section>
 
   <div class="wrap deal-page">
-    <article class="deal-page__card" data-deal-id={deal.id} data-likes="0">
+    <p class="deal-page__ended" data-ended-notice hidden>
+      <span class="i18n-en">This deal ended on {deal.end_date}. It may still show on the merchant page, but the price above is no longer guaranteed.</span>
+      <span class="i18n-vi">Deal này đã hết hạn ngày {deal.end_date}. Trang merchant có thể vẫn còn, nhưng giá ở trên không còn đảm bảo.</span>
+    </p>
+    <article class="deal-page__card" data-deal-id={deal.id} data-likes="0" data-end-date={deal.end_date ?? ''}>
       <div class="featured-card__top">
         <div class="featured-card__merchant">
           <MerchantIcon deal={deal} large />
@@ -201,3 +205,14 @@ const jsonLd = [
   </div>
   <LikesInit />
 </BaseLayout>
+
+<script>
+  import { isExpired } from '../../lib/board-filter';
+
+  // Static pages outlive their deal until the next rebuild; say so instead of selling a dead price.
+  const card = document.querySelector<HTMLElement>('.deal-page__card[data-end-date]');
+  if (card && isExpired(card.dataset.endDate, new Date())) {
+    document.querySelector<HTMLElement>('[data-ended-notice]')?.removeAttribute('hidden');
+    card.classList.add('is-ended');
+  }
+</script>

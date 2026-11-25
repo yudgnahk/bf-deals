@@ -340,3 +340,17 @@
 .coupon-code--auto .coupon-code__hint {
   color: var(--muted);
 }
+
+.deal-page__ended {
+  margin: 0;
+  max-width: 44rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ff8a5c;
+  color: #ffb79c;
+  font-size: 0.85rem;
+}
+
+.deal-page__card.is-ended .deal-page__cta {
+  background: #2a2a2a;
+  color: var(--muted);
+}

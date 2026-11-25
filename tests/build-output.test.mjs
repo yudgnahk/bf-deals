@@ -110,3 +110,9 @@ test('auto-applied codes are marked and keep a copy button', () => {
   assert.match(html, /data-copy-code="BLACKFRIDAY" data-auto-applied="1"/);
   assert.match(html, /data-hint-idle="auto"/);
 });
+
+test('deal page ships a hidden ended notice keyed to its end date', () => {
+  const html = read('deal/hostinger-premium-199/index.html');
+  assert.match(html, /data-ended-notice hidden/);
+  assert.match(html, /data-end-date="2026-12-14"/);
+});
