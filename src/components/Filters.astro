@@ -101,27 +101,7 @@ const defaultSort = DEFAULT_SORT;
 
 <script>
   import { DEFAULT_REGION_FILTER, DEFAULT_SORT } from '../lib/constants';
-
-  function todayLocal(): Date {
-    return new Date();
-  }
-
-  function isExpired(endDate: string | null | undefined, today: Date): boolean {
-    if (!endDate) return false;
-    const parts = endDate.split('-').map(Number);
-    const y = parts[0];
-    const m = parts[1];
-    const d = parts[2];
-    if (!y || !m || !d) return false;
-    const end = new Date(y, m - 1, d, 23, 59, 59, 999);
-    return today > end;
-  }
-
-  function matchesRegion(region: string, filter: string): boolean {
-    if (filter === 'all') return true;
-    if (region === 'both') return true;
-    return region === filter;
-  }
+  import { filterBoard } from '../lib/board-filter';
 
   function initFilters() {
     const root = document.querySelector('[data-filters]');
@@ -155,7 +135,6 @@ const defaultSort = DEFAULT_SORT;
     }
 
     function apply() {
-      const today = todayLocal();
       let visible = 0;
 
       let ordered = [...rows];
@@ -197,27 +176,22 @@ const defaultSort = DEFAULT_SORT;
       }
       ordered.forEach((r) => list.appendChild(r));
 
-      const catCounts: Record<string, number> = {};
-      let allCount = 0;
-      let codeCount = 0;
-      for (const row of rows) {
-        const base =
-          !isExpired(row.dataset.endDate, today) &&
-          matchesRegion(row.dataset.region || '', region) &&
-          (!query || (row.dataset.search || '').includes(query));
-        const categoryOk = category === 'all' || row.dataset.category === category;
-        const hasCode = row.dataset.hasCode === '1';
-        const show = base && categoryOk && (!codeOnly || hasCode);
-        row.hidden = !show;
-        if (show) visible += 1;
-        if (base && (!codeOnly || hasCode)) {
-          allCount += 1;
-          const cat = row.dataset.category || '';
-          catCounts[cat] = (catCounts[cat] ?? 0) + 1;
-        }
-        if (base && categoryOk && hasCode) codeCount += 1;
-      }
-      updateChipCounts(catCounts, allCount, codeCount);
+      const result = filterBoard(
+        rows.map((row) => ({
+          category: row.dataset.category || '',
+          region: row.dataset.region || '',
+          endDate: row.dataset.endDate || '',
+          search: row.dataset.search || '',
+          hasCode: row.dataset.hasCode === '1',
+        })),
+        { region, category, query, codeOnly },
+        new Date()
+      );
+      rows.forEach((row, i) => {
+        row.hidden = !result.visible[i];
+      });
+      visible = result.visible.filter(Boolean).length;
+      updateChipCounts(result.counts.byCategory, result.counts.all, result.counts.withCode);
 
       if (countEl) countEl.textContent = String(visible);
       if (emptyEl) (emptyEl as HTMLElement).hidden = visible > 0;
