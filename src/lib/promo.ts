@@ -41,9 +41,12 @@ export function extractCodes(texts: readonly (string | null | undefined)[]): str
 }
 
 const AUTO_APPLIED = /\bautomatic(?:ally)?\b|\bpre-?applied\b|\balready applied\b|\badded when\b/i;
+const NOT_AUTO = /\bnot (?:applied )?automatic|\bnot (?:pre-?)?applied\b|\bmust be (?:entered|typed)\b|\benter(?:ed)? manually\b/i;
 
 /** True when the sentence naming the code says the merchant applies it without typing. */
 export function isAutoApplied(code: string, texts: readonly (string | null | undefined)[]): boolean {
   const sentences = texts.filter(Boolean).join('\n').split(/(?<=[.;!?])\s+|\n/);
-  return sentences.some((s) => s.includes(code) && AUTO_APPLIED.test(s));
+  const about = sentences.filter((s) => s.includes(code));
+  if (about.some((s) => NOT_AUTO.test(s))) return false;
+  return about.some((s) => AUTO_APPLIED.test(s));
 }

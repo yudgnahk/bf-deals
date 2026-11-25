@@ -40,6 +40,15 @@ test('real list → sale pairs still split', () => {
   assert.deepEqual(pair('1,199.50 EUR → 899.50 EUR'), ['1,199.50 EUR', '899.50 EUR']);
 });
 
+test('two sale prices for different plans or terms are not a list → sale pair', () => {
+  assert.equal(pair('Business $14.99 / $12.99 per month billed annually (ex VAT)'), null);
+  assert.equal(pair('Monthly $20 and yearly $15 per month'), null);
+  assert.equal(offerPrice('Business $14.99 / $12.99 per month billed annually (ex VAT)'), null);
+  assert.deepEqual(pair('$17.99 Save 88% $1.99/mo.'), ['$17.99', '$1.99/mo.']);
+  assert.deepEqual(pair('Pro Regular $99 Sale $59'), ['$99', '$59']);
+  assert.deepEqual(pair('Originally From $64.99 now From $49.06'), ['$64.99', '$49.06']);
+});
+
 test('sale higher than list is never paired', () => {
   assert.equal(pair('$10 → $20'), null);
 });

@@ -140,7 +140,7 @@
     "aff_program": "CyberGhost Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-25",
-    "notes": "Official homepage pricing (this fetch) shows 2 Years + 4 Months at $1.99/mo, billed $55.72 for first 28 months, then autorenews at $55.72 annually; 45-day money-back guarantee. The homepage did not print a 'Black Friday' label in this fetch — included as the current official promo visible on Nov 23 during BF week. End date not stated.",
+    "notes": "Official homepage pricing shows 2 Years + 4 Months at $1.99/mo, billed $55.72 for first 28 months, then autorenews at $55.72 annually; 45-day money-back guarantee. The homepage did not print a 'Black Friday' label in this fetch — included as the current official promo visible on Nov 23 during BF week. End date not stated.",
     "hidden": false
   },
   {
@@ -300,7 +300,7 @@
     "aff_program": "DataCamp Affiliates",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-25",
-    "notes": "Official BF 2026 promo slug biggest-annual-sale-26 (re-checked 2026-11-23): Nov 11–29, 60% off annual Premium/Teams/DataLab Premium; $330 struck through and $132 on the merchant page. Automated HEAD/CI may see 403 (bot wall), not 404.",
+    "notes": "Official BF 2026 promo (biggest-annual-sale-26): Nov 11–29, 60% off annual Premium/Teams/DataLab Premium; $330 struck through and $132 on the merchant page. Automated HEAD/CI may see 403 (bot wall), not 404.",
     "hidden": false
   },
   {
@@ -508,7 +508,7 @@
     "aff_program": "AccessTrade VN",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
-    "notes": "Bài khuyến mãi chính thức đăng 12:00 19/11/2026. Chương trình chạy 27/11–30/11/2026 tại mọi siêu thị ĐMX và dienmayxanh.com/black-friday. Đồng giá overnight 27–29/11; Mega Livestream 27–29/11; ngày 27/11 khách tham gia trên website nhận voucher, tỉ lệ trúng 100%. Giá sản phẩm Black Friday chưa công bố trước 27/11.",
+    "notes": "Bài khuyến mãi chính thức đăng 12:00 19/11/2026. Chương trình chạy 27/11–30/11/2026 tại mọi siêu thị ĐMX và dienmayxanh.com/black-friday. Đồng giá overnight 27–29/11; Mega Livestream 27–29/11; ngày 27/11 khách tham gia trên website nhận voucher, tỉ lệ trúng 100%. Giá trong bài viết ngày 23/11 có thể chưa phải giá Black Friday.",
     "hidden": true
   },
   {

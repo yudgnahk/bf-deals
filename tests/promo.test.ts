@@ -23,4 +23,6 @@ test('flags codes the merchant applies by itself', () => {
   assert.equal(isAutoApplied('BFCM26', ['code BFCM26 is added when starting the trial via this page; monthly option is 25% off.']), true);
   assert.equal(isAutoApplied('PAYPAL100', ['Code PAYPAL100: $100 off select Galaxy devices. Discount applied automatically to bundles.']), false);
   assert.equal(isAutoApplied('BF2026', ['Use code BF2026 at checkout.']), false);
+  assert.equal(isAutoApplied('LITEFRIDAY26', ['Annual plans only. Code LITEFRIDAY26 must be entered (not automatic).']), false);
+  assert.equal(isAutoApplied('SEMBLY20', ['Use code SEMBLY20. Code SEMBLY20 is not applied automatically.']), false);
 });

@@ -98,7 +98,10 @@ export function parsePriceParts(price: string | null): PriceParts {
     const second = matches[1].trim();
     const fv = moneyValue(first);
     const sv = moneyValue(second);
-    if (fv !== null && sv !== null && fv > sv) {
+    // Only adjacent amounts read as list → sale; "$14.99 / $12.99" or "and" are two plans or terms.
+    const between = head.slice(head.indexOf(first) + first.length, head.indexOf(second, head.indexOf(first) + first.length));
+    const adjacent = /^(?:\s|save\s+\d+%|sale|now|from)*$/i.test(between);
+    if (fv !== null && sv !== null && fv > sv && adjacent) {
       const secondIdx = head.indexOf(second, head.indexOf(first) + first.length);
       const current = head.slice(secondIdx).trim();
       return asStrikePair(first, current, trimmed);
