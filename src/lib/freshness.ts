@@ -85,3 +85,16 @@ export function startLabel(startDate: string): { en: string; vi: string } {
   const [, m, d] = startDate.split('-').map(Number);
   return { en: `Starts ${d} ${MONTHS_EN[m - 1]}`, vi: `Bắt đầu ${d}/${m}` };
 }
+
+/** Row label for days left; null once the deal has ended. */
+export function endsLabels(days: number | null, endDate: string | null): { en: string; vi: string } | null {
+  if (days === null) {
+    return endDate
+      ? { en: `ends ${endDate}`, vi: `hết hạn ${endDate}` }
+      : { en: 'no end date listed', vi: 'chưa ghi hạn' };
+  }
+  if (days < 0) return null;
+  if (days === 0) return { en: 'ends today', vi: 'hết hạn hôm nay' };
+  if (days === 1) return { en: 'ends in 1 day', vi: 'còn 1 ngày' };
+  return { en: `ends in ${days} days`, vi: `còn ${days} ngày` };
+}

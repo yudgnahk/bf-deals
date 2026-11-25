@@ -104,6 +104,16 @@
 
   expireNewBadges();
 
+  // Text that cannot hold i18n spans (e.g. <option>) swaps via data-i18n-en/vi.
+  function applyTextI18n() {
+    const vi = isVi();
+    document.querySelectorAll<HTMLElement>('[data-i18n-en][data-i18n-vi]').forEach((el) => {
+      el.textContent = (vi ? el.dataset.i18nVi : el.dataset.i18nEn) ?? el.textContent;
+    });
+  }
+  applyTextI18n();
+  new MutationObserver(applyTextI18n).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+
   // "Starts …" tags drop once the offer has opened, without a rebuild.
   document.querySelectorAll<HTMLElement>('[data-starts-at]').forEach((el) => {
     const start = Date.parse(el.dataset.startsAt || '');

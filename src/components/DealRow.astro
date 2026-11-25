@@ -13,7 +13,7 @@ import {
   parsePriceParts,
   type Deal,
 } from '../lib/deals';
-import { isNewDeal, isUpcoming, newUntil, startLabel, startsAt } from '../lib/freshness';
+import { endsLabels, isNewDeal, isUpcoming, newUntil, startLabel, startsAt } from '../lib/freshness';
 
 interface Props {
   deal: Deal;
@@ -30,17 +30,7 @@ const showNew = isNewDeal(deal.added_at);
 const newUntilIso = newUntil(deal.added_at);
 const upcoming = deal.start_date && isUpcoming(deal.start_date) ? startLabel(deal.start_date) : null;
 
-let endsLabel: string | null = null;
-if (days !== null) {
-  if (days < 0) endsLabel = null;
-  else if (days === 0) endsLabel = 'ends today';
-  else if (days === 1) endsLabel = 'ends in 1 day';
-  else endsLabel = `ends in ${days} days`;
-} else if (deal.end_date) {
-  endsLabel = `ends ${deal.end_date}`;
-} else {
-  endsLabel = 'no end date listed';
-}
+const endsLabel = endsLabels(days, deal.end_date);
 
 const endsUnknown = !deal.end_date && days === null;
 
@@ -139,7 +129,8 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
   {
     endsLabel && (
       <span class:list={['ends-meta', endsUnknown && 'ends-meta--unknown']}>
-        {endsLabel}
+        <span class="i18n-en">{endsLabel.en}</span>
+        <span class="i18n-vi">{endsLabel.vi}</span>
       </span>
     )
   }

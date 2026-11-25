@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { endingWithin, isNewDeal, isUpcoming, newUntil, sortBySoonestEnd, startLabel, startsAt } from '../src/lib/freshness.ts';
+import { endingWithin, endsLabels, isNewDeal, isUpcoming, newUntil, sortBySoonestEnd, startLabel, startsAt } from '../src/lib/freshness.ts';
 
 const deal = (id: string, end_date: string | null, added_at?: string) => ({ id, end_date, added_at });
 
@@ -36,4 +36,12 @@ test('a deal is upcoming only before its start', () => {
   assert.equal(isUpcoming('2026-11-27', new Date('2026-11-26T16:59:59Z')), true);
   assert.equal(isUpcoming('2026-11-27', new Date('2026-11-26T17:00:00Z')), false);
   assert.equal(isUpcoming(null, new Date()), false);
+});
+
+test('end labels exist in English and Vietnamese', () => {
+  assert.deepEqual(endsLabels(0, '2026-11-25'), { en: 'ends today', vi: 'hết hạn hôm nay' });
+  assert.deepEqual(endsLabels(1, '2026-11-26'), { en: 'ends in 1 day', vi: 'còn 1 ngày' });
+  assert.deepEqual(endsLabels(5, '2026-11-30'), { en: 'ends in 5 days', vi: 'còn 5 ngày' });
+  assert.deepEqual(endsLabels(null, null), { en: 'no end date listed', vi: 'chưa ghi hạn' });
+  assert.equal(endsLabels(-1, '2026-11-24'), null);
 });

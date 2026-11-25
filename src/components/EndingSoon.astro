@@ -18,6 +18,10 @@ const shortDate = (iso: string) => {
   const [, m, d] = iso.split('-');
   return `${Number(d)} ${months[Number(m) - 1]}`;
 };
+const shortDateVi = (iso: string) => {
+  const [, m, d] = iso.split('-');
+  return `${Number(d)}/${Number(m)}`;
+};
 ---
 
 {
@@ -41,7 +45,10 @@ const shortDate = (iso: string) => {
               {formatDiscountBadge(deal.discount_text) && (
                 <span class="pct-badge">{formatDiscountBadge(deal.discount_text)}</span>
               )}
-              <span class="ends-meta">ends {shortDate(deal.end_date as string)}</span>
+              <span class="ends-meta">
+                <span class="i18n-en">ends {shortDate(deal.end_date as string)}</span>
+                <span class="i18n-vi">hết hạn {shortDateVi(deal.end_date as string)}</span>
+              </span>
             </a>
           </li>
         ))}

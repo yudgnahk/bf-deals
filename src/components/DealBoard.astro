@@ -34,7 +34,10 @@ const codeCount = regionDeals.filter((d) => extractPromoCodes(d).length > 0).len
     <p>
       <span data-deal-count>{initialCount}</span> deals
     </p>
-    <p>Last checked {lastVerified || '—'}</p>
+    <p>
+      <span class="i18n-en">Last checked {lastVerified || '—'}</span>
+      <span class="i18n-vi">Kiểm tra lần cuối {lastVerified || '—'}</span>
+    </p>
   </div>
 
   <div class="deal-list" data-deal-list>

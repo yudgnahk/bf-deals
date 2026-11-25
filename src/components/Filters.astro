@@ -40,13 +40,11 @@ const defaultSort = DEFAULT_SORT;
     <div class="select-wrap">
       <label class="visually-hidden" for="sort-select">Sort</label>
       <select id="sort-select" data-sort>
-        <option value="default" selected={defaultSort === 'default'}>Top picks</option>
-        <option value="ending-soon" selected={defaultSort === 'ending-soon'}>
-          Ending soon
-        </option>
-        <option value="newest">Newest</option>
-        <option value="biggest-discount">Biggest discount</option>
-        <option value="most-liked">Most liked</option>
+        <option value="default" selected={defaultSort === 'default'} data-i18n-en="Top picks" data-i18n-vi="Nổi bật">Top picks</option>
+        <option value="ending-soon" selected={defaultSort === 'ending-soon'} data-i18n-en="Ending soon" data-i18n-vi="Sắp hết hạn">Ending soon</option>
+        <option value="newest" data-i18n-en="Newest" data-i18n-vi="Mới nhất">Newest</option>
+        <option value="biggest-discount" data-i18n-en="Biggest discount" data-i18n-vi="Giảm nhiều nhất">Biggest discount</option>
+        <option value="most-liked" data-i18n-en="Most liked" data-i18n-vi="Nhiều like nhất">Most liked</option>
       </select>
     </div>
     {
@@ -63,7 +61,7 @@ const defaultSort = DEFAULT_SORT;
   {showChips && (
   <div class="chip-row" role="group" aria-label="Category">
     <button type="button" class="chip" data-filter-category="all" aria-pressed="true">
-      All <span class="chip__count">{total}</span>
+      <span class="i18n-en">All</span><span class="i18n-vi">Tất cả</span> <span class="chip__count">{total}</span>
     </button>
     {
       categories.map((cat) => (
