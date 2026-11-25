@@ -93,6 +93,17 @@
     await copyLink(url);
   }
 
+  // Runs on every page so New tags on deal pages and the 404 also drop after 48 h.
+  function expireNewBadges() {
+    const now = Date.now();
+    document.querySelectorAll<HTMLElement>('[data-new-until]').forEach((el) => {
+      const until = Date.parse(el.dataset.newUntil || '');
+      if (Number.isFinite(until) && now > until) el.remove();
+    });
+  }
+
+  expireNewBadges();
+
   document.addEventListener('click', (e) => {
     const target = e.target instanceof Element ? e.target : null;
     const codeBtn = target?.closest<HTMLElement>('[data-copy-code]');

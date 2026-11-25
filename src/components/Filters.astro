@@ -250,14 +250,6 @@ const defaultSort = DEFAULT_SORT;
     apply();
   }
 
-  function expireNewBadges() {
-    const now = Date.now();
-    document.querySelectorAll<HTMLElement>('[data-new-until]').forEach((el) => {
-      const until = Date.parse(el.dataset.newUntil || '');
-      if (Number.isFinite(until) && now > until) el.remove();
-    });
-  }
-
   function initSortFromUrl() {
     const select = document.querySelector('[data-sort]') as HTMLSelectElement | null;
     const wanted = new URLSearchParams(window.location.search).get('sort');
@@ -268,7 +260,6 @@ const defaultSort = DEFAULT_SORT;
     }
   }
 
-  expireNewBadges();
   initFilters();
   initSortFromUrl();
 </script>
