@@ -13,7 +13,7 @@ import {
   parsePriceParts,
   type Deal,
 } from '../lib/deals';
-import { isNewDeal, newUntil } from '../lib/freshness';
+import { isNewDeal, isUpcoming, newUntil, startLabel, startsAt } from '../lib/freshness';
 
 interface Props {
   deal: Deal;
@@ -28,6 +28,7 @@ const prices = parsePriceParts(deal.price);
 const days = daysUntilEnd(deal.end_date);
 const showNew = isNewDeal(deal.added_at);
 const newUntilIso = newUntil(deal.added_at);
+const upcoming = deal.start_date && isUpcoming(deal.start_date) ? startLabel(deal.start_date) : null;
 
 let endsLabel: string | null = null;
 if (days !== null) {
@@ -89,6 +90,14 @@ const rel = link.isAffiliate ? 'sponsored nofollow noopener' : link.rel;
           <span class="new-tag" data-new-until={newUntilIso}>
             <span class="i18n-en">New</span>
             <span class="i18n-vi">Mới</span>
+          </span>
+        )
+      }
+      {
+        upcoming && (
+          <span class="starts-tag" data-starts-at={startsAt(deal.start_date)}>
+            <span class="i18n-en">{upcoming.en}</span>
+            <span class="i18n-vi">{upcoming.vi}</span>
           </span>
         )
       }

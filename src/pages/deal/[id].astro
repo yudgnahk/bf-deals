@@ -141,6 +141,14 @@ const jsonLd = [
       }
 
       <dl class="deal-page__facts">
+        {
+          deal.start_date && (
+            <div>
+              <dt><span class="i18n-en">Starts</span><span class="i18n-vi">Bắt đầu</span></dt>
+              <dd>{deal.start_date}</dd>
+            </div>
+          )
+        }
         <div>
           <dt><span class="i18n-en">Ends</span><span class="i18n-vi">Hết hạn</span></dt>
           <dd>{deal.end_date ? formatEndDate(deal.end_date) : (<><span class="i18n-en">No end date listed</span><span class="i18n-vi">Chưa ghi hạn</span></>)}</dd>

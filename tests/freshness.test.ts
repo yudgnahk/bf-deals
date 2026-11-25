@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { endingWithin, isNewDeal, newUntil, sortBySoonestEnd } from '../src/lib/freshness.ts';
+import { endingWithin, isNewDeal, isUpcoming, newUntil, sortBySoonestEnd, startLabel, startsAt } from '../src/lib/freshness.ts';
 
 const deal = (id: string, end_date: string | null, added_at?: string) => ({ id, end_date, added_at });
 
@@ -24,4 +24,16 @@ test('endingWithin keeps only deals ending in the next N days', () => {
   const today = new Date(2026, 10, 25);
   const list = [deal('past', '2026-11-24'), deal('today', '2026-11-25'), deal('in3', '2026-11-28'), deal('in5', '2026-11-30'), deal('none', null)];
   assert.deepEqual(endingWithin(list, 3, today).map((d) => d.id), ['today', 'in3']);
+});
+
+test('start date is midnight Asia/Saigon and labels in both languages', () => {
+  assert.equal(startsAt('2026-11-27'), '2026-11-26T17:00:00.000Z');
+  assert.equal(startsAt(null), null);
+  assert.deepEqual(startLabel('2026-11-27'), { en: 'Starts 27 Nov', vi: 'Bắt đầu 27/11' });
+});
+
+test('a deal is upcoming only before its start', () => {
+  assert.equal(isUpcoming('2026-11-27', new Date('2026-11-26T16:59:59Z')), true);
+  assert.equal(isUpcoming('2026-11-27', new Date('2026-11-26T17:00:00Z')), false);
+  assert.equal(isUpcoming(null, new Date()), false);
 });

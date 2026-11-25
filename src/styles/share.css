@@ -354,3 +354,16 @@
   background: #2a2a2a;
   color: var(--muted);
 }
+
+.starts-tag {
+  display: inline-flex;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #070707;
+  background: #ff8a5c;
+  padding: 0.14rem 0.35rem;
+}

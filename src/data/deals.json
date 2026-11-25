@@ -508,6 +508,7 @@
     "aff_program": "AccessTrade VN",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-23",
+    "start_date": "2026-11-27",
     "notes": "Bài khuyến mãi chính thức đăng 12:00 19/11/2026. Chương trình chạy 27/11–30/11/2026 tại mọi siêu thị ĐMX và dienmayxanh.com/black-friday. Đồng giá overnight 27–29/11; Mega Livestream 27–29/11; ngày 27/11 khách tham gia trên website nhận voucher, tỉ lệ trúng 100%. Giá trong bài viết ngày 23/11 có thể chưa phải giá Black Friday.",
     "hidden": true
   },
@@ -540,6 +541,7 @@
     "aff_program": "AccessTrade VN",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-25",
+    "start_date": "2026-11-27",
     "notes": "Trang Black Friday chính thức của CellphoneS. Black Fire-Day chạy 27/11–30/11 tại mọi cửa hàng và online. Flash Sale mỗi ngày 9h–11h và 20h–22h; vòng quay may mắn tặng voucher đến 2 triệu (hạn dùng 24h, ngày cuối đến 23:59 30/11/2026); voucher giảm thẳng 1 triệu cho robot hút bụi/TV/điện máy khi mua iPhone/laptop; voucher sửa chữa tại Điện Thoại Vui giảm 100% tối đa 500.000đ. Minigame voucher 23–26/11 đang chạy. Giá sản phẩm ngày D-Day xem lại vào 27/11.",
     "hidden": true
   },
@@ -1274,10 +1276,11 @@
     "source_url": "https://wordpress.com/black-friday-2026/",
     "aff_program": "WordPress.com Affiliate",
     "aff_status": "aff-possible",
-    "notes": "Official FAQ: extra 25% off new annual and multi-year plans from 27 Nov to 1 Dec 2026, 11:59 p.m. UTC. 'That's up to 66% less than paying monthly.' Annual plans include a free domain the first year; separately bought domains/add-ons are not discounted; monthly plans excluded. Existing customers can use it on a new annual/multi-year plan; renewals are not eligible. First term only; renews at the standard price shown at checkout. Sale had not yet started as of this 23 Nov 2026 check (starts 27 Nov). Affiliate: official program page https://wordpress.com/affiliates/ — confirm live commission and approval rules on that page before quoting a rate.",
-    "hidden": false,
     "verified_at": "2026-11-23",
-    "region": "both"
+    "region": "both",
+    "start_date": "2026-11-27",
+    "notes": "Official FAQ: extra 25% off new annual and multi-year plans from 27 Nov to 1 Dec 2026, 11:59 p.m. UTC. 'That's up to 66% less than paying monthly.' Annual plans include a free domain the first year; separately bought domains/add-ons are not discounted; monthly plans excluded. Existing customers can use it on a new annual/multi-year plan; renewals are not eligible. First term only; renews at the standard price shown at checkout. Sale had not yet started as of this 23 Nov 2026 check (starts 27 Nov). Affiliate: official program page https://wordpress.com/affiliates/ — confirm live commission and approval rules on that page before quoting a rate.",
+    "hidden": false
   },
   {
     "id": "tidio-bf-20",
@@ -2496,6 +2499,7 @@
     "aff_program": "Shopee Affiliate",
     "aff_status": "aff-possible",
     "verified_at": "2026-11-25",
+    "start_date": "2026-11-27",
     "notes": "Blog chính thức của Shopee (đăng 04/11/2026) nói Siêu Sale Black Friday chốt đơn ngày 27/11/2026. Không in ngày kết thúc. Trang campaign shopee.vn/m/sieu-sale-freeship chỉ hiện tiêu đề (Ngày hội freeship 24.11, Sale Black Friday giảm đến 50% trên Shopee Live), nên không có thêm chi tiết voucher.",
     "hidden": true,
     "added_at": "2026-11-25T02:00:00+07:00"
@@ -2530,6 +2534,7 @@
     "aff_program": null,
     "aff_status": "hook",
     "verified_at": "2026-11-25",
+    "start_date": "2026-11-27",
     "notes": "Trang chính thức: BF 27-29/11/2026; Deal 99K, Đỉnh Nóc, Kịch Sàn chỉ tại showroom Hoàng Hoa Thám TP.HCM ngày 27-28/11 (bốc thăm, số lượng giới hạn). Danh sách deal đầy đủ công bố tối 26/11; Cyber Monday online từ 30/11 đến 06/12.",
     "hidden": true,
     "added_at": "2026-11-25T02:00:00+07:00"
@@ -2615,6 +2620,7 @@
     "aff_program": null,
     "aff_status": "hook",
     "verified_at": "2026-11-25",
+    "start_date": "2026-11-27",
     "notes": "US Apple Store, Nov 27-30 2026. Per category: iPhone up to $100, iPad $125, Mac $300, Watch $100, AirPods $75, Beats $75, HomePod $50, accessories $25. Apple Gift Card given with eligible purchase.",
     "hidden": false,
     "added_at": "2026-11-25T06:30:00+07:00"
@@ -3057,6 +3063,7 @@
     "aff_program": null,
     "aff_status": "hook",
     "verified_at": "2026-11-25",
+    "start_date": "2026-11-27",
     "notes": "Chỉ trong ngày 27/11/2026 trên website/app Fahasa.com: voucher 35% cho đơn từ 500.000đ (tối đa 200.000đ), 20% cho đơn từ 250.000đ (tối đa 80.000đ), 10% cho đơn từ 100.000đ (tối đa 50.000đ), giảm 199.000đ cho boxset từ 2.000.000đ. Đơn từ 200.000đ được tặng 01 sổ da, số lượng quà có hạn.",
     "hidden": true,
     "added_at": "2026-11-25T11:45:00+07:00"

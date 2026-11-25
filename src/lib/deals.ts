@@ -21,6 +21,8 @@ export interface Deal {
   discount_text: string | null;
   price: string | null;
   end_date: string | null;
+  /** YYYY-MM-DD the offer opens (Asia/Saigon); rows before it show a "Starts" tag. */
+  start_date?: string | null;
   source_url: string;
   aff_program: string | null;
   aff_status: AffStatus;

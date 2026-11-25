@@ -67,3 +67,21 @@ export function endingWithin<T extends Dated>(
     })
   );
 }
+
+const MONTHS_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/** ISO instant a deal starts: `start_date` at midnight Asia/Saigon. */
+export function startsAt(startDate: string | null | undefined): string | null {
+  if (!startDate || !/^\d{4}-\d{2}-\d{2}$/.test(startDate)) return null;
+  return new Date(`${startDate}T00:00:00${SITE_TZ_OFFSET}`).toISOString();
+}
+
+export function isUpcoming(startDate: string | null | undefined, now = new Date()): boolean {
+  const start = startsAt(startDate);
+  return start !== null && now.getTime() < Date.parse(start);
+}
+
+export function startLabel(startDate: string): { en: string; vi: string } {
+  const [, m, d] = startDate.split('-').map(Number);
+  return { en: `Starts ${d} ${MONTHS_EN[m - 1]}`, vi: `Bắt đầu ${d}/${m}` };
+}

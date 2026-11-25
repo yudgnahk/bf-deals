@@ -104,6 +104,12 @@
 
   expireNewBadges();
 
+  // "Starts …" tags drop once the offer has opened, without a rebuild.
+  document.querySelectorAll<HTMLElement>('[data-starts-at]').forEach((el) => {
+    const start = Date.parse(el.dataset.startsAt || '');
+    if (Number.isFinite(start) && Date.now() >= start) el.remove();
+  });
+
   document.addEventListener('click', (e) => {
     const target = e.target instanceof Element ? e.target : null;
     const codeBtn = target?.closest<HTMLElement>('[data-copy-code]');

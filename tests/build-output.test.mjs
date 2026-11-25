@@ -135,3 +135,10 @@ test('deal page notes leave out editor-only remarks', () => {
   const html = read('deal/windscribe-pro-29/index.html');
   assert.doesNotMatch(html, /this session|in this fetch/i);
 });
+
+test('deals that open later carry a Starts tag that expires client-side', () => {
+  const vn = read('vn/index.html');
+  assert.match(vn, /class="starts-tag" data-starts-at="2026-11-26T17:00:00.000Z"/);
+  assert.match(vn, /Bắt đầu 27\/11/);
+  assert.match(read('deal/fahasa-bf-2026-27-11/index.html'), /Bắt đầu<\/span><\/dt>\s*<dd>2026-11-27<\/dd>/);
+});
