@@ -97,3 +97,10 @@ test('board offers a Has code toggle whose count matches rows with a code', () =
   const withCode = (html.match(/data-region="(?:intl|both)"[^>]*data-has-code="1"/g) || []).length;
   assert.equal(withCode, count);
 });
+
+test('home clock renders phase labels in both languages', () => {
+  const html = read('index.html');
+  assert.match(html, /data-phase-label="en"[^>]*>[^<]+</);
+  assert.match(html, /data-phase-label="vi"[^>]*>[^<]+</);
+  assert.match(html, /data-departure-clock/);
+});

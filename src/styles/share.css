@@ -337,3 +337,7 @@
     justify-self: stretch;
   }
 }
+
+.clock__digits[hidden] {
+  display: none;
+}
