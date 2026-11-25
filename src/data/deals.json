@@ -2839,5 +2839,39 @@
     "notes": "Discount applied automatically at checkout on Essential, Premium and Ultimate plans. Page says the sale ends December 3rd, 2026. Percentage not shown in page body, so none published.",
     "hidden": false,
     "added_at": "2026-11-25T08:00:00+07:00"
+  },
+  {
+    "id": "microsoft-365-bf-30",
+    "title": "Microsoft 365 Black Friday: 30% off the first billing period of Personal or Premium",
+    "merchant": "Microsoft 365",
+    "region": "intl",
+    "category": "productivity",
+    "discount_text": "30% off the first billing period",
+    "price": "From $6.99 (was $9.99) for the first month",
+    "end_date": null,
+    "source_url": "https://www.microsoft.com/en-us/store/b/sale",
+    "aff_program": null,
+    "aff_status": "hook",
+    "verified_at": "2026-11-25",
+    "notes": "Listed on the Microsoft Store Black Friday deals page; the discount applies to the first billing period only, then the plan renews at the regular price. The page says the 2026 Black Friday sale runs Nov 19 to Nov 28, but this specific offer is 'while advertised', so no end date is set.",
+    "hidden": false,
+    "added_at": "2026-11-25T09:30:00+07:00"
+  },
+  {
+    "id": "routine-bf-2026-up-to-70",
+    "title": "Routine Black Friday 2026: sale đến 70%, đồng giá từ 79K, mua 1 tặng 1",
+    "merchant": "Routine",
+    "region": "vn",
+    "category": "fashion",
+    "discount_text": "Sale Up To 70% toàn cửa hàng; đồng giá chỉ từ 79K",
+    "price": null,
+    "end_date": "2026-11-30",
+    "source_url": "https://routine.vn/tin-thoi-trang/mua-sam-mua-black-friday-toan-bo-cua-hang-routine",
+    "aff_program": null,
+    "aff_status": "hook",
+    "verified_at": "2026-11-25",
+    "notes": "Thời trang Routine giảm 30%, 50%, 70% trên toàn hệ thống cửa hàng từ 20/11 đến 30/11/2026. Có đồng giá 79K–349K, mua 1 tặng 1, và hàng nguyên giá giảm 10% cho hóa đơn từ 2 sản phẩm, 15% cho hóa đơn từ 3 sản phẩm (không áp dụng Routine Kids; trừ vớ, underwear và túi nhỏ dưới 100K).",
+    "hidden": true,
+    "added_at": "2026-11-25T09:30:00+07:00"
   }
 ]

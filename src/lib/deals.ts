@@ -97,6 +97,7 @@ export const CATEGORY_SECONDARY = [
   'courses',
   'electronics',
   'streaming',
+  'fashion',
   'home',
   'travel',
 ] as const;
@@ -217,6 +218,7 @@ export const CATEGORY_LABELS: Record<string, { en: string; vi: string }> = {
   courses: { en: 'Courses', vi: 'Khóa học' },
   electronics: { en: 'Electronics', vi: 'Điện tử' },
   streaming: { en: 'Streaming', vi: 'Phim & nhạc' },
+  fashion: { en: 'Fashion', vi: 'Thời trang' },
   travel: { en: 'Travel', vi: 'Du lịch' },
   home: { en: 'Home', vi: 'Gia dụng' },
 };
