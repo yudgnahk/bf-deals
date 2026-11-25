@@ -1,0 +1,68 @@
+---
+import { salePhase } from '../lib/sale-phase';
+
+const buildPhase = salePhase(Date.now());
+---
+
+<aside class="clock" aria-live="polite">
+  <p class="clock__label">
+    <span class="i18n-en" data-phase-label="en">{buildPhase.label.en}</span>
+    <span class="i18n-vi" data-phase-label="vi">{buildPhase.label.vi}</span>
+  </p>
+  <div class="clock__digits" data-departure-clock>
+    <div>
+      <b data-cd="d">—</b>
+      <i><span class="i18n-en">days</span><span class="i18n-vi">ngày</span></i>
+    </div>
+    <div>
+      <b data-cd="h">—</b>
+      <i><span class="i18n-en">hours</span><span class="i18n-vi">giờ</span></i>
+    </div>
+    <div>
+      <b data-cd="m">—</b>
+      <i><span class="i18n-en">min</span><span class="i18n-vi">phút</span></i>
+    </div>
+    <div>
+      <b data-cd="s">—</b>
+      <i><span class="i18n-en">sec</span><span class="i18n-vi">giây</span></i>
+    </div>
+  </div>
+  <p class="clock__sub">
+    <span class="i18n-en" data-phase-sub="en">{buildPhase.sub.en}</span>
+    <span class="i18n-vi" data-phase-sub="vi">{buildPhase.sub.vi}</span>
+  </p>
+</aside>
+
+<script>
+  import { salePhase, splitDuration } from '../lib/sale-phase';
+
+  function pad(n: number) {
+    return String(n).padStart(2, '0');
+  }
+
+  function setText(selector: string, text: string) {
+    document.querySelectorAll<HTMLElement>(selector).forEach((el) => {
+      if (el.textContent !== text) el.textContent = text;
+    });
+  }
+
+  function tickClock() {
+    const root = document.querySelector<HTMLElement>('[data-departure-clock]');
+    if (!root) return;
+    const now = Date.now();
+    const phase = salePhase(now);
+    setText('[data-phase-label="en"]', phase.label.en);
+    setText('[data-phase-label="vi"]', phase.label.vi);
+    setText('[data-phase-sub="en"]', phase.sub.en);
+    setText('[data-phase-sub="vi"]', phase.sub.vi);
+    root.hidden = phase.target === null;
+    const t = splitDuration(phase.target === null ? 0 : phase.target - now);
+    const map: Record<string, string> = { d: String(t.d), h: pad(t.h), m: pad(t.m), s: pad(t.s) };
+    root.querySelectorAll<HTMLElement>('[data-cd]').forEach((el) => {
+      el.textContent = map[el.getAttribute('data-cd') || ''] ?? '—';
+    });
+  }
+
+  tickClock();
+  window.setInterval(tickClock, 1000);
+</script>

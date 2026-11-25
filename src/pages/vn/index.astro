@@ -5,6 +5,7 @@ import EndingSoon from '../../components/EndingSoon.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import LikesInit from '../../components/LikesInit.astro';
 import VnSchedule from '../../components/VnSchedule.astro';
+import SaleClock from '../../components/SaleClock.astro';
 import {
   formatDiscountBadge,
   getCategories,
@@ -42,7 +43,8 @@ const marqueeItems = deals
   <JsonLd slot="head" data={jsonLd} />
 
   <section class="hero hero--category">
-    <div class="wrap">
+    <div class="wrap hero__grid">
+      <div>
       <p class="hero__kicker">
         <a href="/">Deals</a> / Việt Nam — kiểm tra {lastVerified || '—'}
       </p>
@@ -52,6 +54,8 @@ const marqueeItems = deals
         merchant chính thức. Giá flash sale đổi theo khung giờ — luôn xem lại trên trang
         merchant trước khi mua.
       </p>
+      </div>
+      <SaleClock />
     </div>
   </section>
 

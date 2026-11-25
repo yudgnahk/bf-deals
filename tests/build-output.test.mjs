@@ -142,3 +142,9 @@ test('deals that open later carry a Starts tag that expires client-side', () => 
   assert.match(vn, /Bắt đầu 27\/11/);
   assert.match(read('deal/fahasa-bf-2026-27-11/index.html'), /Bắt đầu<\/span><\/dt>\s*<dd>2026-11-27<\/dd>/);
 });
+
+test('VN page shows the sale clock in Vietnamese', () => {
+  const html = read('vn/index.html');
+  assert.match(html, /data-departure-clock/);
+  assert.match(html, /data-phase-label="vi"[^>]*>[^<]+</);
+});
