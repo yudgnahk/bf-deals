@@ -10,6 +10,8 @@ Added (each re-read by an independent checker): Snov.io, Elementor, Walmart, Tar
 
 Round 2 (~07:00): added Hulu/Disney+ bundle, Peacock, Paramount+, HBO Max (new **Streaming** category), Norton, Xbox games sale — all re-read by an independent checker. Malwarebytes dropped (page shows "SALE ENDED" next to "ENDS DEC 6"). Still no official 2026 page for Spotify, Audible, Apple TV, Microsoft 365, Google One, Backblaze, Babbel, Speechify, Parallels, Bitdefender, ESET, MacPaw/Setapp (bot-blocked), Phong Vũ, Thế Giới Di Động (fetch blocked), Nguyễn Kim, Lazada, Tiki, Hasaki.
 
+Round 3 (~08:00): added Scrimba (BF 2026 coupon now visible, 40%), edX (Cyber Month code CYBERMONTH2026), Internxt (no % published — only in meta). Near-misses with no 2026 date: Cambly, Proton Drive, Icedrive; McAfee "ends December 3" without BF wording. Expedia/Hotels.com rate-limited the fetch.
+
 Rejected this pass:
 
 | Merchant | Why |
