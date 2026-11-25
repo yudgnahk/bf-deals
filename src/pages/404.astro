@@ -15,7 +15,11 @@ const suggestions = getFeaturedDeals(getActiveDeals(), SUGGESTION_LIMIT);
   noindex
 >
   <article class="page wrap prose">
-    <h1 data-404-title>Page not found</h1>
+    <h1 data-404-generic>Page not found</h1>
+    <h1 data-404-deal hidden>
+      <span class="i18n-en">Deal ended</span>
+      <span class="i18n-vi">Deal đã kết thúc</span>
+    </h1>
     <p data-404-generic>
       This URL is not a deal or page on BF Deals 2026.
       Head back to the roundup and filter by category.
@@ -46,9 +50,7 @@ const suggestions = getFeaturedDeals(getActiveDeals(), SUGGESTION_LIMIT);
 <script>
   // A shared /deal/<id>/ link that 404s almost always means the deal expired.
   if (window.location.pathname.startsWith('/deal/')) {
-    document.querySelector('[data-404-generic]')?.setAttribute('hidden', '');
-    document.querySelector('[data-404-deal]')?.removeAttribute('hidden');
-    const title = document.querySelector('[data-404-title]');
-    if (title) title.textContent = document.documentElement.dataset.lang === 'vi' ? 'Deal đã kết thúc' : 'Deal ended';
+    document.querySelectorAll('[data-404-generic]').forEach((el) => el.setAttribute('hidden', ''));
+    document.querySelectorAll('[data-404-deal]').forEach((el) => el.removeAttribute('hidden'));
   }
 </script>
