@@ -18,7 +18,7 @@ test('ItemList JSON-LD lists offers with merchant, link and validThrough', () =>
   assert.equal(ld.numberOfItems, 1);
   const item = ld.itemListElement[0];
   assert.equal(item.position, 1);
-  assert.equal(item.url, 'https://site/category/ai/#deal-acme-bf-50');
+  assert.equal(item.url, 'https://site/deal/acme-bf-50/');
   assert.equal(item.item['@type'], 'Offer');
   assert.equal(item.item.url, 'https://acme.example/pricing');
   assert.equal(item.item.validThrough, '2026-11-30T23:59:59+07:00');

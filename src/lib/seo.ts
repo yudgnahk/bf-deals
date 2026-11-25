@@ -53,7 +53,7 @@ export function serializeJsonLd(data: unknown): string {
   return JSON.stringify(data).replace(/</g, '\\u003c');
 }
 
-/** schema.org ItemList of Offers; `url` points at the on-site anchor, `offers.url` at the merchant. */
+/** schema.org ItemList of Offers; `url` points at the deal's own page, `offers.url` at the merchant. */
 export function buildItemListJsonLd(
   deals: readonly SeoDeal[],
   opts: { name: string; pageUrl: string }
@@ -67,7 +67,7 @@ export function buildItemListJsonLd(
     itemListElement: deals.map((deal, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      url: `${opts.pageUrl}#deal-${deal.id}`,
+      url: `${new URL(opts.pageUrl).origin}/deal/${deal.id}/`,
       item: {
         '@type': 'Offer',
         name: deal.title,
