@@ -8,13 +8,18 @@ export interface PriceParts {
 }
 
 // An amount counts only with a currency mark, so "2-year" or "3 months" never parse as money.
-const CURRENCY_AMOUNT = /[$€£₫]\s?(\d[\d,]*(?:\.\d+)?)|(\d[\d.,]*)\s?(?:đ|₫|VND)(?![a-z])/i;
+const CURRENCY_AMOUNT = /[$€£₫]\s?(\d[\d,]*(?:\.\d+)?)|(\d[\d.,]*)\s?(đ|₫|VND|USD|EUR|GBP)(?![a-z])/i;
+
+/** VND writes thousands with dots ("1.990.000đ"); other suffixed currencies use dot decimals. */
+function suffixDigits(digits: string, suffix: string): string {
+  return /^(?:đ|₫|vnd)$/i.test(suffix) ? digits.replace(/[.,]/g, '') : digits.replace(/,/g, '');
+}
 
 /** Extract a comparable numeric amount from a money-like token. */
 function moneyValue(token: string): number | null {
   const m = token.match(CURRENCY_AMOUNT);
   if (!m) return null;
-  const digits = m[1] !== undefined ? m[1].replace(/,/g, '') : m[2].replace(/[.,]/g, '');
+  const digits = m[1] !== undefined ? m[1].replace(/,/g, '') : suffixDigits(m[2], m[3]);
   const n = Number(digits);
   return Number.isFinite(n) ? n : null;
 }
@@ -104,14 +109,16 @@ export function parsePriceParts(price: string | null): PriceParts {
   return { original: null, current: null, raw: trimmed };
 }
 
-const CURRENCY_CODES: Record<string, string> = { $: 'USD', '€': 'EUR', '£': 'GBP', '₫': 'VND', đ: 'VND', vnd: 'VND' };
-const AMOUNTS = /([$€£₫])\s?(\d[\d,]*(?:\.\d+)?)|(\d[\d.,]*)\s?(đ|₫|VND)(?![a-z])/gi;
+const CURRENCY_CODES: Record<string, string> = {
+  $: 'USD', '€': 'EUR', '£': 'GBP', '₫': 'VND', đ: 'VND', vnd: 'VND', usd: 'USD', eur: 'EUR', gbp: 'GBP',
+};
+const AMOUNTS = new RegExp(CURRENCY_AMOUNT.source.replace('[$€£₫]', '([$€£₫])'), 'gi');
 
 function amountsIn(text: string): { price: string; priceCurrency: string }[] {
   return [...text.matchAll(AMOUNTS)].map((m) =>
     m[1] !== undefined
       ? { price: m[2].replace(/,/g, ''), priceCurrency: CURRENCY_CODES[m[1]] }
-      : { price: m[3].replace(/[.,]/g, ''), priceCurrency: CURRENCY_CODES[m[4].toLowerCase()] }
+      : { price: suffixDigits(m[3], m[4]), priceCurrency: CURRENCY_CODES[m[4].toLowerCase()] }
   );
 }
 

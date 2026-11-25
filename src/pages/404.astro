@@ -1,18 +1,54 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DealRow from '../components/DealRow.astro';
+import LikesInit from '../components/LikesInit.astro';
+import { getActiveDeals, getFeaturedDeals } from '../lib/deals';
+
+const SUGGESTION_LIMIT = 6;
+const suggestions = getFeaturedDeals(getActiveDeals(), SUGGESTION_LIMIT);
 ---
 
 <BaseLayout
   title="404 — Page not found · BF Deals 2026"
   description="That page does not exist on BF Deals 2026."
   path="/404"
+  noindex
 >
   <article class="page wrap prose">
-    <h1>Page not found</h1>
-    <p>
+    <h1 data-404-title>Page not found</h1>
+    <p data-404-generic>
       This URL is not a deal or page on BF Deals 2026.
       Head back to the roundup and filter by category.
     </p>
-    <p><a href="/">← Back to deals</a></p>
+    <p data-404-deal hidden>
+      <span class="i18n-en">This deal has ended or was removed after we re-checked the merchant page. Here are live deals instead.</span>
+      <span class="i18n-vi">Deal này đã hết hạn hoặc bị gỡ sau khi kiểm tra lại trang merchant. Xem các deal đang chạy bên dưới.</span>
+    </p>
+    <p><a href="/">← Back to deals</a> · <a href="/vn/" lang="vi">Deal Việt Nam</a></p>
   </article>
+
+  {
+    suggestions.length > 0 && (
+      <section class="wrap deal-page__related" aria-label="Live deals">
+        <h2>
+          <span class="i18n-en">Live deals</span>
+          <span class="i18n-vi">Deal đang chạy</span>
+        </h2>
+        <div class="deal-list">
+          {suggestions.map((d) => <DealRow deal={d} />)}
+        </div>
+      </section>
+    )
+  }
+  <LikesInit />
 </BaseLayout>
+
+<script>
+  // A shared /deal/<id>/ link that 404s almost always means the deal expired.
+  if (window.location.pathname.startsWith('/deal/')) {
+    document.querySelector('[data-404-generic]')?.setAttribute('hidden', '');
+    document.querySelector('[data-404-deal]')?.removeAttribute('hidden');
+    const title = document.querySelector('[data-404-title]');
+    if (title) title.textContent = document.documentElement.dataset.lang === 'vi' ? 'Deal đã kết thúc' : 'Deal ended';
+  }
+</script>

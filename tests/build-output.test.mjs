@@ -116,3 +116,10 @@ test('deal page ships a hidden ended notice keyed to its end date', () => {
   assert.match(html, /data-ended-notice hidden/);
   assert.match(html, /data-end-date="2026-12-14"/);
 });
+
+test('404 page is noindex and offers live deals for expired deal links', () => {
+  const html = read('404.html');
+  assert.match(html, /<meta name="robots" content="noindex,follow"/);
+  assert.match(html, /data-404-deal hidden/);
+  assert.ok((html.match(/class="deal-row"/g) || []).length > 0);
+});
