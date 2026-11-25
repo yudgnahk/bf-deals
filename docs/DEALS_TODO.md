@@ -16,6 +16,8 @@ Round 4 (~09:30): added Microsoft 365 (30% off first billing period, US store) a
 
 Round 5 (~10:30, real browser for bot-blocked pages): added Canva (50% off first 3 months, ends 4 Dec 2026 — page does not call it Black Friday), Phong Vũ (BF 2026 15–30/11), Coolmate (BF 23–29/11 mua 1 tặng 1). Thế Giới Di Động's BF page is the shared "Ngày Đen Bật Đèn" event already listed under Điện máy XANH. Setapp /black-friday is a 404. Still unreadable even in a real browser: Adobe special-offers and UNIQLO VN (Access Denied), Skillshare and Guardian VN (Cloudflare check), Shutterstock (empty); MacPaw /black-friday is a 404; Grammarly /plans shows no offer; Garmin /sale only links "Shop the Black Friday Sale" with no terms.
 
+Round 6 (~11:45): added Ugreen, Corsair (early sale ends 26 Nov), OVHcloud, GitKraken, Aftershoot, and VN Owen, ShopDunk, Fahasa (27/11 only). Not added: School of Motion (code 25OFF starts 27 Nov 9 AM ET — add on BF day), SteelSeries (ended 15 Nov), Vascara (ended 20/11), JYSK (Christmas offer). ShopDunk's page gives both 27/11 and 30/11 for the card/trade-in offers; 27/11 is used.
+
 Rejected this pass:
 
 | Merchant | Why |

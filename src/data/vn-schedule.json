@@ -13,5 +13,9 @@
   { "deal_id": "viettel-store-bf-den-gia-do", "from": "2026-11-27", "to": "2026-11-27", "slots": "11h–13h", "what": "Livestream trên fanpage Viettel Store" },
   { "deal_id": "routine-bf-2026-up-to-70", "from": "2026-11-20", "to": "2026-11-30", "slots": null, "what": "Thời trang sale đến 70%, đồng giá từ 79K, mua 1 tặng 1" },
   { "deal_id": "phongvu-bf-2026-dai-chien-cong-nghe", "from": "2026-11-15", "to": "2026-11-30", "slots": null, "what": "Đại chiến công nghệ, laptop giảm đến 50%++" },
-  { "deal_id": "coolmate-bf-mua-1-tang-1", "from": "2026-11-23", "to": "2026-11-29", "slots": null, "what": "Thời trang mua 1 tặng 1" }
+  { "deal_id": "coolmate-bf-mua-1-tang-1", "from": "2026-11-23", "to": "2026-11-29", "slots": null, "what": "Thời trang mua 1 tặng 1" },
+  { "deal_id": "owen-bf-2026-giam-den-70", "from": "2026-11-21", "to": "2026-11-29", "slots": null, "what": "Giảm đến 70% hàng ngàn sản phẩm, Blazer 799K, Vest 999K" },
+  { "deal_id": "shopdunk-bf-2026-giam-den-66", "from": "2026-11-11", "to": "2026-11-27", "slots": null, "what": "Ưu đãi Black Friday: thẻ ngân hàng, thu cũ đổi mới, trả góp 0%" },
+  { "deal_id": "shopdunk-bf-2026-giam-den-66", "from": "2026-11-25", "to": "2026-11-27", "slots": "10h–12h · 18h–20h", "what": "Giá sốc giảm đến 66% iPhone, iPad, MacBook Neo, AirPods" },
+  { "deal_id": "fahasa-bf-2026-27-11", "from": "2026-11-27", "to": "2026-11-27", "slots": null, "what": "Voucher 10%/20%/35%, giảm 199.000đ boxset, tặng sổ da cho đơn từ 200.000đ" }
 ]
