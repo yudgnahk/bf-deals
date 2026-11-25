@@ -130,3 +130,8 @@ test('sitemap lastmod for a deal page is the day it was last verified', () => {
   assert.ok(m, 'deal page has a lastmod');
   assert.match(m[1], /^2026-11-25/);
 });
+
+test('deal page notes leave out editor-only remarks', () => {
+  const html = read('deal/windscribe-pro-29/index.html');
+  assert.doesNotMatch(html, /this session|in this fetch/i);
+});

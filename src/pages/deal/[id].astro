@@ -21,6 +21,7 @@ import {
   type Deal,
 } from '../../lib/deals';
 import { buildBreadcrumbJsonLd, categoryPath, ogImageFor } from '../../lib/seo';
+import { publicNotes } from '../../lib/notes.ts';
 import {
   buildOfferJsonLd,
   dealOgPath,
@@ -59,6 +60,7 @@ const prices = parsePriceParts(deal.price);
 const priceLine =
   prices.original && prices.current ? `${prices.original} → ${prices.current}` : prices.raw;
 const shareText = dealShareText(deal, lang);
+const notes = publicNotes(deal.notes);
 const targets = shareTargets(pageUrl, shareText);
 const labelEn = categoryLabel(deal.category, 'en');
 const labelVi = categoryLabel(deal.category, 'vi');
@@ -153,7 +155,7 @@ const jsonLd = [
         </div>
       </dl>
 
-      {deal.notes && <p class="deal-page__notes">{deal.notes}</p>}
+      {notes && <p class="deal-page__notes">{notes}</p>}
 
       <a class="deal-page__cta" href={link.href} rel={rel} target="_blank">
         <span class="i18n-en">Get the deal on {deal.merchant} ↗</span>
