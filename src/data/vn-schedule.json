@@ -11,5 +11,7 @@
   { "deal_id": "samsung-vn-bf-tradein", "from": "2026-11-02", "to": "2026-11-30", "slots": null, "what": "Thu cũ lên đời tiết kiệm đến 23.5 triệu" },
   { "deal_id": "viettel-store-bf-den-gia-do", "from": "2026-11-24", "to": "2026-11-26", "slots": "11h–14h", "what": "Flash sale Black Friday – Ngày đen giá đỏ" },
   { "deal_id": "viettel-store-bf-den-gia-do", "from": "2026-11-27", "to": "2026-11-27", "slots": "11h–13h", "what": "Livestream trên fanpage Viettel Store" },
-  { "deal_id": "routine-bf-2026-up-to-70", "from": "2026-11-20", "to": "2026-11-30", "slots": null, "what": "Thời trang sale đến 70%, đồng giá từ 79K, mua 1 tặng 1" }
+  { "deal_id": "routine-bf-2026-up-to-70", "from": "2026-11-20", "to": "2026-11-30", "slots": null, "what": "Thời trang sale đến 70%, đồng giá từ 79K, mua 1 tặng 1" },
+  { "deal_id": "phongvu-bf-2026-dai-chien-cong-nghe", "from": "2026-11-15", "to": "2026-11-30", "slots": null, "what": "Đại chiến công nghệ, laptop giảm đến 50%++" },
+  { "deal_id": "coolmate-bf-mua-1-tang-1", "from": "2026-11-23", "to": "2026-11-29", "slots": null, "what": "Thời trang mua 1 tặng 1" }
 ]

@@ -14,6 +14,8 @@ Round 3 (~08:00): added Scrimba (BF 2026 coupon now visible, 40%), edX (Cyber Mo
 
 Round 4 (~09:30): added Microsoft 365 (30% off first billing period, US store) and Routine VN (fashion, up to 70%, 20–30/11). Live BF banners without a 2026 date, so not added: Dell, Logitech; McAfee/Spotify/Audible promos lack BF wording; DJI needs login. VN fetch blocked: Phong Vũ, Coolmate, Thế Giới Di Động, UNIQLO, Guardian (search snippets show BF 2026 for the first three — check in a browser).
 
+Round 5 (~10:30, real browser for bot-blocked pages): added Canva (50% off first 3 months, ends 4 Dec 2026 — page does not call it Black Friday), Phong Vũ (BF 2026 15–30/11), Coolmate (BF 23–29/11 mua 1 tặng 1). Thế Giới Di Động's BF page is the shared "Ngày Đen Bật Đèn" event already listed under Điện máy XANH. Setapp /black-friday is a 404.
+
 Rejected this pass:
 
 | Merchant | Why |
